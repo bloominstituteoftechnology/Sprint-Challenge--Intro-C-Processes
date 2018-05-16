@@ -1,4 +1,4 @@
-# Sprint-Challenge: Intro to C and Operating Systems
+# Sprint-Challenge: Intro to C and Processes
 
 Complete both tasks below.
 

@@ -1,19 +1,25 @@
 # Sprint-Challenge: Intro to C and Operating Systems
 
-Complete both challenges, below.
+Complete both tasks below.
 
-_The Challenge 2 code needs a Unix-like environment to work! That includes
+_The code for the second task needs a Unix-like environment to work! That includes
 Linux, macos, Cygwin, WSL, BSD, etc._
 
 If you want to test if your environment is set up for it, compile and run the
 [testdir.c](examples/testdir.c) program in the `examples/` directory. (You can
 type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
-## Challenge 1
+## Task 1
 
-Name at least three things that an operating system is responsible for handling?
+### Multiple Choice and Short Answer Questions
 
-## Challenge 2
+Add your answers inline, below, with your pull request.
+
+1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+2. What is a zombie process? How does one get created? How does one get destroyed?
+
+
+## Task 2
 
 Write a program in C, `lsls.c`, that prints out a directory listing for the
 directory the user specifies on the command line. If the user does not specify a

@@ -11,7 +11,7 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 ## Task 1
 
-### Multiple Choice and Short Answer Questions
+### Short Answer Questions
 
 Add your answers inline, below, with your pull request.
 

@@ -15,12 +15,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+1.  List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+* Ready, Running, Waiting, Blocked, Terminated. Ready to run, Running, Waiting due to a timeout, Blocked until another process finishes, and ended.
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+2.  What is a zombie process? How does one get created? How does one get destroyed?
 
+* A zombie process is a process that has completed, but is still in the stack or heap, in a terminated state because the parent process needs to read the exit status of the child (zombie) process. Once the parent reads the zombie's exit status, the zombie process is 'reaped'.
+
+3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+* compiled code is typically faster in execution. Additionally, the developer will see compilation errors, and be able to resolve them, prior to the code making it to production.
 
 ## Task 2
 
@@ -61,10 +66,10 @@ and then add the command line parsing later after you have it working.
 _You are expected to use Google to find examples of how to use these functions.
 Also see [Details](#details), below._
 
-1. Call `opendir()`.
-2. Then repeatedly call `readdir()`--printing the filenames as you go--until it
-   lets you know there are no more directory entries by returning `NULL`.
-3. Then call `closedir()`.
+1.  Call `opendir()`.
+2.  Then repeatedly call `readdir()`--printing the filenames as you go--until it
+    lets you know there are no more directory entries by returning `NULL`.
+3.  Then call `closedir()`.
 
 You don't have to write the three functions, above. They're _system calls_ built
 into the OS.
@@ -78,13 +83,12 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
 * `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
 * `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.

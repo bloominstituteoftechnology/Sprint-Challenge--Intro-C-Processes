@@ -17,9 +17,21 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+* Running: The process is active,
+* Waiting: The process is listening for some kind of an event to run it,
+* Stopped: The process has been called to end,
+* Zombie: The process was ended, but not properly removed.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+* When a child process has executed, the parent process must call 'wait' in order to collect the child and end it. When the parent does not call 'wait' in this situation,
+the child becomes a zombie, and remains in memory. To clean it, either a signal would need to be sent to the Parent for it to collect it's child, or the parent would need to be ended and the init will clean up the child.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+* When compiling code yourself, you will see errors earlier on, as the compiler will detect them to notify you at the end, or halt altogether. The compiler can also be faster to check for errors, as it doesn't need to actually run the program as it's compiled. A non-compiled / interpreted language gets compiled behind the scenes automatically, and we just run the program. There becomes a double tradeoff, where in an interpreted language, it may take longer for you to run your program, and to get errors as you run into them, but you can also directly edit and rerun your code, as compared to with a compiled language where you would have to take the extra manual compilation step if you need to fix a program's bug after running it.
+
+
 
 
 ## Task 2

@@ -17,9 +17,23 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+  The main states a process may be in is: 
+    -Created: When a process is first created it takes on a 'created' or 'new' state. This is where the process waits for admission into the ready-state.
+    Ready: A ready or waiting process has been loaded into main memory and is now awaiting execution on a CPU
+    -Running: A process moves into the running state when it is chosen for execution. The process instructions in this state is executed by one of the CPUs. A process can run in "Kernel mode" or "User mode"
+      Kernel mode- This mode can access both kernel and user mode. It has unrestricted access to hardware.
+      User mode -This mde can access their own instructions and data but NOT Kernel instructions or data/ or those of other processes. No access to any hardware devices is allowed.
+    -Blocked: A process moves into a blocked state when it cannot carry on without an external change in state.
+    -Terminated: A process may move to terminated state either from the 'running' state completeing its execution or  by explicitly being killed. The process remains in the process table as a zombie process until its parent process calls the wait system call to read its exit status t be removed from the process table.
+
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+  A zombie process is a process that has been terminated but is still on the process table awaiting for its parent process to call the wait system call to read its exit status.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+  Benefits of working in a compiled language is that there is faster execution and it is optimised for the target hardware.
 
 
 ## Task 2

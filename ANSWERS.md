@@ -1,4 +1,4 @@
-## Short answer responses below
+### Short answer responses below
 
 1.  List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 

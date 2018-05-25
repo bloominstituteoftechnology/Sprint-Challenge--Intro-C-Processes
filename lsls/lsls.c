@@ -7,14 +7,21 @@
 int printSize(char *path)
 {
   struct stat buf;
-  stat(path, &buf);
-  return buf.st_size;
+  if (lstat(path, &buf) != -1)
+  {
+    return buf.st_size;
+  }
+  perror("stat");
+  return -1;
 }
 int printIsDir(char *path)
 {
   struct stat buf;
-  stat(path, &buf);
-  return S_ISDIR(buf.st_mode);
+  if (lstat(path, &buf) != -1)
+  {
+    return S_ISDIR(buf.st_mode);
+  }
+  return -1;
 }
 /**
  * Main
@@ -24,8 +31,10 @@ int main(int argc, char **argv)
   DIR *dir;
   struct dirent *dp;
   char *filename = ".";
+  char path[100];
 
   // Parse command line
+  printf("%d\n", argc);
   if (argc == 2)
   {
     filename = argv[1];
@@ -46,15 +55,25 @@ int main(int argc, char **argv)
 
   while ((dp = readdir(dir)) != NULL)
   {
-    char *path = ("/%s", dp->d_name);
-    int size = printSize(path);
-    if (printIsDir(path))
+    if (strcmp(dp->d_name, ".") != 0 || strcmp(dp->d_name, "..") != 0)
     {
-      printf("%11s %s\n", "<DIR>", dp->d_name);
-    }
-    else
-    {
-      printf("%11d %s\n", size, dp->d_name);
+
+      sprintf(path, "%s/%s", filename, dp->d_name);
+      int size = printSize(path);
+      if (printIsDir(path) > 0)
+      {
+        printf("%11s %s\n", "<DIR>", dp->d_name);
+      }
+      else if (size != -1)
+      {
+        printf("%11d %s\n", size, dp->d_name);
+      }
+      else
+      {
+        printf("%11s %s\n", " ", dp->d_name);
+      }
+      // printf("%s %s\n", "Pathname:", path);
+      // printf("%s %s\n", "Filename: ", filename);
     }
   }
 

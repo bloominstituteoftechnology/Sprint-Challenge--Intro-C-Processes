@@ -17,9 +17,21 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+created/new - process has been created
+running - process has been executed
+ready/waiting - process has been loaded into memory and waiting execution
+blocked - stopped executing and needs a state change or instruction
+terminated - program has finished executing
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+program has finished but has not been removed from queue.
+they are created when the child finishes execution, but needs to be removed by the parent.
+they are reaped
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+it's faster due to working directly on the machine. code can be executed on the fly, which is convenient for dynamic programming.
 
 
 ## Task 2
@@ -176,3 +188,6 @@ is a directory.
 (If you bitwise-AND the value with `S_IFREG` and get a non-zero result, the file
 is a regular file, as opposed to a device node, symbolic link, hard link,
 directory, named pipe, etc.)
+
+
+

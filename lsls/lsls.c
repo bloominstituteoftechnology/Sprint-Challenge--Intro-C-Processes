@@ -34,13 +34,29 @@ int main(int argc, char **argv)
   for (i = 1; i < argc; i++)
   {
     printf("   %s\n", argv[i]);
+    dirPtr = opendir(argv[i]);
+    printf("dirPtr: %p\n", dirPtr);
+
+    if ((dirPtr = opendir(argv[i])) == NULL)
+    {
+      printf("OPENDIR unsuccessful");
+      exit(1);
+    }
+
+    while ((direntPtr = readdir(dirPtr)) != NULL)
+    {
+      printf("%s\n", direntPtr->d_name);
+    }
+
+    // Repeatly read and print entries
+
+    // Close directory
+    int isClosed = closedir(dirPtr);
+    if (isClosed != 0)
+    {
+      printf("CLOSEDIR unsuccessful");
+    }
   }
-
-  // Open directory
-
-  // Repeatly read and print entries
-
-  // Close directory
 
   return 0;
 }

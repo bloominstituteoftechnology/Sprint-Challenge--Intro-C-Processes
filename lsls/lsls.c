@@ -7,20 +7,28 @@
  */
 int main(int argc, char **argv)
 {
+  DIR *d;
+  struct dirent *ent;
+
   // Parse command line
-  // if (argc == 0) {
-  //   char cl[] = ".";
-  // }
+  if (argc == 1) {
+    d = opendir(".");
+  }
+  else if (argc == 2) {
+    d = opendir(argv[1]);
+  }
+  else {
+    fprintf(stderr, "Supply a single path to ls\n");
+  }
 
   // Open directory
-  DIR *d = opendir(".");
   if (d == NULL) {
-    fprintf(stderr, "Bomb detonated\n");
+    fprintf(stderr, "Something went horribly wrong\n");
     exit(1);
   }
   else {
   // Repeatly read and print entries
-    struct dirent *ent = readdir(d);
+    ent = readdir(d);
     while (ent != NULL) {
       printf("%s\n", ent->d_name);
       ent = readdir(d);

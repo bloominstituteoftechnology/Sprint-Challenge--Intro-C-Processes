@@ -24,22 +24,22 @@ int main(int argc, char **argv)
   
 	struct dirent *ent;
 	printf("Directory:%s\n", dir_arg);
-	DIR *dr = opendir(dir_arg);
+	DIR *directory = opendir(dir_arg);
 	
-	if(dr == NULL) {
+	if(directory == NULL) {
 		printf("error occured in opening the dir.");
 		exit(1);
 	}
 	
   // Repeatly read and print entries
   
-	while ((ent = readdir(dr)) != NULL) {
+	while ((ent = readdir(directory)) != NULL) {
 		printf("%s\n", ent -> d_name);
 	}
  
   // Close directory
   
-    closedir(dr); 
+    closedir(directory); 
 
   return 0;
 }

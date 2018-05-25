@@ -30,20 +30,34 @@ int main(int argc, char **argv)
     // verify closed
     if (isClosed != 0)
     {
-      printf("closedir() was unsuccessful");
+      printf("closedir() was unsuccessful\n");
     }
     exit(0);
   }
 
-  for (i = 0; i < argc; i++)
+  for (i = 1; i < argc; i++)
   {
-    printf("   %s\n", argv[i]);
+    dir = opendir(argv[i]);
+    printf("dir: %p\n", dir);
+
+    if ((dir = opendir(argv[i])) == NULL)
+    {
+      printf("OPENDIR unsuccessful\n");
+      exit(1);
+    }
+
+    while ((dp = readdir(dir)) != NULL)
+    {
+      printf("%s\n", dp->d_name);
+    }
+
+    int isClosed = closedir(dir);
+    if (isClosed != 0)
+    {
+      printf("closedir() was unsuccessful\n");
+    }
+    exit(0);
   }
-  // Open directory
-
-  // Repeatly read and print entries
-
-  // Close directory
 
   return 0;
 }

@@ -16,10 +16,18 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+- fork() -- fork is used to create a new process.
+- exec() -- when fork is called, "it runs copies of the same program." Exec is useful for running a different program.
+- wait() - wait is exactly what it sounds like. It is helpful to prevent processes from running concurrently. In other words, "wait until x is done before doing y."
+- ref: http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+- A zombie process is a process that has already been executed, "but still has an entry in the process table ... once the exit status is read via the wait system call, the zombie's entry is removed from the process table and said to be 'reaped.'"
+- ref: https://en.wikipedia.org/wiki/Zombie_process
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+- There is a tradeoff between using a compiled language vs an interpreted language. Compiled languages will typically run faster/more efficiently than interpreted languages, since intepreted languages must be parsed and interpreted before being executed. However, interpreted languages have a major edge in that the code can typically be developed at a much faster pace than with a compiled language.
+- ref: https://www.ibm.com/support/knowledgecenter/zosbasics/com.ibm.zos.zappldev/zappldev_85.htm
 
 
 ## Task 2

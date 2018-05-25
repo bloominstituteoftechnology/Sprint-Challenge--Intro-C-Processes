@@ -16,11 +16,27 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  The three main states are:
+    Created/New - The process has just been creating and is awaiting the scheduler to put it into ready state.
+    Running -  The process is chosen for execution. The CPU executes its instructions in either kernal or user mode.
+    Ready/Waiting - The program is loaded into memory and awaiting execution.
+    Blocked - Cannot carry on without external intervention (state change or instruction). 
+    Terminated - Program has finished running and is waits to be removed from memory.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+  A process that has completed execution but still has a reference, it is in the "terminated" state. They are created when a child process finishes and but the parent still needs to read their exit status. Once this happens they are memory collected AKA reaped.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+  The benefit of a compiled language:
+  Faster because it is working directly on the machine.
+  During compiling code can be optimized.
+
+  Benefits of interpreted language:
+  Can be executed on the fly.
+  Convenient for dynamic programming.
+
+  This distinction in terms of languages is pretty much outdated because the idea of an interpeter doesn't exist very frequently. Instead it compiles to a semi-compiled state and is run on a virtual machine.
 
 ## Task 2
 

@@ -7,7 +7,8 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-
+  DIR *dir;
+  char *path;
   // Open directory
 
   // Repeatly read and print entries

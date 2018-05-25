@@ -1,7 +1,21 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <string.h>
 
+int printSize(char *path)
+{
+  struct stat buf;
+  stat(path, &buf);
+  return buf.st_size;
+}
+int printIsDir(char *path)
+{
+  struct stat buf;
+  stat(path, &buf);
+  return S_ISDIR(buf.st_mode);
+}
 /**
  * Main
  */
@@ -30,14 +44,22 @@ int main(int argc, char **argv)
 
   // Repeatly read and print entries
 
-  ;
-
   while ((dp = readdir(dir)) != NULL)
   {
-    printf("%s\n", dp->d_name);
+    char *path = ("/%s", dp->d_name);
+    int size = printSize(path);
+    if (printIsDir(path))
+    {
+      printf("%11s %s\n", "<DIR>", dp->d_name);
+    }
+    else
+    {
+      printf("%11d %s\n", size, dp->d_name);
+    }
   }
 
   // Close directory
+  closedir(dir);
 
   return 0;
 }

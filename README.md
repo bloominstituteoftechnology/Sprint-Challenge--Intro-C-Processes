@@ -17,9 +17,31 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+States are `created`, `ready`, `running`, `blocked`, and `terminated`. 
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+`Created`: this is when the process first starts, it is created, also called 'new state'. Then it enters
+the `ready`state. 
+
+`Ready`: also called 'waiting' is the process when the main memory is awaiting to
+execute to the `CPU`, done by the dispatch or short term scheduler. There can be multiple processes at one point. 
+
+`Running`: when the process is chosen to execute, then it goes into the running state. It will execute
+processing instructions by one of the `CPU`'s of the system. Within the `running` state there are two modes,
+the `kernel mode`, and `user mode`. 
+
+`Blocked`: is the state where there may occur a block, where the process can't carry on without an external change in state. One example can be a block call on to an I/O device like a fax machine, it may be unavailable. Lastly, we have the state 
+
+`Terminated`: this process can be terminated from the running state by finishing up the execution or by being stuck where it is not executing, leaving it in a process table where it is waiting for execution. 
+
+2. What is a zombie process? How does one get created? How does one get destroyed? 
+
+`Zombie process`: it is the process that has been completed but it is the 'process table', it is the the final state, called the terminated state. The child is waiting for entry from the parent to read the child's exit status. It can get destroyed or exited by the `wait` system call.
+
+3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code? 
+
+With a compiled language you the code can be faster compared to the those translated at run time, because theres a translation process. It is more of a one to one with the code and the hardware operations being performed by machine code, making it easier for the programmers to control the use of the CPU and memory with better detail. 
+
+
 
 
 ## Task 2

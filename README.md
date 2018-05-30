@@ -15,12 +15,22 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+1.  List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+* running: process is running
+* interruptible: process is blocked and waiting for an event/ signal from another process
+* uninterruptible: process is blocked and waits for hardware conditions to trigger an event
+* stopped: stopped and waiting for trigger by another event
+* zombie: process is stopped but the data is still in the processtable. (child is done but the parent has not collected the child exit status).
+* orphan: parent process is stopped but the child process is still running
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+2.  What is a zombie process? How does one get created? How does one get destroyed?
 
+* this is when a child process is stopped but the data is still in the processtable. (child is done but the parent has not collected the child exit status). It is cleaned by the cpu using the reaper process.
+
+3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+* compiled languages are faster because alot of things are caught on compile time.
 
 ## Task 2
 
@@ -61,10 +71,10 @@ and then add the command line parsing later after you have it working.
 _You are expected to use Google to find examples of how to use these functions.
 Also see [Details](#details), below._
 
-1. Call `opendir()`.
-2. Then repeatedly call `readdir()`--printing the filenames as you go--until it
-   lets you know there are no more directory entries by returning `NULL`.
-3. Then call `closedir()`.
+1.  Call `opendir()`.
+2.  Then repeatedly call `readdir()`--printing the filenames as you go--until it
+    lets you know there are no more directory entries by returning `NULL`.
+3.  Then call `closedir()`.
 
 You don't have to write the three functions, above. They're _system calls_ built
 into the OS.
@@ -78,13 +88,12 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
 * `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
 * `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.

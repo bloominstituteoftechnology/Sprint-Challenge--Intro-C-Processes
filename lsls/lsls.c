@@ -5,39 +5,38 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv)  
+{ 
   // Parse command line
-	char *dir_arg;
+	char *dirname;
 	if (argc == 1) {
-		dir_arg = ".";	
-	}
-	else if (argc == 2) {
-		dir_arg = argv[1];
-	}
-	else {
-		fprintf(stderr, "Too many arguments were passed. Please try again");
+		dirname = ".";	
+	
+	}else if (argc == 2) {
+		dirname = argv[1];
+
+	}else {
+		fprintf(stderr, "usage: ./lsls [dirname]\n");
 		exit(1);
 	}
 
   // Open directory
 	struct dirent *ent;
-	printf("Directory:%s\n", dir_arg);
-	DIR *dr = opendir(dir_arg);
+ 	DIR *d = opendir(dirname);
 	
 	if(dr == NULL) {
-		printf("There was an error opening/finding the current directory.");
-		exit(1);
+		printf("lsls: cannot open directory");
+		exit(2);
 	}
 
   // Repeatly read and print entries
-	while ((ent = readdir(dr)) != NULL) {
+	while ((ent = readdir(d)) != NULL) {
 		printf("%s\n", ent -> d_name);
 	}
 
 // Close directory
 
-closedir(dr); 
+closedir(d); 
 
   return 0;
 }

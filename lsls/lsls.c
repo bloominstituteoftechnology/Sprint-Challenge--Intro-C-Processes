@@ -26,9 +26,7 @@ int main(int argc, char **argv)
         strcat(path, "/");
         strcat(path, dir->d_name);
         if (dir->d_type == 4)
-        {
           printf("%7s  %s\n", "<DIR>", dir->d_name);
-        }
         else
         {
           stat(path, &buf);

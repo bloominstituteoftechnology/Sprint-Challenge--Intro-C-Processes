@@ -37,7 +37,14 @@ int main(int argc, char **argv)
   while((sd=readdir(dir)) != NULL)
   {
     stat(sd->d_name, &fileStat);
-    printf("%10lld\t%s \n", fileStat.st_size, sd->d_name);
+    if (S_ISDIR(fileStat.st_mode))
+    {
+      printf("<DIR>\t%s \n", sd->d_name);
+    } 
+    else
+    {
+      printf("%10lld\t%s \n", fileStat.st_size, sd->d_name);
+    } 
   }
 
   // Close directory

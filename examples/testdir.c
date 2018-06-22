@@ -11,6 +11,6 @@ int main(void)
   DIR *d = opendir(".");
   printf("Testing: %s\n", d == NULL? "FAIL": "PASS");
   closedir(d);
-
+  
   return 0;
 }

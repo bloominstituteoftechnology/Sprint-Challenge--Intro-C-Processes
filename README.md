@@ -16,11 +16,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  D    uninterruptible sleep (usually IO)
+  R    running or runnable (on run queue)
+  S    interruptible sleep (waiting for an event to complete)
+  T    stopped, either by a job control signal or because it is being traced.
+  X    dead (should never be seen)
+  Z    defunct ("zombie") process, terminated but not reaped by its parent.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
-
+   A zombie process is a terminated process that is still on the process table.
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+  By taking the time to compile the code ourselves we can gain a speed advantage because we can execute the code again, without having to run it through a compiler again. 
 
 ## Task 2
 
@@ -78,7 +84,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

@@ -1,24 +1,28 @@
-#include <stdio.h>
+#include <fcntl.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
-/**
- * Main
- */
+/*/  Helpers  /*/
+
+
+/*/  Main  /*/
 int main(int argc, char **argv)
 {
+  // Set up directory struct
   DIR *dir;
   struct dirent *dp;
-  
   // No additional arguments
   if (argc < 2)
   {
     // Open current directory
     dir = opendir(".");
-    // Print directory contents
+    // Print directory contents and file sizes
     while ((dp = readdir(dir)) != NULL) 
-    {
+    { 
+      printf("%zu ", getFilesize(dp->d_name));
       printf ("%s\n", dp->d_name);
     }
   }
@@ -39,9 +43,11 @@ int main(int argc, char **argv)
       perror("Cannot open");
       exit(1);
     }
-    // Print directory contents
+    // Print directory contents and file sizes
     while ((dp = readdir(dir)) != NULL) 
     {
+      // stat_filesize(dp->d_name);
+      printf("%zu ", getFilesize(dp->d_name));
       printf ("%s\n", dp->d_name);
     }
   }

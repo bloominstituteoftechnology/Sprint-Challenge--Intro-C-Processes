@@ -13,7 +13,15 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *entry;
-  dir = opendir(".");
+
+  if (argv[1] == 0)
+  {
+    dir = opendir(".");
+  }
+  else
+  {
+    dir = opendir(argv[1]);
+  }
 
   // Parse command line
 
@@ -27,6 +35,7 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   if (dir)
   {
+
     while ((entry = readdir(dir)) != NULL)
     {
       printf("%s\n", entry->d_name);

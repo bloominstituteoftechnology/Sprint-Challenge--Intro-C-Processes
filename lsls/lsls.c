@@ -22,6 +22,13 @@ int main(int argc, char **argv)
       printf ("%s\n", dp->d_name);
     }
   }
+  // Too many arguments
+  else if (argc > 2)
+  {
+    perror("Too many arguments");
+    exit(1);
+  }
+ 
 
   return 0;
 }

@@ -7,15 +7,20 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-
+  struct dirent *ent;
   // Open directory
+  DIR *dir = opendir(".");
+  
+  if (dir == NULL )
+  {
+    printf("Could not open current directory");
+    return 0;
+  }
 
   // Repeatly read and print entries
-  for (i = 1; i <= )
+  
 
   // Close directory
-  if (closedir() ==  0)
-    puts("the directory is closed.");
-
+  closedir(dir);
   return 0;
 }

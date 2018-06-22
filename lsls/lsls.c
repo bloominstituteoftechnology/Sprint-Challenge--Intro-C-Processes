@@ -32,9 +32,10 @@ int main(int argc, char **argv)
     stat(ent->d_name, &buf);
     if ((buf.st_mode & S_IFDIR) != 0) {
       printf("%10s %s\n", "<DIR>", ent->d_name);
+    } else if ((buf.st_mode & S_IFREG) != 0) {
+        printf("%lld %s\n", buf.st_size, ent->d_name);
     }
   }
-
   // Close Directory
     closedir(dir);
   }

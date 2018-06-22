@@ -14,6 +14,7 @@ int main(int argc, char **argv)
   DIR *dir;
   struct dirent *entry;
 
+  // Parse command line
   if (argv[1] == 0)
   {
     dir = opendir(".");
@@ -22,8 +23,6 @@ int main(int argc, char **argv)
   {
     dir = opendir(argv[1]);
   }
-
-  // Parse command line
 
   // Open directory
   if (dir == NULL)

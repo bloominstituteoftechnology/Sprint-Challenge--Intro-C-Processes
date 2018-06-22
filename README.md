@@ -25,7 +25,8 @@ Add your answers inline, below, with your pull request.
 A zombie process is created when a child process terminates but has not been waited for. The computer saves some of the information related to the child process in case the parent needs to execute it later. The zombie process is added to the process table which may fill up, preventing more processes from being added. Since they're already dead, they have to be removed by having the parent wait() on the zombie children.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-Compiled languages tend to be faster than interpreted languages because compiling at compile time is usually more effecient than compiling at run time. 
+Compiled languages need to be compiled to code that the machine can understand and execute, but allows programmers to use more dynamic languages to write instructions for the machine. The main benefit in compiling our code is that it's a lot easier for the programmer to write and maintain instructions. 
+When compared to interpreted languages, compiled languages tend to be faster than interpreted languages because compiling at compile time is usually more effecient than compiling at run time. The tradeoff for increased performance is a clunkier time writing the code, as interpreted languages can abstract away some of the mundane processes from compiled lanauges. 
 
 
 ## Task 2

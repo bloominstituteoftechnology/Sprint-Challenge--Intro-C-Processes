@@ -17,11 +17,11 @@ int main(int argc, char **argv)
   // Open directory
   DIR *d = opendir(".");
   printf("Testing: %s\n", d == NULL? "FAIL": "PASS");
-  closedir(d);
 
   // Repeatly read and print entries
 
   // Close directory
+  closedir(dir);
 
   return 0;
 }

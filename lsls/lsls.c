@@ -27,13 +27,16 @@ int main(int argc, char **argv)
     exit(1);
   }
   // Repeatly read and print entries
-   else {
-    while ((pDirent = readdir(dir)) != NULL) {
+  else
+  {
+    while ((pDirent = readdir(dir)) != NULL)
+    {
       printf("%s\n", (*pDirent).d_name);
     }
   }
 
   // Close directory
+  closedir(dir);
 
   return 0;
 }

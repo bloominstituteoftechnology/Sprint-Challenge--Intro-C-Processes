@@ -45,6 +45,8 @@ int main(int argc, char **argv)
       printf ("%s\n", dp->d_name);
     }
   }
+  // Close directory
+  closedir(dir);
 
   return 0;
 }

@@ -18,20 +18,19 @@ Add your answers inline, below, with your pull request.
 1.  List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
 Process states in Linux:
-
 Running: Process is either running or ready to run
-
 Interruptible: a Blocked state of a process and waiting for an event or signal from another process
-
 Uninterruptible: a blocked state. Process waits for a hardware condition and cannot handle any signal
-
 Stopped: Process is stopped or halted and can be restarted by some other process
-
 Zombie: process terminated, but information is still there in the process table.
 
 2.  What is a zombie process? How does one get created? How does one get destroyed?
 
+A zombie process is a process that completed its execution but still has an entry in the process table.
+
 3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+Interpreting tends to be more flexible, while compiling tends to have higher performance. This is a complex issue and I'm not going to write a dissertation on the matter unless you're paying me.
 
 ## Task 2
 

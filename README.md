@@ -16,10 +16,13 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+All processes start in the Created state, where they stay until the computer's scheduler allows them to move to the Ready state. They alternate between this state and the Running state as the CPU allocates execution cycles to each of the currently running processes. When the process is waiting on the outcome of an essential function call, such as one the receives user input or waits for the release of a lock, the process is in a Blocked state. Finally, a process enters the Terminated state when it has finished executing all of its instructions.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+A zombie process is a child process which has been created by fork() and has finished its execution, but has not had wait() called by its parent process in order to clean it up. A child process that has finished its execution will remain in the system's process table until the parent process decides to check the return value of the process, so a zombie can only be cleaned up by the parent process. Also, if the parent process is killed, all child processes will be inherited by `init`, which will clean up any zombies.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+Compiled languages get several benefits that stem from the fact that compilation is a process during which the code is examined before it is run. Compilation allows languages with strong type systems to certify that the program will run with no type errors. It also allows for optimizations which involve the translation of certain patterns of instructions into simpler and faster patterns. This allows code to run fast while allowing the programmer to abstract away the details of the machine.
 
 
 ## Task 2

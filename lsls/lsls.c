@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
   struct dirent *dir;
   DIR *d;
-  char path[50];
+  char path[8192];
   struct stat buf;
 
   printf("\n");

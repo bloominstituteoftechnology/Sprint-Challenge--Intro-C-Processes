@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <string.h>
 
 /**
  * Main
@@ -18,7 +19,14 @@ int main(int argc, char **argv)
     }
 
     while(ent = readdir(dirPointer)) {
-        stat(ent->d_name, &statBuffer);
+        /* char pathName[20]; */
+        char* pathName = strdup(dirName);
+
+        /* strcpy(pathName, dirName); */
+        strcat(pathName, "/");
+        strcat(pathName, ent->d_name);
+        
+        stat(pathName, &statBuffer);
 
         if (statBuffer.st_mode & S_IFDIR) {
             printf("%10s %s\n", "<DIR>", ent->d_name);

@@ -6,13 +6,24 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  // pointer for directory entry
+  struct dirent *de;
 
-  // Open directory
+  // opendir() returns pointer of DIR type
+  DIR *d = opendir(".");
+  // opendir returns NULL if couldn't open directory
+  if (d == NULL)
+  {
+    printf("Could not open current directory");
 
-  // Repeatly read and print entries
+    return 0;
+  }
+  // readdir() returns a pointer to a structure representing a directory entry at the current position specified by dr
+  while ((de = readdir(d)) != NULL)
+  {
+    printf("%s\n", de->d_name);
+  }
 
-  // Close directory
-
+  closedir(d);
   return 0;
 }

@@ -39,7 +39,11 @@ int main(int argc, char **argv)
       perror("Cannot open");
       exit(1);
     }
-
+    // Print directory contents
+    while ((dp = readdir(dir)) != NULL) 
+    {
+      printf ("%s\n", dp->d_name);
+    }
   }
 
   return 0;

@@ -17,10 +17,15 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+### According to Wikipedia, a process can be in up to 7 states including: Created, Ready, Running, Blocked, Terminated, Swapped and waiting, and Swapped and blocked. The created state is simply the beginning where a process is waiting to move into the ready state. The ready state is where the process is loaded into memory and is ready to be executed. Running state is when the process has been executed from the ready state. Blocked is when a process is cut off from fulfilling its task by not having access to another component, either external or internal. Terminated is when the process is stopped either because it has completed execution or it has been forcibly terminated. The last two states occur in the space of virtual memory where a process can be swapped into an alternate storage for a time to be run later (swapped and waiting) or else it never runs because it its missing a component to fulfill the process (swapped and blocked).
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+### A zombie process is essentially the dregs of a process that are leftover momentarily before the process is completely removed from memory after being read for some basic information. wait() system call is run before the process is removed from memory.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+### Compiled languages are built for efficiency which is why they're used for games and operating systems. They point directly to the hardware that is to be utilized for efficient system function. The difficulty of a compiler language is that it can be more difficult to write and comprehend, but when done well can make for speedy processing.
 
 ## Task 2
 

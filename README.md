@@ -15,11 +15,24 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means. 
+#ANSWER: The main states a process may be in at any point in time are the following:
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+#1 - Created: This is when a process is first created and/or new so it occupies this state. While in this state it awaits to transition to the "ready" state. 
+
+#2 - Ready: This is when a process sits in the main memory and is in a "ready" or "waiting" process and is awaiting on the CPU to execute it. 
+
+#3 - Running: When the process is chose for execution, it then moves into the running process. These instructions get executed by one of the CPU's cores. This process can run in either Kernel Mode or User Mode. 
+
+#4 - Blocked: The process then moves on to a blocked process state when it can't continue without some sort of event occurring. For example, if you're trying to print something, but the printer is not available, this process would block that call to the printer. 
+
+#5 - Terminated: This happens when a process is either killed or it's completed execution from the running state. 
+
+2. What is a zombie process? How does one get created? How does one get destroyed?  
+#ANSWER: This is a process that has finished execution by the "exit" system call. It will still have an entry point on the process table by becoming the Terminated State. This happens when child processes (when entry is still needed to allow a parent process to read the childs exit status). Once it's exited, the status is read from the "wait" call and at that point the zombie entry can be removed or considered "reaped". Child processes always are at first a zombie before they can be removed. The kill command also has no effect on a zombie process.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+#ANSWER: Compiled Languages have some great advantages in that it executes quickly and is optimized for target hardware however it will require some extra resources. It also examines the code before it's ran to ensure the program can run with no errors. Non-Compiled languages don't require extra resources. 
 
 
 ## Task 2

@@ -12,22 +12,22 @@ int main(int argc, char **argv)
 
   // Parse Command Line
   if (argc == 1) {
-    DirA = opendir('.');
+    DirA = opendir(".");
   } else if (argc == 2) {
     DirA = opendir(argv[1]);
   } else {
-    printf('Error');
+    printf("Error");
   }
   
   // Open directory
   if (DirA == NULL) {
-    printf('Error opening Directory\n');
+    printf("Error opening Directory\n");
     exit(1);
   }
 
   // Repeatly read and print entries
-  while ((DirB = readdirectory(DirA)) != NULL) {
-      printf('%s\n', DirB->d_name);
+  while ((DirB = readdir(DirA)) != NULL) {
+      printf("%s\n", DirB->d_name);
   }
   
   // Close directory

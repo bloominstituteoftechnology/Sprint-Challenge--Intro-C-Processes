@@ -14,6 +14,22 @@ size_t getFilesize(const char* filename) {
   return st.st_size;   
 }
 
+// !!! SO CLOSE !!!
+// Trying to aid in DRY by creating reusable function
+// but it kept resulting in Segfault: 11 after printing
+// all of the appropriate data
+void printDir(char *filename) {
+  DIR *dir;
+  struct dirent *dp;
+
+  dir = opendir(filename);
+
+  while ((dp = readdir(dir)) != NULL) 
+  {
+    printf("%zu ", getFilesize(dp->d_name));
+    printf ("%s\n", dp->d_name);
+  }
+}
 
 /*/  Main  /*/
 int main(int argc, char **argv)

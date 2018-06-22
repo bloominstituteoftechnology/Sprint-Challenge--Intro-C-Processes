@@ -16,11 +16,19 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+- New Fork:  The process is created.
+- TASK_RUNNING:  The process is standing by, ready to run.  If process is prioritized lower than another, it will return to this state.
+- TASK_RUNNING:  The process is currently running.
+- exit command:  The process is terminated.
+- TASK_INTERRUPTIBLE / TASK_UNINTERRUPTIBLE:  The process has been put to sleep, and is standing by to be woken up and put back on the queue.
+- task is woken up:  The process is put back in the TASK_RUNNING state, primed to run.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+- A zombie process is a process that has been terminated, but has leftover bytes left in memory that have not been freed up.
+- Kill a zombie process by running wait() on the parent, or sending SIGCHLD to the parent to tell it to kill off the zombies.  Or kill the parent process.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+- We have more control over what exactly is happening.  We can control amounts of memory that is being used, and see exactly what is taking how much time.  The bigger your program is, the more important this becomes.
 
 ## Task 2
 

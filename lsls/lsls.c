@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     // strcpy(path, argv[i]);
     if (d != NULL)
     {
+      printf("Directory for \"%s\"\n", argv[i]);
       while ((dir = readdir(d)) != NULL)
       {
         if (dir->d_type == 4)
@@ -31,6 +32,7 @@ int main(int argc, char **argv)
     else
     {
       perror("");
+      printf(" \"%s\"\n", argv[i]);
       return 1;
     }
   }

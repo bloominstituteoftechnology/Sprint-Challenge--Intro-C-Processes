@@ -7,6 +7,7 @@
 // readdir()
 // strcat()
 // closedir()
+// snprintf()
 
 /**
  * Main
@@ -37,18 +38,21 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   if (dir)
   {
-
     while ((entry = readdir(dir)) != NULL)
     {
-      stat(entry->d_name, &buf); // Pulling file status
-      
-      if ((buf.st_mode & S_IFDIR) > 0)
+      if (stat(entry->d_name, &buf) < 0) // Pulling file status
       {
-        printf("<DIR>  %s\n", entry->d_name); // print <DIR> & name
+        printf(stderr, "Reading stat of file failed.");
+        exit(2);
+      }
+
+      if ((buf.st_mode & S_IFDIR) > 0) // make sure to use bitwise-operation
+      {
+        printf("%6s  %s\n", "<DIR>", entry->d_name); // print <DIR> & name
       }
       else
       {
-        printf("%lld  %s\n", buf.st_size, entry->d_name); // print file size & name
+        printf("%6lld  %s\n", buf.st_size, entry->d_name); // print file size & name
       }
     }
 

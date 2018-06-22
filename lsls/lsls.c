@@ -41,9 +41,10 @@ int main(int argc, char **argv)
     while ((entry = readdir(dir)) != NULL)
     {
       stat(entry->d_name, &buf); // Pulling file status
-      if (buf.st_mode & 'S_IFDIR' != 0)
+      
+      if ((buf.st_mode & S_IFDIR) > 0)
       {
-        printf("yay");
+        printf("<DIR>  %s\n", entry->d_name); // print <DIR> & name
       }
       else
       {

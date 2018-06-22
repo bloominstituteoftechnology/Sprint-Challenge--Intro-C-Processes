@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 /*
 
@@ -23,13 +24,13 @@
     * returns -1 on failure
     
   getcwd() - get the pathname of the current working directory
-    *
 
 */
 int main(int argc, char **argv)
 {
   DIR *directory; // dirp
   struct dirent *readDIR;
+  struct stat buff;
   char *cwd, cwdBuffer[314];
 
   // No DIR is specified. Print the current DIR.
@@ -42,9 +43,12 @@ int main(int argc, char **argv)
 
     else 
     {
+      printf("Size \t Name \n");
+
       while ((readDIR = readdir(directory)) != NULL)
       {
-        printf("%s \n", readDIR->d_name);
+        stat(readDIR->d_name, &buff);
+        printf("%ldB \t %s \n", buff.st_size, readDIR->d_name);
       }
 
       closedir(directory);
@@ -60,9 +64,12 @@ int main(int argc, char **argv)
 
     else
     {
+      printf("Size \t Name \n");
+
       while ((readDIR = readdir(directory)) != NULL)
       {
-        printf("%s \n", readDIR->d_name);
+        stat(readDIR->d_name, &buff);
+        printf("%ldB \t %s \n", buff.st_size, readDIR->d_name);
       }
 
       closedir(directory);

@@ -38,7 +38,7 @@ int main(int argc, char **argv)
   DIR *dir;
   struct dirent *dp;
   // No additional arguments
-  if (argc < 2)
+  if (argc == 1)
   {
     // Open current directory
     dir = opendir(".");
@@ -49,14 +49,8 @@ int main(int argc, char **argv)
       printf ("%s\n", dp->d_name);
     }
   }
-  // Too many arguments
-  else if (argc > 2)
-  {
-    perror("Too many arguments");
-    exit(1);
-  }
   // Directory path is given
-  else 
+  else if (argc == 2)
   {
     // Open target directory
     dir = opendir(argv[1]);
@@ -73,6 +67,12 @@ int main(int argc, char **argv)
       printf("%zu ", getFilesize(dp->d_name));
       printf ("%s\n", dp->d_name);
     }
+  }
+  // Too many arguments
+  else 
+  {
+    perror("Too many arguments");
+    exit(1);
   }
   // Close directory
   closedir(dir);

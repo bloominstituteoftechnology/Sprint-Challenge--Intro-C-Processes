@@ -15,11 +15,37 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+**1.** List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  * **Running** - the process is currently running on the CPU.
+  * **Waiting** - the process is waiting for some event, resource, or input. 
+  * **Stopped** - the process has been halted or terminated.
+  * **Zombie**  - the process is dead but has not been removed from the process table.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+**2.** What is a zombie process? How does one get created? How does one get destroyed?
+  * A zombie process is a process which has finished executing but never gets cleaned up by the OS.
+    * The OS keeps the process listed as active on the _process list table_
+      * _process list table_ is accessed via `top` on OSx or `tasklist` on Windows.
+  * A zombie process occurs when a parent process forks a child process and...
+    * ...doesn't execute a system call such as `wait` to clean up the OS after the child has finished executing
+    * ...the parent terminates before its' child finishes executing
+  * A zombie process can be destroyed by...
+    * ...killing the parent process. The parent's orphan children will be adopted by the `init` process (`pid 1`), which runs `wait()` periodically to destroy any zombie children.
+    * ...send a `SIGCHLD` signal to the parent. This signal is sent to the parent process when a child process stops or terminates. By forcing this signal, you're manually telling the parent to clean up after itself.
+      * `kill -s SIGCHLD <ppid>`
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+**3.** What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+  * A **compiled language** transforms human-written code into machine code via the compiler.
+    * Examples of compiled languages include: C, Go, Rust
+    * Benefits of compiled code:
+      * tend to run faster than non-compiled languages
+      * offers opportunity for powerful optimization during the compile stage
+
+  * **Non-compiled languages** - also known as _interpreted_ languages - sends human-written code to another program (typically written in native machine language) to be transformed into machine code and executed.
+    * Examples of interpreted languages include: Python, JavaScript, Ruby
+    * Benefits of interpreted languages:
+      * easier to implement 
+      * no need for extra compile steps...execute your code whenever you want
 
 
 ## Task 2

@@ -10,7 +10,7 @@
 int main(int argc, char **argv)
 {
   char *str;
-  char* cmdpath;
+  // char* cmdpath; // thought was needed but gets warning for unused variable
   DIR *d;
   struct dirent *ent;
   struct stat buf;

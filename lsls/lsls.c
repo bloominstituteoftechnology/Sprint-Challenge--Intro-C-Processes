@@ -10,6 +10,15 @@ int main(int argc, char **argv)
   // Parse command line
   DIR *dir;
 
+  if(argc == 1) { // argc is the number of arguments being passed 
+                  // argv is the arguments being passed.
+    
+  } else if ( argc == 2) {
+
+  } else {
+
+  }
+
   dir = opendir(".");
   if(dir == NULL) {
     printf("stdError cannot open directory \n");

@@ -30,14 +30,24 @@ int main(int argc, char **argv)
 {
   DIR *directory; // dirp
   struct dirent *readDIR;
-  char cwdBuffer[314], *cwd;
+  char *cwd, cwdBuffer[314];
 
   // No DIR is specified. Print the current DIR.
   if (argc == 1)
   {
     cwd = getcwd(cwdBuffer, sizeof(cwdBuffer));
     directory = opendir(cwd);
-    printf("%s \n", cwd);
+
+    if (directory == NULL) printf("Failed to open the CWD: %s \n", cwd);
+
+    else {
+
+      while ((readDIR = readdir(directory)) != NULL){
+        printf("%s \n", readDIR->d_name);
+      }
+
+      closedir(directory);
+    }
   }
 
   // if (directory == NULL && argc == 2){

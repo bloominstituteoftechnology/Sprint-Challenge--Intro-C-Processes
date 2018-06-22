@@ -9,7 +9,7 @@ void errorOut(int code)
 
 void handleReadDir(char *toOpen)
 {
-  // Parse command line
+
   struct dirent *de;
 
   // Open directory
@@ -37,6 +37,7 @@ int main(int argc, char **argv)
 
   if (argc >= 2)
   {
+    // Parse command line
     handleReadDir(argv[1]);
   }
   else

@@ -10,13 +10,20 @@ int main(int argc, char **argv)
   // Parse command line
   DIR *dir;
   struct dirent *ent;
+  char *filename = ".";
 
   // Open directory
   //checks if a directory has been passed
-  if (dir == NULL)
+  if (argc == 2)
   {
-    printf("Could not open directory \n");
+    filename = argv[1];
   }
+
+  if ((dir = opendir(filename)) == NULL) {
+    printf (stderr, "An error happened while trying to read the file directory. Try again! \n");
+    exit(1);
+  }
+
 
   // Repeatly read and print entries
 

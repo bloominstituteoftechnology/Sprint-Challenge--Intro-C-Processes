@@ -17,9 +17,19 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+fork(): Is used to create a new child process which runs concurrently with the parent. 
+
+exec(): With exec, it replaces the current process with a new process, allowing it to switch between different .C files.
+
+wait(): Wait is used to force a process to hold off from running until another process is finished doing what it needs to do. Once that condition is fufilled, then the process can run.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+It is a process that ran and finished what it was doing but still exists in the process table. The reason for this is so child process can still read and access the infomation available on the parent. Once wait() is used for the child process to read whatever data is needed, then the zombie process is removed. 
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+The advantages of compiling is that it allows very quick runtimes as the language is already translated to machine code for use. For programs expected to use heavy resources, it's languages that can compile are generally prefered in contrast to non-compiled languages. The disadvantage however, is a longer development time that can take a while for compliation as each change in the code must be re-compiled each time. For smaller programs, this isn't a huge deal but for large programs with very large amounts of data being processed, it can take a huge chunk of time.
 
 
 ## Task 2

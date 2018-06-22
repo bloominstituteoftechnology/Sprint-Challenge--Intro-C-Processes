@@ -33,7 +33,12 @@ int main(int argc, char **argv)
   {
     // Open target directory
     dir = opendir(argv[1]);
-
+    // Directory not found
+    if (dir == NULL) 
+    {
+      perror("Cannot open");
+      exit(1);
+    }
 
   }
 

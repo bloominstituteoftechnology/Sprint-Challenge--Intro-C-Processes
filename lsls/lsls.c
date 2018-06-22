@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 {
   // Parse command line
     //printing the directory that will be opened
-  printf("%s", argv[argc - 1]);
+  printf("%s", argv[1]);
   printf("\n");
   // Open directory
     //specifying the structer to be of type directory
@@ -20,6 +20,7 @@ int main(int argc, char **argv)
   DIR *dir;
   dir = opendir(argv[1]);
   // Repeatly read and print entries
+  char *dirFiles = argv[1];
   int rc = fork();
 
   if (rc == 0) {

@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include",
+        "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/*",
+        "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/tr1/",
+        "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/tr2/",
+        "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/bits/",
+        "C:/cygwin64/lib/gcc/x86_64-pc-cygwin/6.4.0/include/c++/x86_64-pc-cygwin/"
+
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

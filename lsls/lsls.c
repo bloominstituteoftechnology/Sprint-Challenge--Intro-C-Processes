@@ -19,7 +19,13 @@ int main(int argc, char **argv)
 
     while(ent = readdir(dirPointer)) {
         stat(ent->d_name, &statBuffer);
-        printf("%10lld %s\n", statBuffer.st_size, ent->d_name);
+        if (statBuffer.st_mode & S_IFDIR) {
+            printf("%10s %s\n", "<DIR>", ent->d_name);
+        } else if (statBuffer.st_mode & S_IFREG) {
+            printf("%10lld %s\n", statBuffer.st_size, ent->d_name);
+        } else {
+            printf("%10s %s\n", "<SPECIAL>", ent->d_name);
+        }
     }
 
     closedir(dirPointer);

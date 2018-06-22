@@ -7,6 +7,11 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  char* path;
+  struct dirent *de;
+  DIR *dr;
+  
+
 
   // Open directory
 

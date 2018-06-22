@@ -28,7 +28,14 @@ int main(int argc, char **argv)
     perror("Too many arguments");
     exit(1);
   }
- 
+  // Directory path is given
+  else 
+  {
+    // Open target directory
+    dir = opendir(argv[1]);
+
+
+  }
 
   return 0;
 }

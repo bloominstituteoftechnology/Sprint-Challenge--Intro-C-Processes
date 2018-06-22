@@ -10,19 +10,21 @@ int main(int argc, char **argv)
   char path[8192];
   struct stat buf;
   int noArgFlag;
+  char args[8192];
 
   (argc < 2) ? (noArgFlag = 1) : (noArgFlag = 0);
 
   printf("\n");
   for (int i = 1; i < argc || noArgFlag; i++)
   {
-    d = opendir(noArgFlag ? "." : argv[i]);
+    strcpy(args, noArgFlag ? "." : argv[i]);
+    d = opendir(args);
     if (d != NULL)
     {
-      printf("Directory for \"%s\"\n", noArgFlag ? "." : argv[i]);
+      printf("Directory for \"%s\"\n", args);
       while ((dir = readdir(d)) != NULL)
       {
-        strcpy(path, noArgFlag ? "." : argv[i]);
+        strcpy(path, args);
         strcat(path, "/");
         strcat(path, dir->d_name);
         if (dir->d_type == 4)
@@ -40,7 +42,7 @@ int main(int argc, char **argv)
     else
     {
       perror("");
-      printf(" \"%s\"\n", noArgFlag ? "." : argv[i]);
+      printf(" \"%s\"\n", args);
       return 1;
     }
     noArgFlag = 0;

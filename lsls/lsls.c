@@ -27,5 +27,6 @@ int main(int argc, char **argv)
 
   // Close directory
   closedir(dir);
+  
   return 0;
 }

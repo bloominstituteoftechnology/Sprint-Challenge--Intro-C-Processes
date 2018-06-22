@@ -28,7 +28,11 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while ((pDirent = readdir(open)) != NULL) {
     stat(pDirent -> d_name, &tellsStats);
-    printf("%16lld  bytes %s\n", tellsStats.st_size, pDirent -> d_name);
+    if (tellsStats.st_mode & S_IFDIR) {
+      printf("%16s  %s\n", "<DIR>", pDirent -> d_name);
+    } else if (tellsStats.st_mode & S_IFREG) {
+      printf("%16lld  %s\n", tellsStats.st_size, pDirent -> d_name);
+    }
   }
 
   // Close directory

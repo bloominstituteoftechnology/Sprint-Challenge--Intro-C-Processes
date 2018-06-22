@@ -18,9 +18,10 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
-  
-
+  while ((dir = readdir(dir)) != NULL)
+        printf("%s\n", dir->d_name);
   // Close directory
   closedir(dir);
+
   return 0;
 }

@@ -30,7 +30,7 @@ A zombie process is a child process that has finished execution and termination,
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
-A compiled language doesn't require any additional applications or packages besides the operating system and architecture. It also runs faster than a non-compiled language because it can speak natively to the machine.
+Compiled languages generally compile faster into native code than interpreted ones because interpreted languages must be reduced to machine instructions at runtime.
 
 ## Task 2
 

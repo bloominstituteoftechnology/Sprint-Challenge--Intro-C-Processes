@@ -25,7 +25,11 @@ task uninterruptable - process waits for something without being interrupted
 
 2.  What is a zombie process? How does one get created? How does one get destroyed?
 
-3)  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+A zombie process is a child process that is terminated but still has its address space maintained. Zombie processes can be created when a parent process does not call wait() to free up address spaces its children were using. Another way zombie processes can be made is when a parent process is terminated before any of its children.
+
+A zombie process is destroyed with a wait() call.
+
+3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
 ## Task 2
 

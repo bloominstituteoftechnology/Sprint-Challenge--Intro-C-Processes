@@ -10,6 +10,14 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *dp;
+  
+  // No additional arguments
+  if (argc < 2)
+  {
+    // Open current directory
+    dir = opendir(".");
+
+  }
 
   return 0;
 }

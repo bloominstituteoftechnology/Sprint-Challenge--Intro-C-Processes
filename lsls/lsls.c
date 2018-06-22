@@ -6,13 +6,24 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  struct dirent *dir;
+  char *directName;
+  if (argc == 1) {
+    directName = ".";
+  } else if (argc == 2) {
+    directName = argv[1];
+  } else {
+    fprintf(stderr, "./lsls [directName]\n");
+  }
 
-  // Open directory
-
-  // Repeatly read and print entries
-
-  // Close directory
-
+  DIR *d = opendir(directName);
+  if (d == NULL) {
+    printf("Could not open current directory\n");
+    return 0;
+  }
+  while ((dir = readdir(d)) != NULL) {
+    printf("%s\n", dir->d_name);
+  }
+  closedir(d);
   return 0;
 }

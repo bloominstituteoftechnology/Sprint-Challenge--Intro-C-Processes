@@ -19,6 +19,7 @@ int main(int argc, char **argv)
   struct stat buf;
 
   // Parse command line
+  // Optional: use ternary operator here
   if (argc == 1)
   {
     dir = opendir(".");

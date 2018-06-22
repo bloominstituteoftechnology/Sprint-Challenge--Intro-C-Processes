@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <unistd.h>
 
 /*
 
@@ -20,17 +21,28 @@
     * also closes the underlying file descriptor associated with `dirp`
     * returns 0 on success
     * returns -1 on failure
+    
+  getcwd() - get the pathname of the current working directory
+    *
 
 */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  DIR *directory; // dirp
+  struct dirent *readDIR;
+  char cwdBuffer[314], *cwd;
 
-  // Open directory
+  // No DIR is specified. Print the current DIR.
+  if (argc == 1)
+  {
+    cwd = getcwd(cwdBuffer, sizeof(cwdBuffer));
+    directory = opendir(cwd);
+    printf("%s \n", cwd);
+  }
 
-  // Repeatly read and print entries
-
-  // Close directory
+  // if (directory == NULL && argc == 2){
+  //   printf("Failed to open the specified directory: %s \n", argv[1]);
+  // }
 
   return 0;
 }

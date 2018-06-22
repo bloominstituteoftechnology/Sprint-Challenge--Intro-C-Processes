@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   // check the amount of arguments passed to argv.
   
   if (argc < 2) {
-    fprintf(stderr, "failed to add the directory.");
+    fprintf(stderr, "please add the directory you need to traverse.\n");
     return 1;
   }
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
   pDir = opendir(*path);
   
   if (pDir == NULL) {
-    fprintf(stderr, "failed to open directory: %s", *path);
+    fprintf(stderr, "failed to open directory: %s\n", *path);
     return 1;
   }
   

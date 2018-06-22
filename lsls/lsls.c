@@ -9,6 +9,7 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *pDirent;
+
   // Parse command line
   if (argc < 2)
   {
@@ -20,12 +21,17 @@ int main(int argc, char **argv)
     dir = opendir(argv[1]);
   }
   // Open directory
-  if (dir == NULL) {
+  if (dir == NULL)
+  {
     printf("The directory is empty! :(\n");
     exit(1);
   }
-
   // Repeatly read and print entries
+   else {
+    while ((pDirent = readdir(dir)) != NULL) {
+      printf("%s\n", (*pDirent).d_name);
+    }
+  }
 
   // Close directory
 

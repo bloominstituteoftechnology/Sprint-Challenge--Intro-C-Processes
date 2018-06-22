@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *pDirent;
+  struct stat buf;
 
   // Parse command line
   if (argc < 2) // Default current dir
@@ -32,7 +33,8 @@ int main(int argc, char **argv)
   {
     while ((pDirent = readdir(dir)) != NULL) // read while dir not empty
     {
-      printf("%s\n", (*pDirent).d_name);
+      stat((*pDirent).d_name, &buf);
+      printf("%s\t %lld\n", (*pDirent).d_name, buf.st_size);
     }
   }
 

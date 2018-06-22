@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     while ((pDirent = readdir(dir)) != NULL) // read while dir not empty
     {
       stat((*pDirent).d_name, &buf);
-      printf("%s\t %ld\n", (*pDirent).d_name, buf.st_size);
+      printf("%ld\t %s\n", buf.st_size, (*pDirent).d_name);
     }
   }
 

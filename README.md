@@ -16,10 +16,18 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+Creating: The process has been created
+Running: That means the process is running and CPU is executing it's instructions
+Waiting - The program is awaiting execution
+Blocked - Process can't continue without state change or additional instruction.
+Terminated: Program has finished running and has been removed from memory.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+This is a process that has completed execution but is still idle somewhere in the memory because it was not terminated properly. They are usually spawns of parent processes that are still waiting to read from them.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+It is faster and has better optimization if its compiled. Non-compiled language has dynamic programming and can be executed instantly. Javascript for example compiles at the same time as it executes.
 
 
 ## Task 2

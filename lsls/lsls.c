@@ -8,15 +8,33 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
-
-  // Open directory
+  
   DIR *dir;
   struct dirent *sd;
-  dir = opendir(".");
+
+  // Parse command line
+  
+
+  printf("There are %d command line argument(s):\n", argc);
+
+  for (int i = 0; i < argc; i++) {
+    printf("   %s\n", argv[i]);
+    }
+
+  if (argc == 1) {
+    dir = opendir(".");
+  }
+  else if (argc == 2) {
+    dir = opendir(argv[1]);
+  }
+  else {
+    fprintf(stderr, "Could not read commandline\n");
+  }
+
+  // Open directory
 
   if (dir == NULL) {
-    printf("Error, cannot open directory!\n");
+    fprintf(stderr, "Error, cannot open directory!\n");
     exit(1);
   }
 
@@ -27,6 +45,6 @@ int main(int argc, char **argv)
 
   // Close directory
   closedir(dir);
-  
+
   return 0;
 }

@@ -31,6 +31,8 @@ A zombie process is destroyed with a wait() call.
 
 3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+Compiled languages offer efficient code that can be executed multiple times with minimal overhead when compiled. Compiling code allows for greater speed and optimization. Another advantage is that compiled languages offer fine grain control over the use of the CPU and memory because they have more one to one translations to assembly language.
+
 ## Task 2
 
 Write a program in C, `lsls.c`, that prints out a directory listing for the

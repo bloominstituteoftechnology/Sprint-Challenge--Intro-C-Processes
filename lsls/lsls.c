@@ -18,9 +18,15 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
-  while ((dir = readdir(dir)) != NULL)
+  struct dirent * entry;
+  const char * d_name;
+
+  entry = readdir (dir);
+  if (! entry) {
+
+  }
         printf("   %s\n", ent->d_name);
-  // Close directory
+
   closedir(dir);
 
   return 0;

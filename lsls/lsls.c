@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 
     printf(" arguments : %s \n", argv[i]);
   }
-  printf(" arguments : %s \n", argv[1]);
+  printf(" argument 1  : %s \n", argv[1]);
   ///////////////
   int rc = fork();
   printf("*****(rc:%d) \n", rc);
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     ////////////////////////////////////////////  ls
     DIR *dir;
     struct dirent *sd;
-    struct stat *buff;
+    struct stat buff;
 
     if (argv[1] == NULL)
     {
@@ -66,10 +66,10 @@ int main(int argc, char **argv)
 
     while ((sd = readdir(dir)) != NULL)
     {
-      printf(" >> %s \n", sd->d_name);
-      stat(argv[1], buff);
+      printf("=== name of file: %s \n", sd->d_name);
+      stat(sd->d_name, &buff);
 
-      //printf("size : %lld", buff->st_size);
+      printf("=== size of file:  %lld \t ", buff.st_size);
     }
 
     closedir(dir);

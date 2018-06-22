@@ -4,15 +4,22 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
-{
-  // Parse command line
+int main(int argc, char **argv) {
 
-  // Open directory
+    struct dirent* dir_entry;
+    DIR *dir = opendir(".");
 
-  // Repeatly read and print entries
+    if (dir == NULL) {
 
-  // Close directory
+        puts("Cannot open current directory");
+        return 0;
+    }
 
-  return 0;
+    while ((dir_entry = readdir(dir)) != NULL) {
+        printf("%s\n", dir_entry->d_name);
+    }
+
+    closedir(dir);
+
+    return 0;
 }

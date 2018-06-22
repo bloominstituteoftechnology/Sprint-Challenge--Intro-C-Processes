@@ -35,6 +35,7 @@ When a process has finished execution but still has an entry in the process tabl
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+More code efficiency. Compiled languages are ussually lower-level, and allow us to have deeper access into our system's architecture, do more, and not waste memory (only allocate for what you need).
 
 ## Task 2
 

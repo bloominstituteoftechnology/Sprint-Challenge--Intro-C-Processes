@@ -2,9 +2,9 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <time.h>
 
 /*
-
   1. accept some user input that specifies a directory 
   2. `ls` / print the files/directories listed in the specified directory
   3. if the user does not specify a directory, `ls` their current directory `.`
@@ -24,8 +24,8 @@
     * returns -1 on failure
     
   getcwd() - get the pathname of the current working directory
-
 */
+
 int main(int argc, char **argv)
 {
   DIR *directory; // dirp
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
   // No DIR is specified. Print the current DIR.
   if (argc == 1)
   {
-    directory = opendir(cwd);
+    directory = opendir(".");
 
     if (directory == NULL) printf("Failed to open the CWD: %s \n", cwd);
 
@@ -51,8 +51,8 @@ int main(int argc, char **argv)
       {
         stat(readDIR->d_name, &buff);
 
-        if (buff.st_mode & __S_IFDIR) dir = 1;
-        if (buff.st_mode & __S_IFREG) dir = -1;
+        if (S_ISDIR(buff.st_mode) != 0) dir = 1;
+        if (S_ISREG(buff.st_mode) != 0) dir = -1;
 
         if (dir == 1) printf("<DIR> \t\t %s \n", readDIR->d_name);
         else printf("\t %ldB \t %s \n", buff.st_size, readDIR->d_name);
@@ -62,7 +62,7 @@ int main(int argc, char **argv)
     }
   }
 
-  // DIR has been specified. argc = 2. Specified DIR = argv[1].
+  // DIR path has been specified.
   else
   {
     directory = opendir(argv[1]);
@@ -71,14 +71,14 @@ int main(int argc, char **argv)
 
     else
     {
-      printf("\nDirectory of: %s \n\n", cwd);
+      printf("\nDirectory of: %s \n\n", argv[1]);
 
       while ((readDIR = readdir(directory)) != NULL)
       {
         stat(readDIR->d_name, &buff);
 
-        if (buff.st_mode & __S_IFDIR) dir = 1;
-        if (buff.st_mode & __S_IFREG) dir = -1;
+        if (S_ISDIR(buff.st_mode) != 0) dir = 1;
+        if (S_ISREG(buff.st_mode) != 0) dir = -1;
 
         if (dir == 1) printf("<DIR> \t\t %s \n", readDIR->d_name);
         else printf("\t %ldB \t %s \n", buff.st_size, readDIR->d_name);

@@ -22,16 +22,21 @@ int main(int argc, char **argv)
     fprintf(stderr, "fork failed\n");
     exit(1);
   } else if (rc == 0) {
-    DIR *opendir(const char argv[1]);
+    DIR *myDir = opendir(argv[1]);
+    if(myDir == NULL){
+      fprintf(stderr, "opendir failed\n");
+    }
 
   // Repeatly read and print entries
-    struct dirent* readdir(DIR* dirp);
-    while(readdir != NULL) {
-      fprintf("%s\n", readdir);
-      readdir++;
-    }
+  struct dirent *ent;
+  // while(something) {
+  //   ent = readdir(d);
+  //   printf("%s\n", ent.d_name);
+  // }
+    
+
   // Close directory
-    int closedir(DIR *dirp);
+    int closedir(DIR *myDir);
 
 
 

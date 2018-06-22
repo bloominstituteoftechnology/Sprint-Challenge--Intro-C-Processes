@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> //brought in this
 #include <dirent.h>
+// #include <sys/stat.h> //NOTE: Add in for STRETCH
 
 /**
  * Main
@@ -8,12 +9,12 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-  DIR *dir;
+  DIR *dir; //* = pointer
   struct dirent *dp;
-  char *filename = ".";
+  char *filename = "."; 
 
-  if(argc == 2) {
-    filename = argv[1];
+  if(argc == 2) { 
+    filename = argv[1]; //1st argument = 1
   } 
   else if (argc > 2) 
     {
@@ -68,8 +69,31 @@ int main(int argc, char **argv)
 //   struct dirent *entry;
   
 //   while ((entry = readdir(d)) != NULL) {
-//     printf("%s\n", entry->d_name); //NOTE: %s = print string and \n = new line
-//   }
+// REMOVED--> replaced w/printf below    printf("%s\n", entry->d_name); //NOTE: %s = print string and \n = new line
+
+//NOTE: be sure to include #systat at top
+// STRETCH GOALS START HERE
+// NOTE: Stat the entry
+// NOTE: declare a buffer to hold the path string
+  // char path[8196];
+  // struct stat stat_buf;
+  //NOTE: create the path using snprintf
+  // snprintf(path, sizeof(path), "%s/%s", dirname, entry->d_name);
+  // NOTE: call stat
+  // if (stat(path, &stat_buf) < 0) {
+  //   fprint(stderr, "failed to stat file %s\n", path);
+  //   exit(3);
+  // }
+
+  // NOTE: print the filename and size
+  // if (stat_buf.st_mode & S_IFREG) {
+  //   printf("%10lld    %s\n", stat_buf.st_size, entry->d_name);
+  // } else if (stat_buf.st_mode & S_IFDIR) {
+  //   printf("%10s    %s\n", "<DIR>", entry->d_name);
+  // } else {
+  //   printf("%10s    %s\n", entry->d_name);
+  //     }
+// }
 
 //   // NOTE: Close directory
 //   closedir(d);

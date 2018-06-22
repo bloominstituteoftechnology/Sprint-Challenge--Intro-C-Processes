@@ -10,22 +10,26 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  
   //char dir = *argv[argc - 1];
   printf("%s", argv[argc - 1]);
   printf("\n");
   // Open directory
-
+  struct dirent *pDir;
+  DIR *dir;
+  dir = opendir (argv[1]);
   // Repeatly read and print entries
-  const char *ls = "/bin/ls";
   int rc = fork();
 
   if (rc == 0) {
-    execvp(ls, &argv[argc - 1]);
-    printf("you shouldnt be seeing this");
+    while ((pDir = readdir(dir)) != NULL) {
+      printf ("[%s]\t", pDir->d_name);
+    }
+    closedir(dir);
     return -1;
   } else if (rc != 0) {
     waitpid(rc, NULL, 0);
-    printf("testing child should have called ls");
+    printf("testing child should have called ls\n");
     return 0;
   }
   return 0;

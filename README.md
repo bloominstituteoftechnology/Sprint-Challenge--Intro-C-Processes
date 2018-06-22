@@ -25,13 +25,17 @@ Add your answers inline, below, with your pull request.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
-A zombie process is one that has already been
-terminated but it's data has not been cleaned up.
-We can destroy this process by clearing its
-information from the process table.
+A zombie process is one that has already been terminated but it's
+data has not been cleaned up. We can destroy this process by
+clearing its information from the process table.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+One of the benefits of working with compiled languages are that you only
+need to compile the code once, then run it as much as you like. This
+saves a good portion of runtime compared to interpreted languages.
+Another notable benefit of compiled languages is being able to have
+much more fine-tuned control over what your program does.
 
 ## Task 2
 

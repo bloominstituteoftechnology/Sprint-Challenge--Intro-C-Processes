@@ -40,9 +40,10 @@ int main(int argc, char **argv)
 
     if (directory == NULL) printf("Failed to open the CWD: %s \n", cwd);
 
-    else {
-
-      while ((readDIR = readdir(directory)) != NULL){
+    else 
+    {
+      while ((readDIR = readdir(directory)) != NULL)
+      {
         printf("%s \n", readDIR->d_name);
       }
 
@@ -50,9 +51,23 @@ int main(int argc, char **argv)
     }
   }
 
-  // if (directory == NULL && argc == 2){
-  //   printf("Failed to open the specified directory: %s \n", argv[1]);
-  // }
+  // DIR has been specified. argc = 2. Specified DIR = argv[1].
+  else
+  {
+    directory = opendir(argv[1]);
+
+    if (directory == NULL) printf("Failed to open the specified directory: %s \n", argv[1]);
+
+    else
+    {
+      while ((readDIR = readdir(directory)) != NULL)
+      {
+        printf("%s \n", readDIR->d_name);
+      }
+
+      closedir(directory);
+    }
+  }
 
   return 0;
 }

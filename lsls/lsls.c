@@ -16,7 +16,11 @@ int main(int argc, char **argv)
   {
     // Open current directory
     dir = opendir(".");
-
+    // Print directory contents
+    while ((dp = readdir(dir)) != NULL) 
+    {
+      printf ("%s\n", dp->d_name);
+    }
   }
 
   return 0;

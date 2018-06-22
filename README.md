@@ -15,12 +15,27 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+1.  List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+The first step is the `created` step. Like the name suggests it is the state at which a new process starts at. This just waits for the next step.
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+The second step is the `ready` step. At this point the process is just waiting to actually execute. A scheduler comes around and decides when to actually execute.
 
+The third step is the `running` step.
+
+The fourth step is the `blocked` step. This one usually happens when you need user input or anything of that nature.
+
+Finally the last step is the `terminated` step. A process gets here either when they finish executing their code, or are explicitly killed.
+
+2.  What is a zombie process? How does one get created? How does one get destroyed?
+
+A zombie process is a child process that has exited code execution, but who's parent process has not read the exit code with the wait system call. A child process will always become a zombie process before being it being removed from the process table.
+
+3.  What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+The compile step itself is a safety net. There is no point in me running code that I wrote if it is wrong. The compiler itself is also able to make many optimizations to your code. The compiler also has a linker step, which allows us to create separate our code.
+
+But honestly, the best thing about working in a compiled language is the type safety, and what that does for code tools' ability to help developers. The language essentially has modules by default, which allows you to share code with other developers.
 
 ## Task 2
 
@@ -61,10 +76,10 @@ and then add the command line parsing later after you have it working.
 _You are expected to use Google to find examples of how to use these functions.
 Also see [Details](#details), below._
 
-1. Call `opendir()`.
-2. Then repeatedly call `readdir()`--printing the filenames as you go--until it
-   lets you know there are no more directory entries by returning `NULL`.
-3. Then call `closedir()`.
+1.  Call `opendir()`.
+2.  Then repeatedly call `readdir()`--printing the filenames as you go--until it
+    lets you know there are no more directory entries by returning `NULL`.
+3.  Then call `closedir()`.
 
 You don't have to write the three functions, above. They're _system calls_ built
 into the OS.
@@ -75,18 +90,17 @@ You will be using functionality included in `<dirent.h>`. This header file holds
 the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 `closedir()`, below.
 
-* `DIR *opendir(char *path)`: This function opens the directory named in `path`
+- `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
-* `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+- `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
-* `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
+- `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.
 
 The `struct dirent *` returned by `readdir()` has the following fields in it:
@@ -137,7 +151,7 @@ $ ./lsls
 
 You'll need to use the `stat()` call in `<sys/stat.h>`.
 
-* `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
+- `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
   (i.e. the path passed to `opendir()` following by a `/` followed by the name
   of the file in `d_name`), fill the fields of a `struct stat` that you've
   pointed to. Returns `-1` on error.

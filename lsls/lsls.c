@@ -8,15 +8,20 @@ int main(int argc, char **argv)
 {
   // check the amount of arguments passed to argv.
   
-  if (argc < 2) {
-    fprintf(stderr, "please add the directory you need to traverse.\n");
-    return 1;
-  }
+  
 
   // initiate my variables.
   struct dirent *pDirent;
+  char *path[1];
+  if (argc < 2) {
+    *path = ".";
+  }
+  else
+  {
+     *path = argv[1];
+  }
+  
   DIR *pDir;
-  char *path[] = { argv[1] };
 
   // Open directory
   pDir = opendir(*path);
@@ -27,8 +32,9 @@ int main(int argc, char **argv)
   }
   
   // Repeatly read and print entries
-  
-  while ((pDirent = readdir(pDir)) != NULL) {
+ 
+  while ( (pDirent = readdir(pDir)) != NULL) {
+      
       printf ("[%s]\n", pDirent->d_name);
   }
   

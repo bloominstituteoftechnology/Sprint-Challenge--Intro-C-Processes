@@ -17,9 +17,44 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+        1. Running: Process is running or ready to run.
+
+        2. Waiting:
+          a. Interruptible: A blocked state of a process and waiting for an event or signal from another process.
+
+          b. Uninterruptible: A blocked state with process that waits for a hardware condition and cannot handle any signal.
+
+        3. Stopped: Process is stopped or halted and can be restarted by some other process.
+
+        4. Zombie: Terminated process, but information persists in the process table.
+        // The kill command also has no effect on a zombie process.
+        
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+        A zombie process happens when a process has completed its execution but has an entry in the process table. 
+        For example, a child process 'dies' after execution, but does not get removed from the process table until it's outputs are 'reaped' by the parent process.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+        Advantages of using compiled languages:
+
+        - Faster performance due to execution in native code of the target machine.
+
+        - Opportunity to apply powerful optimization during compile stage due to specificity.
+
+        - Compiled languages allow for greater control of memory and CPU use
+
+        Advantages of using non-compiled (interpreted) languages:
+
+        - Easier to implement (Writing a good compiler is a tough task.)
+
+        - No need to run a compilation stage; You can execute code directly on the spot.
+
+        - Can be more convenient especially for dynamic languages.
+        
+        - Worth noting: modern techniques such as bytecode compilation adds difficulty to already existing complexity. Targeting VM (Virtual Machine) is not the same as targeting specifically its underlying hardware.
+
+
 
 
 ## Task 2

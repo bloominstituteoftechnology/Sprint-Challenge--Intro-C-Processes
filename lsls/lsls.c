@@ -9,63 +9,43 @@ int main(int argc, char **argv)
   DIR *d;
   char path[8192];
   struct stat buf;
+  int noArgFlag;
+
+  (argc < 2) ? (noArgFlag = 1) : (noArgFlag = 0);
 
   printf("\n");
-  if (argc == 1)
-    argv[0] = ".";
-  d = opendir(argv[0]);
-  if (d != NULL)
+  for (int i = 1; i < argc || noArgFlag; i++)
   {
-    printf("Directory for \"%s\"\n", argv[0]);
-    while ((dir = readdir(d)) != NULL)
+    d = opendir(noArgFlag ? "." : argv[i]);
+    if (d != NULL)
     {
-      strcpy(path, argv[0]);
-      strcat(path, "/");
-      strcat(path, dir->d_name);
-      if (dir->d_type == 4)
+      printf("Directory for \"%s\"\n", noArgFlag ? "." : argv[i]);
+      while ((dir = readdir(d)) != NULL)
       {
-        printf("  <DIR>  %s\n", dir->d_name);
-      }
-      else
-      {
-        stat(path, &buf);
-        printf("%7ld  %s\n", buf.st_size, dir->d_name);
-      }
-    }
-    printf("\n");
-  }
-  else
-    for (int i = 1; i < argc; i++)
-    {
-      d = opendir(argv[i]);
-      if (d != NULL)
-      {
-        printf("Directory for \"%s\"\n", argv[i]);
-        while ((dir = readdir(d)) != NULL)
+        strcpy(path, noArgFlag ? "." : argv[i]);
+        strcat(path, "/");
+        strcat(path, dir->d_name);
+        if (dir->d_type == 4)
         {
-          strcpy(path, argv[i]);
-          strcat(path, "/");
-          strcat(path, dir->d_name);
-          if (dir->d_type == 4)
-          {
-            printf("  <DIR>  %s\n", dir->d_name);
-          }
-          else
-          {
-            stat(path, &buf);
-            printf("%7ld  %s\n", buf.st_size, dir->d_name);
-          }
+          printf("%7s  %s\n", "<DIR>", dir->d_name);
         }
+        else
+        {
+          stat(path, &buf);
+          printf("%7ld  %s\n", buf.st_size, dir->d_name);
+        }
+      }
 
-        closedir(d);
-        printf("\n");
-      }
-      else
-      {
-        perror("");
-        printf(" \"%s\"\n", argv[i]);
-        return 1;
-      }
+      closedir(d);
+      printf("\n");
     }
+    else
+    {
+      perror("");
+      printf(" \"%s\"\n", noArgFlag ? "." : argv[i]);
+      return 1;
+    }
+    noArgFlag = 0;
+  }
   return 0;
 }

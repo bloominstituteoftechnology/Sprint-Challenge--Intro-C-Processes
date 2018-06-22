@@ -27,21 +27,22 @@ Add your answers inline, below, with your pull request.
         3. Stopped: Process is stopped or halted and can be restarted by some other process.
 
         4. Zombie: Terminated process, but information persists in the process table.
+        // The kill command also has no effect on a zombie process.
         
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
-
         A zombie process happens when a process has completed its execution but has an entry in the process table. 
         For example, a child process 'dies' after execution, but does not get removed from the process table until it's outputs are 'reaped' by the parent process.
-
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
         Advantages of using compiled languages:
 
-        - faster performnace due to execution in native code of the target machine.
+        - Faster performance due to execution in native code of the target machine.
 
         - Opportunity to apply powerful optimization during compile stage due to specificity.
+
+        - Compiled languages allow for greater control of memory and CPU use
 
         Advantages of using non-compiled (interpreted) languages:
 

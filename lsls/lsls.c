@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <dirent.h>
 
+#include <sys/stat.h>
+
 // opendir()
 // readdir()
 // strcat()
@@ -13,9 +15,10 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *entry;
+  struct stat buf;
 
   // Parse command line
-  if (argv[1] == 0)
+  if (argc == 1)
   {
     dir = opendir(".");
   }
@@ -37,8 +40,17 @@ int main(int argc, char **argv)
 
     while ((entry = readdir(dir)) != NULL)
     {
-      printf("%s\n", entry->d_name);
+      stat(entry->d_name, &buf); // Pulling file status
+      if (buf.st_mode & 'S_IFDIR' != 0)
+      {
+        printf("yay");
+      }
+      else
+      {
+        printf("%lld  %s\n", buf.st_size, entry->d_name); // print file size & name
+      }
     }
+
     closedir(dir); // Close directory
   }
   return 0;

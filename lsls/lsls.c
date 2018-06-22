@@ -32,23 +32,30 @@ int main(int argc, char **argv)
   struct dirent *readDIR;
   struct stat buff;
   char *cwd, cwdBuffer[314];
+  int dir;
+
+  cwd = getcwd(cwdBuffer, sizeof(cwdBuffer));
 
   // No DIR is specified. Print the current DIR.
   if (argc == 1)
   {
-    cwd = getcwd(cwdBuffer, sizeof(cwdBuffer));
     directory = opendir(cwd);
 
     if (directory == NULL) printf("Failed to open the CWD: %s \n", cwd);
 
     else 
     {
-      printf("Size \t Name \n");
+      printf("\nDirectory of: %s \n\n", cwd);
 
       while ((readDIR = readdir(directory)) != NULL)
       {
         stat(readDIR->d_name, &buff);
-        printf("%ldB \t %s \n", buff.st_size, readDIR->d_name);
+
+        if (buff.st_mode & __S_IFDIR) dir = 1;
+        if (buff.st_mode & __S_IFREG) dir = -1;
+
+        if (dir == 1) printf("<DIR> \t\t %s \n", readDIR->d_name);
+        else printf("\t %ldB \t %s \n", buff.st_size, readDIR->d_name);
       }
 
       closedir(directory);
@@ -64,12 +71,17 @@ int main(int argc, char **argv)
 
     else
     {
-      printf("Size \t Name \n");
+      printf("\nDirectory of: %s \n\n", cwd);
 
       while ((readDIR = readdir(directory)) != NULL)
       {
         stat(readDIR->d_name, &buff);
-        printf("%ldB \t %s \n", buff.st_size, readDIR->d_name);
+
+        if (buff.st_mode & __S_IFDIR) dir = 1;
+        if (buff.st_mode & __S_IFREG) dir = -1;
+
+        if (dir == 1) printf("<DIR> \t\t %s \n", readDIR->d_name);
+        else printf("\t %ldB \t %s \n", buff.st_size, readDIR->d_name);
       }
 
       closedir(directory);

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
-
+#include <stdlib.h>
 
 /**
  * Main
@@ -11,7 +11,7 @@ int main(int argc, char **argv)
   // Parse command line
 if(argc == 1)
 {
-  directoryPath='.';
+  directoryPath=".";
 }
 else if(argc == 2);
 {
@@ -21,9 +21,14 @@ directoryPath = argv[1];
   struct dirent *entry;
 DIR *openedDirecectory =opendir(directoryPath);
   // Repeatly read and print entries
+  if (openedDirecectory ==NULL)
+  {
+    fprintf(stderr,"cannot open directory");
+    exit(1);
+  }
   while((entry = readdir(openedDirecectory)) !=NULL)
   {
-    printf("Entry: %s\n",entry->d_name);
+    printf("Entry: %s\n", entry->d_name);
   }
 
   // Close directory

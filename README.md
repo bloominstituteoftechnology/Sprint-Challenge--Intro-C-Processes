@@ -16,7 +16,7 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
-- R, runnong or on a run queue
+- R, running or on a run queue
 
 - Z, a zombie process that was not reaped by i's parent
 

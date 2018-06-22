@@ -7,6 +7,7 @@
  * Main
  */
 
+// SO... What's all this about?
 // argv[0] == ./lsls
 // argv[1] == null
 // argv[2] == TERM_PROGRAM=Apple_Terminal
@@ -15,14 +16,18 @@
 
 int main(int argc, char **argv)
 {
+  // Parse command line
  char *dirname;
-  if(argc == 0)
+
+  // 0 argc isn't possible -.-
+  // if(argc == 0) 
+  // {
+  //   dirname = ".";
+  // }
+  
+  if(argc == 1)
   {
     dirname = ".";
-  }
-  else if(argc == 1)
-  {
-    dirname = argv[0];
     printf("At argv[0] the dirname = %s\n", dirname);
   }
   else if(argc == 2)
@@ -44,6 +49,7 @@ int main(int argc, char **argv)
     //     printf("   %s\n", argv[i]);
     // }
 
+  // Open directory
   DIR *dir;
   dir = opendir(dirname);
   struct dirent *dp;
@@ -54,24 +60,14 @@ int main(int argc, char **argv)
     exit(1);
   }
 
-
+  // Repeatly read and print entries
   while((dp = readdir(dir)) != NULL) 
   {
     printf(">> %s\n", dp->d_name);
   }
 
-
-
-
-  closedir(dir);
-
-  // Parse command line
-
-  // Open directory
-
-  // Repeatly read and print entries
-
   // Close directory
+  closedir(dir);
 
   return 0;
 }

@@ -7,7 +7,20 @@
 int main(int argc, char **argv) {
 
     struct dirent* dir_entry;
-    DIR *dir = opendir(".");
+    char* directoryName;
+
+    if (argc == 1) {
+        directoryName = ".";
+    }
+    else if (argc == 2) {
+        directoryName = argv[1];
+    }
+    else {
+        fprintf(stderr, "Usages: ./lsls [directoryName]\n");
+    }
+
+
+    DIR *dir = opendir(directoryName);
 
     if (dir == NULL) {
 

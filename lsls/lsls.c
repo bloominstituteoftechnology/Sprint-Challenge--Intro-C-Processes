@@ -11,8 +11,11 @@ int main(int argc, char **argv)
   // Open directory
 
   // Repeatly read and print entries
+  for (i = 1; i <= )
 
   // Close directory
+  if (closedir() ==  0)
+    puts("the directory is closed.");
 
   return 0;
 }

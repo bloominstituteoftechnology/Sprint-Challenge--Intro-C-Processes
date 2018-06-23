@@ -21,8 +21,8 @@ int main(int argc, char **argv)
   dirent` (see below). Returns `NULL` if there are no more directory entires.
   */
   struct dirent *ent;
-
-  char **errorCode; 
+//hello
+  // char **errorCode; 
   /*
    If the user does not specify a directory print out the contents of the current directory,
     which is called `.`
@@ -71,10 +71,15 @@ Not enough memory available.
     }
   }
 */
+  
+  //test commit
+
+
 
   // Repeatly read and print entries
   while ((ent = readdir(filePath)) != NULL) { //Returns `NULL` if there are no more directory entires.
     printf ("[%s]\n", ent->d_name);
+
   }
 
 

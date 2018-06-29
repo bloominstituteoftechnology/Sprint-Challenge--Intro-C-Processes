@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <unistd.h>
 #include <sys/stat.h>
 #include <string.h>
 
@@ -21,7 +22,16 @@ int main(int argc, char **argv)
     d = opendir(args);
     if (d != NULL)
     {
-      printf("Directory for \"%s\"\n", args);
+      if(noArgFlag)
+      {
+        char cwd[256];
+        if (getcwd(cwd, sizeof(cwd)) == NULL)
+          perror("getcwd() error");
+        else
+          printf("Current Directory \"%s\"\n", cwd);
+      } // prints current directory header with no arguments
+      else
+        printf("Directory for \"%s\"\n", args);
       while ((dir = readdir(d)) != NULL)
       {
         strcpy(path, args);

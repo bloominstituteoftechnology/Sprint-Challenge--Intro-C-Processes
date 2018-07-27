@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   // Opening Directory
   dir = opendir(currentDir);
   if (dir == NULL) {
-    fprintf(stderr, "Try again\n");
+    printf(stderr, "Try again\n");
     exit(1);
   } else {
     
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     if ((buf.st_mode & S_IFDIR) != 0) {
       printf("%10s %s\n", "<DIR>", ent->d_name);
     } else if ((buf.st_mode & S_IFREG) != 0) {
-        printf("%lld %s\n", buf.st_size, ent->d_name);
+        printf("%10lld %s\n", buf.st_size, ent->d_name);
     }
   }
   // Close Directory

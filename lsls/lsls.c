@@ -10,6 +10,11 @@
  */
 int main(int argc, char **argv)
 {
+  if (argc <= 1)
+  {
+    printf("usage a.out dir name\n");
+    return 1;
+  }
   // Parse command line
     //printing the directory that will be opened
   printf("%s", argv[1]);

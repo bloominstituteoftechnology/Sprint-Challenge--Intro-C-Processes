@@ -30,7 +30,7 @@ int main(int argc, char **argv)
   else
   {
     fprintf(stderr, "./lsls [dirname]\n");
-    exit(1);
+    exit(1); // can return 1 too 
   }
 
   // Open directory
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
   if (d == NULL)
   {
     fprintf(stderr, "./lsls: cannot open directory %s\n", dirname);
-    exit(1);
+    exit(1); // from solution, should be exit(2) because it's different exit from above.
   }
   // Repeatly read and print entries
   // If find NULL, means no content in that dir

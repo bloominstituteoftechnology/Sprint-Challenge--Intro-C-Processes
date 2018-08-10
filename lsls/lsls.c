@@ -8,7 +8,8 @@ void directoryListing(const char *directoryName)
   DIR *directory;
   struct dirent *entry;
 
-  // opening the directory
+
+// opening the directory
   directory = opendir(directoryName);
   if (directory != NULL)
   {
@@ -17,23 +18,23 @@ void directoryListing(const char *directoryName)
     {
       printf("%s\n", entry->d_name);
     }
-  // Closing out the directory
+// Closing out the directory
     closedir(directory);
   }
   else
   {
+// printing directory name
     printf("Can't open %s\n", directoryName);
     exit(1);
   }
 }
 
-/**
- * Main
- */
+
+// Main ->
 
 int main(int argc, char **argv)
 {
-  // Parse command line
+  // Parsing the command line
     int i;
     i = 1;
 
@@ -42,6 +43,8 @@ int main(int argc, char **argv)
     directoryListing(argv[i]);
     i++;
   }
+//checking to see if the user doesn't enter a directory and if so 
+// the . should become the directory
     if (argc == 1)
   {
     directoryListing(".");

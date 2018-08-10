@@ -12,9 +12,9 @@ int main(int argc, char *argv)
   // Parse command line
   
   // Open directory
-  dir  = opendir(argv);
+  dir = opendir(argv);
 
-  sprintf(str, '%p', dir);
+  sprintf(str, '%d', dir);
 
 
 

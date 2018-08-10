@@ -17,9 +17,17 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+  ANSWER: Running - The process is either running or it is ready to run.
+          Waiting - The process is waiting for an event or for a resource.
+          Stopped - The process has been stopped, usually by receiving a signal.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+  ANSWER: The process is dead but have not been removed from the process table. It is created by using a fork() system call. The parent process is replicated and if the parent terminates and exits without terminating the child process an entry in memory remains for the child even after it is terminated. Thus a zombie. 
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+  ANSWER: The benefits of working on a compiled language are mainly performance related. A compiled code is a program that has been converted into machine language which no longer needs to be processed. It simply exists as an executable with defined actions based on inputs. Modern machines are very powerfull and for casual use there is no noticable difference. But for heavy use the modern wold would not function if all code was compiled real time.  
 
 
 ## Task 2

@@ -17,9 +17,21 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+A process may be running--erm... pretty self explanatory but it means it's actively processing/doing things.
+A process may be waiting--waiting for another specified process to end, waiting in line, waiting for the CPU to go and fetch the stuff it needs from other parts of the computer... before it can get running again
+A process may be sleeping as described by task managers etc.--this is kinda like waiting but it's not sure what it wants to do next (lol--usually waiting for more input bc the state it's in now it has satisfied all the things it was asked so far)
+A process may be terminated--also pretty self explanatory... its over... did what it was supposed to and ended or died trying
+A process may be a zoommmbbbieee--this is when a process finished, its over, but it *wasn't* terminated... so it just hangs around like a ghost taking up resources (not sure if ghosts take up resources... but I guess zombies do... so that's why they call them zombies)
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+Oh, I kinda answered this already, but to be fair to the zombies, they are really just orphaned children. Their parent (process) did it's thing, had a baby (was `fork()`ed), continued to do its thing, then finished its thing without regard to the child process. You can avoid a zombie if you just tell the parent to `wait()` for its kid, to make sure the parent cleans up afterward.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+Working in a compiled programming language makes running the programs faster. The process of compiling turn the human-readable (well to CS geeks) programming language into machine language (instructions that can directly be carried out by the circuitry etc. in the processor). Non-compiled languages have to do this translation every time they run. And that takes up precious time resources because we all want our computers to do things FAST.
+
+I hope you enjoyed my answers.
 
 
 ## Task 2

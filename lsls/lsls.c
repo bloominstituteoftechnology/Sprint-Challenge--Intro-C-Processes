@@ -16,7 +16,7 @@ int main(int argc, char **argv)
   else if (argc == 2)
   {
     dir_name = argv[1];
-    printf("%s\n", dir_name);
+    // how to run command: ./lsls ../examples
   }
   else
   {

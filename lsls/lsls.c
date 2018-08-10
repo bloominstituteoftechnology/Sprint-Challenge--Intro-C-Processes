@@ -36,12 +36,17 @@ int main(int argc, char **argv)
   // Repeatedly read and print entries
   struct dirent *entry;
 
-  while ((entry = readdir(directory)) != NULL)
+  /* readdir() returns the result as a pointer to a struct dirent.
+  Returns NULL if there are no more directory entires.*/
+  while ((entry = readdir(directory)) != NULL) 
+
   {
-     printf("  %s\n", entry->d_name);
+     printf("%s\n", entry->d_name); /* operator ( -> ) in C is used to access a member of a struct 
+     which is referenced by the pointer in question */
   }
   
   // Close directory
   closedir(directory);
+
   return 0;
 }

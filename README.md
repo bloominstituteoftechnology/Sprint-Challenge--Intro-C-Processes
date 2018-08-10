@@ -16,10 +16,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+> Created: When a process is first created, for example in C with `fork()`, it is said to be in the `created` state waiting to enter the `Ready` state
+> Ready: The process has been loaded into memory and is waiting for execution on a `CPU`
+> Running: This process is no longer waiting for execution in the `Ready` state and is currently being executed on a CPU
+> Blocked: The process has been executed but now needs some external input or state change to continue with its execution
+> Terminated: aka `Zombie state`, the process has been fully executed and will stay in this state until the parent process calls some form of the `wait` family
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+> A `Zombie process` is when a process has been fully executed and is now in the `terminated state`. To destroy a `zombie process` the parent must call a function in the `wait` function family
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+> The benefits from working in a compiled language, in comparison to non-compiled or `interpreted` language, is that we are able to catch bugs before ever running our code and because our code has been compiled into a machine readable format we cut down on execution time which makes the actual code faster. In comparison, when working in interpeted languages when we run our code we must wait for that code to be interpreted into a format the machine can read before it is ever executed giving us a longer, or slower or more expensive, execution time.
 
 
 ## Task 2

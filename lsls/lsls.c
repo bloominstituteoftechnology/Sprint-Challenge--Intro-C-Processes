@@ -12,7 +12,7 @@ int main(int argc, char **argv)
   char *path;
   // Parse command line
   if (argc > 2) {
-    fprintf(stderr, "Usage: ./lsls <directory name>(optional)");
+    fprintf(stderr, "Usage: ./lsls <directory name>(optional)\n");
     exit(1);
   } else if (argc == 2) {
     path = argv[1];
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   // Open directory
   d = opendir(path);
   if (d == NULL) {
-    fprintf(stderr, "Error Opening Directory");
+    fprintf(stderr, "Error Opening Directory\n");
     exit(1);
   }
 

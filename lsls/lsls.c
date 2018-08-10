@@ -32,9 +32,12 @@ int main(int argc, char **argv)
     entry = readdir(directory);
     if (entry)
     {
+      char fullPath[sizeof(path) + sizeof(entry->d_name) + 1];
+      snprintf(fullPath, sizeof(fullPath), "%s/%s", path, entry->d_name);
+
       struct stat st;
-      // FILE *file = fopen(entry->d_name, "r+");
-      stat(entry->d_name, &st);
+
+      stat(fullPath, &st);
 
       if (S_ISREG(st.st_mode))
       {

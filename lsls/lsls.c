@@ -14,7 +14,7 @@ int main(int argc, char *argv)
   // Open directory
   dir = opendir(argv);
 
-  sprintf(str, '%p', dir);
+  sprintf(str, '%d', *dir);
 
 
 

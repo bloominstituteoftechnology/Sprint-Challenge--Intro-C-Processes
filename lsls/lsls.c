@@ -17,7 +17,7 @@ int main(int argc)//, char *argv)
 
   ent = readdir(dir);
 
-  //printf("%s\n",ent->d_name);
+  printf("%s\n",ent->d_name);
 
   closedir(dir);
 

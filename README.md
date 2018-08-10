@@ -17,9 +17,25 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+Running: pretty self explanatory
+
+Waiting: a process that is waiting for its turn to run
+
+Stopped: a process that has been stopped
+
+Zombie: a dead process that's still around
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+A zombie process is created when a process ends via exit but its entry in the process table still exists.
+Zombie processes are destroyed when their parent process calls wait.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+  1. Speed.  Compiled software is optimized to run very fast.  There's no additional work to be done at runtime, just the actual program's computations.
+  As opposted to an interpreted language, which is essentially "compiling" itself at runtime.
+
+  2. Obscurity.  If you're developing closed-source software, distributing only compiled binaries obscures your source code.
 
 
 ## Task 2
@@ -78,7 +94,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

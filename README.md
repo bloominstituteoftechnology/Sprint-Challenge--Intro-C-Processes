@@ -23,6 +23,7 @@ Add your answers inline, below, with your pull request.
 > Terminated: aka `Zombie state`, the process has been fully executed and will stay in this state until the parent process calls some form of the `wait` family
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+> A `Zombie process` is when a process has been fully executed and is now in the `terminated state`. To destroy a `zombie process` the parent must call a function in the `wait` function family
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 

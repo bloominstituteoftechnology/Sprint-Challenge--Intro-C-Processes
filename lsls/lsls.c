@@ -29,7 +29,11 @@ int main(int argc, char **argv)
 
     if (stat(path, &fstatus) == 0)
     {
-      printf("%10lld bytes  %s\n", fstatus.st_size, rdir->d_name);
+      if ((fstatus.st_mode & S_IFDIR) != 0)
+        printf("%10s  %s\n", "<DIR>", rdir->d_name);
+
+      if ((fstatus.st_mode & S_IFREG) != 0)
+        printf("%10lld  %s\n", fstatus.st_size, rdir->d_name);
     }
 
     free(path);

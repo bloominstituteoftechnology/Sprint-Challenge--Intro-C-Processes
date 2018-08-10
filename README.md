@@ -24,9 +24,13 @@ Add your answers inline, below, with your pull request.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
-   - When a `child process` terminates before a `parent process` waits for it. To destroy it, a `parent process` must call `wait`.
+- When a `child process` terminates before a `parent process` waits for it. To destroy it, a `parent process` must call `wait`.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+- SPEED! Compiled it so Formula 1 as Interpreted is to Bicycle.
+
+* By compiling all at once everything is already `Compiled` or `Translated` directly into Machine Language where Interpreted is compiled on the fly. We're saving the computer resources by converting it ahead of time into a more palatable form for the hardware to decipher.
 
 ## Task 2
 

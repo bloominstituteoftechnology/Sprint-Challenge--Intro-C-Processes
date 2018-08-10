@@ -20,9 +20,13 @@ Add your answers inline, below, with your pull request.
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
       running: The processes is actually being executed or waiting to be executed on the run queue
+      
       uninterruptible sleep: the process is waiting for a especific event to keep running, usually IO events. 
+      
       interruptible sleep: the proccess is waiting for an event to request an action or service provided by the process.
+
       zombie: terminated but not reaped by its parent
+      
       stopped: either by a job control signal or by its parent
 
 2. What is a zombie process? How does one get created? How does one get destroyed?

@@ -33,7 +33,7 @@ int main(int argc, char **argv)
       // Repeatly read and print entries
       if (dent->d_type == DT_DIR)
       {
-        dent->d_type = "dir";
+        dent->d_type = 'd';
       }
       printf("%s\t\t %d\t\t %d\t\t \n", dent->d_name, dent->d_reclen, dent->d_type);
     }

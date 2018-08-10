@@ -4,11 +4,11 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv)
 {
   //variables
   DIR *dir;
-  char *str[80]
+  char str[80]
   // Parse command line
   
   // Open directory

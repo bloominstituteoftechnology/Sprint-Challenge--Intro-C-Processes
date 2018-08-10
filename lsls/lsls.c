@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <sys/stat.h>
 #include <errno.h>
 
 // List
@@ -10,6 +11,7 @@
   // Open directory
   DIR *dir;
   struct dirent *dp;
+  struct stat buf;
 
   if ((dir = opendir(arg)) == NULL)
   {
@@ -25,7 +27,8 @@
     if (errno != 0) {
       perror("Error reading dirs");
     }
-    printf("%s\n", dp->d_name);
+    int size = stat(dp->d_name, &buf);
+    printf("size: %10lld file -> %s\n", buf.st_size, dp->d_name);
   }
   
   closedir(dir);

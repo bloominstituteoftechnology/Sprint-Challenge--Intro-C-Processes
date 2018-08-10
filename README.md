@@ -39,7 +39,7 @@ A zombie process is a normal process that was terminated by the CPU, yet it rema
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
-
+Complied languages are generally waaaay faster, which is great for performance. They also tend to work closer to the computer, which only assists with the higher level of performance. To further capitalize on the performance aspect, the compiled file can be run over and over again without having to be run through an interpreter and _then_ compiled to run. 
 
 ## Task 2
 

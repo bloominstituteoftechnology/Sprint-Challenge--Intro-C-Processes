@@ -9,10 +9,24 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  char *dirname;
+  if (argc == 1)
+  {
+    dirname = ".";
+  }
 
+  else if (argc == 2)
+  {
+    dirname = argv[1];
+  }
+
+  else {
+    printf("\n Try Again \n");
+    exit(1);
+  }
   // Open directory
   struct dirent *de;
-  DIR *dr = opendir(".");
+  DIR *dr = opendir(dirname);
 
   if (dr == NULL)  // opendir returns NULL if couldn't open directory
     {

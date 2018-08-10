@@ -23,12 +23,13 @@ Add your answers inline, below, with your pull request.
 
 **Blocked.** Process is not ready to run until some other event takes place. For example, a process to print a document may be blocked because the printer is unavailable / offline. 
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+**_2. What is a zombie process? How does one get created? How does one get destroyed?_**
 
-A zombie process is one that has been terminated, but has not been removed from the process table. 
+A zombie process is one that has been terminated, but has not been removed from the process table. This can happen with child processes, where the parent process is needed to read the child's exit status. 
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+**_3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?_**
 
+Compiled languages tend to be more efficient since they are closer to the computer's hardware and optimized for it. Non-compiled languages need more steps to run a program. 
 
 ## Task 2
 

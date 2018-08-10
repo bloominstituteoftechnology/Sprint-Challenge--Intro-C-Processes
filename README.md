@@ -15,17 +15,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means. \\
 A Process can be in any one of the states like "new","Ready","Running" and "Terminated".
 new: Process enters this state when it is first created.
 Ready:process has been loaded into main memory and is awaiting execution on a CPU 
 Running: A process moves into the running state when it is chosen for execution. 
 Terminated:A process may be terminated, either from the "running" state by completing its execution or by explicitly being killed.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+2. What is a zombie process? How does one get created? How does one get destroyed? \\
 Zombie: A state that has terminated but has not been reaped. It still has an entry in the process table.
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code? \\
 
 A compiled language is one where the program, once compiled, is expressed in the instructions of the target machine.An interpreted language is one where the instructions are not directly executed by the target machine, but instead read and executed by some other program.
 Advantages of compiled language:

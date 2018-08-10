@@ -29,7 +29,6 @@
     }
     stat(dp->d_name, &buf);
     int size = buf.st_size;
-    // printf("%d\n", size);
   
     
     if (size == 160 || size == 192) {

@@ -17,10 +17,19 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+#### a task can be:
+running - currently doing its thing
+waiting - paused, waiting for something else to happen before proceeding
+stopped - terminated
+zombie - stopped but still appearing in the process list
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+#### As described above, a zombie process is one that has been stopped or terminated but still appears in the process list. This happens when you have a child process forked off of its parent and has terminated but the parent never issued a wait() process to "clean up" after it. In order to destroy the zombie process, the parent must issue a wait() process. You can manually force it to do so with SIGCHLD. 
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+#### Compiled languages are much faster to actually execute because it's all submitted to the computer as machine code at once. (The actual compilation part can take forever but you only have to do it once. Hopefully.) Also, compiled languages force you to understand at least a little bit about what's going on under the hood when your application gets executed, and give you more control over how much memory is used, how much time things are taking to execute, etc. These things are abstracted out in non-compiled languages so you can't tweak the fine details as much.
 
 ## Task 2
 

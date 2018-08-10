@@ -1,3 +1,5 @@
+# Wladimir Fraga CS10
+
 # Sprint-Challenge: Intro to C and Processes
 
 Complete both tasks below.
@@ -17,9 +19,27 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+      running: The processes is actually being executed or waiting to be executed on the run queue
+      
+      uninterruptible sleep: the process is waiting for a especific event to keep running, usually IO events. 
+      
+      interruptible sleep: the proccess is waiting for an event to request an action or service provided by the process.
+
+      zombie: terminated but not reaped by its parent
+      
+      stopped: either by a job control signal or by its parent
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+      A zombie process is a process that exited successfully, but the parent doesn't know what is his actual state. 
+      
+      The zombie process is crated when we call the fork() function and the parent didn't call a wait() or waitpid() functions.
+
+      There is no way to destroy the zombie process, it will be destroyed when his parent ends.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+      Compiled code programs run faster after the compilation.
 
 
 ## Task 2

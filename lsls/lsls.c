@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <errno.h>
 
 /**
  * Main
@@ -11,10 +12,11 @@ int main(int argc, char **argv)
   struct dirent *dp;
   char *cmdlinpt;
   // Parse command line
-  cmdlinpt = "."
-  if ((dir = opendir (cmdlinpt)) == NULL) {
-    fprintf(stderr, "cannot open .");
+  if ((dir = opendir (".")) == NULL) {
+    printf("ERROR: %s\n", strerror(errno));
     exit(1);
+  } else if(argc == 1) {
+    cmdlinpt = ".";
   } else if(argc == 2) {
     cmdlinpt = argv[1];
    } else {
@@ -22,10 +24,14 @@ int main(int argc, char **argv)
      exit(1);
    }
   // Open directory
-  dir = opendir(argv[1]);
+  dir = opendir(cmdlinpt);
   // Repeatly read and print entries
+  while ((dp = readdir (dir)) != NULL){
+    printf("%s\n", dp->d_name);
+  }
 
   // Close directory
+  closedir(dir);
 
   return 0;
 }

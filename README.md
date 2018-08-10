@@ -28,7 +28,7 @@ Write a program in C, `lsls.c`, that prints out a directory listing for the
 directory the user specifies on the command line. If the user does not specify a
 directory, print out the contents of the current directory, which is called `.`.
 
-### Example runs:
+### Example runs
 
 ```
 $ ./lsls

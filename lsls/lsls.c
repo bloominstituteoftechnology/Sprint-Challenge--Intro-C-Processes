@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <dirent.h>
 
 /**
@@ -36,7 +37,7 @@ int main(int argc, char **argv)
   // The DIR data type represents a directory stream. It's declared in the header `dirent.h`
   DIR *d;
   struct dirent *dir;
-  d = opendir("."); 
+  d = opendir(dirname); 
   
   // if error, `opendir()` returns NULL
   if (d == NULL)

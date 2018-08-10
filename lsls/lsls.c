@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
-
+#include <sys/stat.h>
+#include <string.h>
+#include <errno.h>
 
 void ls_directory(const char *directory_name)
 {
@@ -9,6 +11,7 @@ void ls_directory(const char *directory_name)
   // - an ordered sequence of all the directory entries in a directory
   DIR *directory;
   struct dirent *entry;
+  struct stat file_stat;
 
   // Open directory
   // opendir() returns a pointer to an object of type DIR if successful
@@ -17,6 +20,7 @@ void ls_directory(const char *directory_name)
   if (directory != NULL)
   {
     printf("\n***Start of ls call to %s***\n", directory_name);
+    printf("\nSize in bytes  Name\n");
       // Repeatly read and print entries
       // readdir() returns a pointer to a structure representing
       // the directory entry at the current position in the directory stream
@@ -24,9 +28,20 @@ void ls_directory(const char *directory_name)
       // of the directory stream
     while ((entry = readdir(directory)) != NULL)
     {
-      printf("%s\n", entry->d_name);
+      // create an array big enough to contain the full path
+      char path[sizeof(directory_name) + sizeof(entry->d_name)];
+      // sends formatted output to the string 'path'
+      sprintf(path, "%s/%s", directory_name, entry->d_name);
+      // stat needs a full path in order to access it
+      // pass in the newly created path array
+      if (stat(path, &file_stat) == -1)
+      {
+        fprintf(stderr, "%s\n", strerror(errno));
+      }
+      printf("%10lld     %s\n", file_stat.st_size, entry->d_name);
     }
     printf("***End of ls call to %s***\n\n", directory_name);
+
   // Close directory
   // closedir closes the directory stream and returns 0 if successful
   // if unsuccessful, -1 is returned

@@ -13,7 +13,7 @@ int main(int argc, char *argv)
   // Parse command line
   
   // Open directory
-  dir = opendir("%s", argv);
+  dir = opendir(argv);
 
   ent = readdir(dir);
 

@@ -20,7 +20,7 @@ void ls_directory(const char *directory_name)
   if (directory != NULL)
   {
     printf("\n***Start of ls call to %s***\n", directory_name);
-    printf("\nSize/directory  %s\n", "Name");
+    printf("\n%10s\t%10s\t%10s\t%10s\t%10s\t%s\n", "Size/Directory", "Links", "UserID", "GroupID", "Permissions", "Name");
       // Repeatly read and print entries
       // readdir() returns a pointer to a structure representing
       // the directory entry at the current position in the directory stream
@@ -40,11 +40,11 @@ void ls_directory(const char *directory_name)
       }
       if ((S_ISDIR(file_stat.st_mode)))
       {
-        printf("%11s     %s\n", "<DIR>", entry->d_name);
+        printf("%10s\t%10u\t%10u\t%10u\t%10lo\t%s\n", "<DIR>", file_stat.st_nlink, file_stat.st_uid, file_stat.st_gid, (unsigned long) file_stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO), entry->d_name);
       }
       else
       {
-        printf("%10lld     %s\n", file_stat.st_size, entry->d_name);
+        printf("%10lld\t%10u\t%10u\t%10u\t%10lo\t%s\n", file_stat.st_size, file_stat.st_nlink, file_stat.st_uid, file_stat.st_gid, (unsigned long) file_stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO), entry->d_name);
       }
     }
     printf("***End of ls call to %s***\n\n", directory_name);

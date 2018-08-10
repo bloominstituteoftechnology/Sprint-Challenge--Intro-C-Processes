@@ -17,9 +17,24 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+- 1. Start/Created - when a process is first created and is waiting to be accepted into the waiting state by the scheduler.
+- 2. Ready - process is loaded into memory and is waiting to be executed by the CPU
+- 3. Running - when the instructions for the process are being executed by the CPU
+- 4. Blocked - when a process can't continue without external influence, such as communication with the hardware.
+- 5. Wait - the process is on hold waiting for a signal (like a parent process waiting for the exit status of a child process).
+- 5. Terminated - when a process is killed or has exited.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+- A zombie process is a process that has terminated but remains in the process terminal.  
+- A zombie process is created when a child process terminates when its parent process hasn't used wait.  Because it is still occupying space in the process table, which is a finite resource, this is considered a resource leak.
+- Operating systems generally have a method to contain such resource leaks, by having a reaper process that retrieves the exit status of zombie processes, allowing the operating system to dallocate resources.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+- Benefits: 
+    - Programs written in compiled languages are typically faster because there's less abstraction between the language being written and the langauge that the computer "speaks" natively, so less translation has to occur.
+    - Compiled languages are more efficient - if a program needs to be executed a number of times, the translation only has to occur once as from that point on, the executable can be run.
+
 
 
 ## Task 2

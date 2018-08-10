@@ -16,10 +16,33 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+R//
+EMBRYO:  The new process is currently being created.
+
+RUNNABLE/READY: In this state, a process is ready to run but for some reason the OS has chosen not to run it at this given moment. 
+
+RUNNING:  Currently executing, in the running state, a process is running on a processor. This means it is executing instructions. 
+
+SLEEPING/BLOCKED: In this state, a process has performed some kind of operation that makes it not ready to run until some other event takes place. A common example: when a process initiates an I/O request to a disk, it becomes blocked and thus some other process can use the processor.
+
+UNUSED: In this state the process is no longer in execution, after entering the zombie state the operating system has deallocated it’s kernel stack and and it’s page directory, a process in this state can be replaced by a new process.
+
+ZOMBIE: explained on next part.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+R//
+When a process terminates it becomes a zombie (or defunct process), but it still exists in the operating system PCB (Process Control Block), even though the process is no longer executing, the reason for this is to enable the parent process to read the child’s exit status (through wait system call). When the parent reads the child’s exit status, the zombie process is completely removed from the OS.
+
+If the parent process does not read the exit status of the zombie process, the latter will continue to exist indefinitely, when this happens a reaper process of the operating system can remove the zombie process.
+
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+R//
+The main difference between an interpreter and a compiler is that compilation requires analysis and the generation of machine code only once, whereas an interpreter may need to analyse and interpret the same program statements each time it meets them e.g. instructions appearing within a loop. 
+
+Another important difference is that interpreters can be 2 to 10 times slower than compilers. One reason for this is the example mentioned before about interpreters translating the same statements within a loop over and over again. Compilers can produce much more efficient object code than interpreters thus making the compiled programs to run faster.
+
+One more reason for the speed of compiled languages is that they are converted directly into machine code, and this also gives the developer much more control over hardware aspects such as memory management and CPU usage.
 
 
 ## Task 2

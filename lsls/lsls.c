@@ -42,7 +42,7 @@ int main(int argc, char **argv)
   while ((entry = readdir(directory)) != NULL) 
 
   {
-    struct stat buf;
+    struct stat buf; // obtains information about the named file
     
     char *fullpath = realpath(entry->d_name, NULL); /*resource used for realpath() ->
     https://www.linuxquestions.org/questions/programming-9/how-to-get-the-full-path-of-a-file-in-c-841046/
@@ -51,9 +51,17 @@ int main(int argc, char **argv)
      if(stat(fullpath, &buf) < 0)  // Returns -1 on error.  
         exit(1);
 
-     printf("file/dir name: %s  size: %lld\n", entry->d_name, buf.st_size); /* operator ( -> ) in C is used to access a member of a struct 
-     which is referenced by the pointer in question */
-    //  printf("file size is %10lld\n", fileStat.st_size);
+    /* checking to see if the file is a directory, 
+    if yes then print<DIR> and name of dir, instead of size in bytes*/
+    if (buf.st_mode & S_IFDIR) { 
+      printf("<DIR> %s\n", entry->d_name); // /* operator ( -> ) in C is used to access a member of a struct 
+    //  which is referenced by the pointer in question */
+    }
+
+    /* if no, then print size in bytes and name of file*/
+    else {
+      printf("%10lld %s\n", buf.st_size, entry->d_name);
+    }
   }
   
   // Close directory

@@ -16,6 +16,9 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+Running: process is running on a processor and executing instructions.
+Blocked: a process has performed some kind of operation that makes it not ready to run until some other event takes place.
+Ready: process is ready to run but for some reason, OS has chosen not to execute process.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 

@@ -33,8 +33,12 @@ int main(int argc, char **argv)
   if(argc == 1){
     path =  ".";
   }
-  else{
+  else if(argc == 2){
     path =  argv[1];
+  }
+  else{
+    printf("only one argument allowed");
+    return 2;
   }
   // Parse command line
   

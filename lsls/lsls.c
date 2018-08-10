@@ -10,13 +10,26 @@ int main(int argc, char **argv)
   // Parse command line
 
 
-  int show_hidden = 0;
+  char show_hidden = 0;
 
-  int my_path_index = 0;
+  char my_path_index = 0;
+
+  char show_size = 0;
+
+
 
   for (int i = 1; i < argc; i++) {
-    if (!strcmp(argv[i], "-a")) {
-      show_hidden = 1;
+    if (argv[i][0] == '-') {
+      int j = 1;
+      while (argv[i][j] != NULL) {
+        if (argv[i][j] == 'a') {
+          show_hidden = 1;
+        }
+        else if (argv[i][j] == 'l') {
+          show_size = 1;
+        }
+        j++;
+      }
     }
     else {
       my_path_index = i;

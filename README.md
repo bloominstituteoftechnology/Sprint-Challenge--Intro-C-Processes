@@ -16,6 +16,11 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+> Created: When a process is first created, for example in C with `fork()`, it is said to be in the `created` state waiting to enter the `Ready` state
+> Ready: The process has been loaded into memory and is waiting for execution on a `CPU`
+> Running: This process is no longer waiting for execution in the `Ready` state and is currently being executed on a CPU
+> Blocked: The process has been executed but now needs some external input or state change to continue with its execution
+> Terminated: aka `Zombie state`, the process has been fully executed and will stay in this state until the parent process calls some form of the `wait` family
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 

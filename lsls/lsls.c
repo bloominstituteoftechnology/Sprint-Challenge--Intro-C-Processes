@@ -8,12 +8,13 @@ int main(int argc, char **argv)
 {
   //variables
   DIR *dir;
+  char *str[80]
   // Parse command line
   
   // Open directory
   dir  = opendir(argv);
 
-  printf((string)dir);
+  sprintf(str, '%p', dir);
 
 
 

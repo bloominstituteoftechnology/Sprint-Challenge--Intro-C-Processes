@@ -132,7 +132,7 @@ int main(void)
             else {
                 execvp(args[0], args);
                 printf("bash: %s: command not found.\n", args[0]);
-            } 
+            }
         }
         else {
             waitpid(rc, NULL, 0); 

@@ -6,9 +6,16 @@
  */
 int main(int argc, char **argv)
 {
+  //variables
+  DIR *dir;
   // Parse command line
-
+  
   // Open directory
+  dir  = opendir(argv);
+
+  printf(dir);
+
+
 
   // Repeatly read and print entries
 

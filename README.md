@@ -21,7 +21,6 @@ Add your answers inline, below, with your pull request.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
-
 ## Task 2
 
 Write a program in C, `lsls.c`, that prints out a directory listing for the
@@ -75,18 +74,17 @@ You will be using functionality included in `<dirent.h>`. This header file holds
 the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 `closedir()`, below.
 
-* `DIR *opendir(char *path)`: This function opens the directory named in `path`
+- `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
-* `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+- `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
-* `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
+- `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.
 
 The `struct dirent *` returned by `readdir()` has the following fields in it:
@@ -137,7 +135,7 @@ $ ./lsls
 
 You'll need to use the `stat()` call in `<sys/stat.h>`.
 
-* `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
+- `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
   (i.e. the path passed to `opendir()` following by a `/` followed by the name
   of the file in `d_name`), fill the fields of a `struct stat` that you've
   pointed to. Returns `-1` on error.

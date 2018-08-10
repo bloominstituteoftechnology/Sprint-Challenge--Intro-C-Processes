@@ -6,13 +6,25 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  // Define pointers
+  DIR *pDir;
+  struct dirent *ent;
+  
+  // Parse command line and Open directory
+  pDir = (argc > 1) ? opendir(argv[1]) : opendir(".");
 
-  // Open directory
+  if (pDir == NULL) {
+    fprintf(stderr, "Error opening directory");
+    return 0;
+  }
 
-  // Repeatly read and print entries
+  // Repeatedly read and print entries
+  while ((ent = readdir(pDir)) != NULL) {
+    printf("%s\n", ent->d_name);
+  }
 
   // Close directory
+  closedir(pDir);
 
   return 0;
 }

@@ -14,7 +14,9 @@ int main(int argc, char *argv)
   // Open directory
   dir = opendir(argv);
 
-  sprintf(str, '%d', *dir);
+  ent = readdir(dir)
+
+  printf("%s\n",ent->d_name)
 
 
 

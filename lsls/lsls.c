@@ -1,6 +1,8 @@
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <dirent.h>
+#include <string.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -8,8 +10,9 @@
 int main(int argc, char **argv)
 {
   char *currdir = argc > 1 ? argv[1] : ".";
-  DIR *dir = opendir(currdir);
   struct dirent *rdir;
+  struct stat fstatus;
+  DIR *dir = opendir(currdir);
 
   if (dir == NULL)
   {
@@ -18,9 +21,18 @@ int main(int argc, char **argv)
   }
 
   printf("$ %s %s\n", argv[0], currdir);
+
   while ((rdir = readdir(dir)) != NULL)
   {
-    printf("%s\n", rdir->d_name);
+    char *path = strdup(currdir);
+    strcat(strcat(path, "/"), rdir->d_name);
+
+    if (stat(path, &fstatus) == 0)
+    {
+      printf("%10lld bytes  %s\n", fstatus.st_size, rdir->d_name);
+    }
+
+    free(path);
   }
 
   closedir(dir);

@@ -33,21 +33,25 @@ int main(int argc, char **argv)
   {
     while ((dir = readdir(d)) != NULL)
     {
+// get file stat information
       struct stat st;
+      stat(dir->d_name, &st);
 
-      if (stat(dir->d_name, &st) < 0)
-      {
-        fprintf(stderr, "oops, can't stat file\n");
-        exit(2);
-      }
-      if (st.st_mode & S_IFREG) 
-      {
-        printf("%s %jd\n", dir->d_name,st.st_size);
-      }
-      else
-      {
-        printf("%s\n", dir->d_name);
-      }
+//if we have a regular file, print size
+     if (st.st_mode & S_IFREG)
+     {
+       printf("%s %jd\n", dir->d_name, st.st_size);
+     }
+//else if we have a directory, print <DIR>
+     else if (st.st_mode & S_IFDIR)
+     {
+       printf("%s %s\n", "<DIR>", dir->d_name); 
+     }
+//if all else fails, just print the list of files
+     else
+     {
+       printf("%s\n", dir->d_name);
+     }
     }
   // Close directory
     closedir(d);

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
+
 /**
  * Main
  */
@@ -43,19 +44,24 @@ int main(int argc, char **argv)
 
   {
     struct stat buf; // obtains information about the named file
-    
-    char *fullpath = realpath(entry->d_name, NULL); /*resource used for realpath() ->
-    https://www.linuxquestions.org/questions/programming-9/how-to-get-the-full-path-of-a-file-in-c-841046/
-    post by member named Basel*/
 
-     if(stat(fullpath, &buf) < 0)  // Returns -1 on error.  
+    // Code below only works for current dir: per http://pubs.opengroup.org/onlinepubs/009695399/functions/realpath.html -> The realpath() function shall derive, from the pathname pointed to by file_name, an absolute pathname that names the same file, whose resolution does not involve '.', '..', or symbolic links.
+    // char *fullpath = realpath(entry->d_name, NULL); /*resource used for realpath() ->
+    // https://www.linuxquestions.org/questions/programming-9/how-to-get-the-full-path-of-a-file-in-c-841046/
+    // post by member named Basel*/
+
+    // alternatively, below works for all dirs:
+    char fullpath[20000];
+    snprintf(fullpath, sizeof(fullpath), "%s/%s", dir_name, entry->d_name);
+
+    if(stat(fullpath, &buf) < 0)  // Returns -1 on error.  
         exit(1);
 
     /* checking to see if the file is a directory, 
     if yes then print<DIR> and name of dir, instead of size in bytes*/
-    if (buf.st_mode & S_IFDIR) { 
-      printf("<DIR> %s\n", entry->d_name); // /* operator ( -> ) in C is used to access a member of a struct 
-    //  which is referenced by the pointer in question */
+    else if (buf.st_mode & S_IFDIR) { 
+      printf("<DIR> %s\n", entry->d_name); /* operator ( -> ) in C is used to access a member of a struct 
+    which is referenced by the pointer in question */
     }
 
     /* if no, then print size in bytes and name of file*/

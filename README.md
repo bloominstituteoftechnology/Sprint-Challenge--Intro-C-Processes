@@ -1,3 +1,5 @@
+# Matthew Tomas
+# AIMLDS1
 # Sprint-Challenge: Intro to C and Processes
 
 Complete both tasks below.

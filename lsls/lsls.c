@@ -12,15 +12,12 @@ int main(int argc, char **argv)
   struct dirent *dp;
   char *cmdlinpt;
   // Parse command line
-  if ((dir = opendir (".")) == NULL) {
-    printf("ERROR: %s\n", strerror(errno));
-    exit(1);
+  if(argc == 2) {
+    cmdlinpt = argv[1];
   } else if(argc == 1) {
     cmdlinpt = ".";
-  } else if(argc == 2) {
-    cmdlinpt = argv[1];
    } else {
-     fprintf(stderr, "Incorrect usage");
+     fprintf(stderr, "There was an error, it must have been your fault!");
      exit(1);
    }
   // Open directory

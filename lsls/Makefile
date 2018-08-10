@@ -1,2 +1,2 @@
 lsls: lsls.c
-	gcc -Wall -Wextra -o $@ $^
+	gcc -Wall -Wextra -std=c99 -g -o $@ $^

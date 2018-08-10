@@ -17,9 +17,25 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+   a. Running - the process is currently being served by the CPU or is ready to be served by the CPU
+   
+   b. Sleeping - the process is waiting for resources or an event to happen before it will use the CPU
+   
+      i. Interruptible -  the process is expecting and handling signals, but will only wake upon receiving the appropriate                             signals
+      
+      ii. Uninterruptible - the process does not handle signals right away and only wakes after a timeout occurs or a                               specific resource becomes available
+      
+   c. Stopped - the process has completed or entered exit status because of another signal. It relinquishes all resources, but maintains a process table entry and sends a signal to its parent that it exited.  The parent then can 'reap' the child. Or if a signal stopped the process, another signal can restart it.
+   
+   d. Zombie - the process has exited, but has not been removed from the process table
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+A zombie process has exited, but the parent process has not removed it from the process table. This can happen when the parent process has ended before it can reap the child or because the parent process is not programmed properly to reap the child.  It can be removed by sending the SIGCHLD signal to the parent process or by killing the parent process, which allows the init process to reap it.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+A great benefit of compiled code is that it allows the source code to be compiled to low level machine code that can be executed directly by the CPU, which operates much faster than a language that must be interprated at run time.  Compiling code also allows for easier syntactic, semantic, or custom checks. As well, the client does not need to have an interprator to run your code, and it is easier to obfuscate your code. 
 
 
 ## Task 2

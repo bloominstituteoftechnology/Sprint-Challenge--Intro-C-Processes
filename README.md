@@ -17,9 +17,23 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+In my answers, "Running", "Ready", and "Blocked" refer to the terminology in http://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf.
+
+Running/Runnable: The process is either currently executing instructions ("running"), or in a "ready" like state.
+
+Uninterruptable/Interrupttable Sleep: These are "blocked" states. The process is waiting for some other event before it will be ready to run again. Interruptible blocked states are waiting for an event or signal from another process, while uninterruptible blocked states are waiting for a hardware condition.
+
+Stopped: The processes is stopped by some sort of signal or because it is being traced, and can be restarted by another process.
+
+Zombie: A state that has terminated but has not been reaped. It still has an entry in the process table.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+When a child process is created through a `fork`, then finishes before its parent, it becomes a zombie process. In this state, some information about the process will remain as an entry in the process table. If the parent process reads the exit status using `wait`, then the zombie process will be destroyed (reaped, with its entry removed from the process table).
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+The code is compiled just once, and therefore is executed on a lower level, allowing it to be optimized for the hardware and paying the overhead cost once, as opposed to each time the code is executed. In contrast to this, interpreted languages must be interpreted every time they are executed. Also, since the entire code will be read when it is compiled, errors are immediately caught, instead of lurking in infrequently used sections of the code. However, for development, some find that interpreted languages pinpoint the location of errors more understandably, though some compilers assist in this regard. Overall, some ease of development is sacrificed for much greater efficiency during execution and more robust programs (containing no errors that will not compile).
 
 
 ## Task 2

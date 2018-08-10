@@ -15,12 +15,29 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+> 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+* **Start**: Initial state when a process is created.
+* **Ready**: Waiting to be selected and run by the processor. This is essentially `Start`, but may be in this state if the process was running before but was paused before it was finished.
+* **Running**: Process is running and the CPU is executing process' instructions. 
+* **Waiting**: Continuation of the process is contingent on the resolution of something else, like result of an I/O operation. While similar to `Start`/`Ready`, this expresses that the process needs to wait for something before it can continue running, while the other states express that the process is ready to run but waiting to be executed.
+* **Terminated**: Process that has ended. State suggests it is ready to be cleaned up by OS or other processes. 
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+> 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+A zombie process is a *child* process which has terminated but the parent process has not yet cleaned up (*e.g. `wait()`-ed upon*).  Because of this, the child process still has a PID and is clogging up the list of processes, even though the process itself has terminated and is not using resources.
+
+A zombie process is generally and is supposed to be destroyed by the parent. Generally, the parent `wait()`-s for the child process to terminate. Once the child process is terminated, the parent `wait()` resolves and the process is removed from the list of processes. If done correctly, zombie processes happen all the time but are taken cared of immediately. The problem arises when they are not.
+
+Now, a small amount of zombie processes hanging around is not bad, and is probably normal. (*Remember, the zombie processes have been terminated and are no longer using resources*). However, if there's too many, usually because a parent process is not correctly handling its children, the computer might run out of PID's to give to new processes, effectively making the system unable to run new processes. This is obviously not a desired outcome.
+
+> 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+A program from a compiled language (*CL*) will run faster than a program from a non-compiled language (*NCL*). Before I explain why, it is worth noting that the computer does not understand source code, the code that humans type in. That code needs to be translated into machine code the computer *does* understand in order for it to be executed.
+
+The performance difference between *CL* program and an *NCL* program arises from when this translation happens. In an *NCL* program, the translation happens generally when the program is executed. The interpreter/engine/what-have-you reads the source code and generally translates it there and then. This is slower because it takes some time to convert source code into machine code, and there are times that there are decisions that need to be made during translation that the what-have-you needs to determine, further slowing things down.
+
+In contrast, the translation and any extra work related to that is done ahead of time in a *CL* language. This means you can not run the program dynamically, because all of the source code needs to be translated up-front. However, after everything has been translated and put into an executable file, the execution is faster because now the computer is now just concerned with executing code it understands. That is, there is no need for extra overhead to translate and arrange things during run-time.
 
 ## Task 2
 

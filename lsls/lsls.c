@@ -75,7 +75,33 @@ int main(int argc, char **argv)
 
   while ((entry = readdir(directory)) != NULL)
   {
-    printf("%s\n", entry->d_name);
+    char path[20000];
+    struct stat stat_buf;
+
+    // We need the full path
+    snprintf(path, sizeof(path), "%s/%s", directory_name, entry->d_name);
+
+    if (stat(path, &stat_buf) == -1)
+    {
+      fprintf(stderr, "Failed to show the stats for %s.\n", path);
+      exit(2);
+    }
+
+    if (stat_buf.st_mode & S_IFREG)
+    {
+      // Print the file name and its size in bytes
+      printf("%20lld %s\n", stat_buf.st_size, entry->d_name);
+    }
+
+    else if (stat_buf.st_mode & S_IFDIR)
+    {
+      // Directory name
+      printf("%20lld %s\n", "<DIR>", entry->d_name);
+    }
+    else
+    {
+      printf("%10s %s \n", " ", entry->d_name);
+    }
   }
 
   // CLOSE DIRECTORY

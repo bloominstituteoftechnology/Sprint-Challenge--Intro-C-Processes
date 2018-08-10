@@ -16,10 +16,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+* running process - actively running process
+* interrupted state - sleeping process that is actively ready to receive signals
+* uninterrupted state - sleeping process that is not actively ready to receive signals.
+* stopped state - not running or sleeping
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+* a zombie process is a process that has been terminated but the process table still thinks it is running. It will be removed from the table once the parent has read the exit status code. 
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+Benefits: faster and more efficient execution of code. Non-compiled languages read code line by line and will stop execution when it comes upon an error. Compiled languages won't run at all if there are errors. It will, however, log error statements so that the programmer can pinpoint and fix errors and warnings. When we compile our code and run an executable file, we know our code at the barebones does not have any errors. It's up to the programmer to make sure it functions like it ought, but programming in C makes that easier. 
 
 
 ## Task 2
@@ -34,7 +41,7 @@ directory, print out the contents of the current directory, which is called `.`.
 $ ./lsls
 .
 ..
-lsls.c
+lsl
 lsls
 
 $ ./lsls /home/exampleuser

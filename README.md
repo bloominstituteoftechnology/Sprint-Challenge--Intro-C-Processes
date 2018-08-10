@@ -16,11 +16,24 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+   1.1 Start/Created -> When the process is started.
+   1.2 Ready -> Awaiting to be assigned to a CPU.
+   1.3 Running -> Assigned to a CPU by the System Scheduling.
+   1.4 Awaiting/Sleep ->
+   1.4.1 Interruptible -> Awaiting for an external resource (ie: Input from a user, a file to be loaded).
+   1.4.2 Uninterruptable -> Blocked. Awaiting an external resource that did not give any response.
+   1.5 Zombie -> An ended/terminated (death) process that has not be buried (removed) by its parent.
+   1.6 Stoped -> Process reach the end of its life (end execution). Send a signal to its parent about termination.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+   2.1 Is a process that after reach the end of is execution (Exit after termination) its instance is not removed from the memory and from the process table by its parent.
+   2.2 All process after termination turn into Zombie-state while the parent receives the signal that communicates the end of its life, whereas only some process is susceptible to be perpetual Zombies either because the parent did not get care to clear them up from the memory and process table or because the parent reaches the end of its life before the child. Process's life reality is sadder than human life, parents must see their children die :'(.
+   2.3 A process can be destroyed either:
+   2.3.1 By the operating system after the process dispatch some 'exception'.
+   2.3.2 After it ends all its life cycle (reach end of execution), then communicate its termination to its parent so the parent takes care of clearing its child up.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+   3.1 A general trade-off between Compiled and Interpreted languages is to trade speed of development for higher execution time. Compiled languages run faster but are slower to write. Interpreted ones are faster to code, but each line needs to be parsed, interpreted and executed every time it is runned, thus there is a higher overhead.
 
 ## Task 2
 
@@ -75,18 +88,17 @@ You will be using functionality included in `<dirent.h>`. This header file holds
 the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 `closedir()`, below.
 
-* `DIR *opendir(char *path)`: This function opens the directory named in `path`
+- `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
-* `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+- `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
-* `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
+- `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.
 
 The `struct dirent *` returned by `readdir()` has the following fields in it:
@@ -137,7 +149,7 @@ $ ./lsls
 
 You'll need to use the `stat()` call in `<sys/stat.h>`.
 
-* `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
+- `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
   (i.e. the path passed to `opendir()` following by a `/` followed by the name
   of the file in `d_name`), fill the fields of a `struct stat` that you've
   pointed to. Returns `-1` on error.

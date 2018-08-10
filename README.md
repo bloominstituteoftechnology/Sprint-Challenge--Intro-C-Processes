@@ -17,7 +17,7 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
-    On a standard Unix system the main process states are ready, running and blocked.
+    On a standard Unix system the main process states are ready, running and blocked. A process can also enter a zombie state as discussed in the next answer.
 
     - **Ready**: Right after creation a process moves into the ready state where it awaits execution by the operating system.
     - **Running**: A process is running when the operating system begins to execute its instructions.

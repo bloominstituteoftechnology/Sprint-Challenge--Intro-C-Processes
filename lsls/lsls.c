@@ -27,8 +27,17 @@
     if (errno != 0) {
       perror("Error reading dirs");
     }
-    int size = stat(dp->d_name, &buf);
-    printf("size: %10lld file -> %s\n", buf.st_size, dp->d_name);
+    stat(dp->d_name, &buf);
+    int size = buf.st_size;
+    // printf("%d\n", size);
+  
+    
+    if (size == 160 || size == 192) {
+      printf("size: <DIR> file -> %s\n", dp->d_name);
+    } else {
+      printf("size: %10d file -> %s\n", size, dp->d_name);
+    }
+    
   }
   
   closedir(dir);

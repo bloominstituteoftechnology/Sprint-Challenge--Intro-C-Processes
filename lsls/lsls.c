@@ -13,7 +13,7 @@ int main(int argc, char **argv)
   // Open directory
   dir  = opendir(argv);
 
-  printf((SA_FormatString)dir);
+  printf((string)dir);
 
 
 

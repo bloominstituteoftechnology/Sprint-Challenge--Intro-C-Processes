@@ -1,22 +1,28 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <stdlib.h>
 
 /**
  * Main
  */
 int main(int argc, char **argv)
 {
+  DIR *dir;
+  struct dirent *dp;
+  char *cmdlinpt;
   // Parse command line
-int i;
-
-    printf("There are %d command line argument(s):\n", argc);
-
-    for (i = 0; i < argc; i++) {
-        printf("   %s\n", argv[i]);
-    }
-
+  cmdlinpt = "."
+  if ((dir = opendir (cmdlinpt)) == NULL) {
+    fprintf(stderr, "cannot open .");
+    exit(1);
+  } else if(argc == 2) {
+    cmdlinpt = argv[1];
+   } else {
+     fprintf(stderr, "Incorrect usage");
+     exit(1);
+   }
   // Open directory
-
+  dir = opendir(argv[1]);
   // Repeatly read and print entries
 
   // Close directory

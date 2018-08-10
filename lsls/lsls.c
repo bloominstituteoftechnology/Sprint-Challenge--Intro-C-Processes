@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   char *target; 
   struct dirent *directory_entry;
   struct stat buf;
-  char path[512];
+  char path[30];
 
   // Parse command line
 
@@ -45,7 +45,12 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while ((directory_entry = readdir(directory)) != NULL)
   {
-    stat(strdup(directory_entry->d_name), &buf);
+    path[0]='\0';
+    strcat(path,target);
+    strcat(path,"/");
+    strcat(path,directory_entry->d_name);
+    
+    stat(path, &buf);
     printf("%10ld %s\n", buf.st_size, directory_entry->d_name);
   }
 

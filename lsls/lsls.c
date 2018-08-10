@@ -11,7 +11,7 @@ int main(int argc, char **argv)
   DIR *dir;
   struct dirent *dp;
   char *file = ".";
-  if(argc == 2){
+  if(argc == 1){
     file = argv[1];
   } else if(argc > 2){
     fprintf(stderr, "Only 1 directory can be shown at a time.\n");

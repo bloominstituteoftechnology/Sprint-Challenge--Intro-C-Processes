@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   char *target; 
   struct dirent *directory_entry;
   struct stat buf;
-  char path[30];
+  char path[512];
 
   // Parse command line
 
@@ -51,7 +51,15 @@ int main(int argc, char **argv)
     strcat(path,directory_entry->d_name);
     
     stat(path, &buf);
-    printf("%10ld %s\n", buf.st_size, directory_entry->d_name);
+    //Test for DIR or file
+    if(S_ISDIR(buf.st_mode))
+    { 
+      printf("%10s %s\n","<DIR>", directory_entry->d_name);
+    }
+    else
+    {
+      printf("%10ld %s\n", buf.st_size, directory_entry->d_name);
+    }
   }
 
 

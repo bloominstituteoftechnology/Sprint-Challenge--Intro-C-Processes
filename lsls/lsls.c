@@ -19,7 +19,7 @@ int main(int argc, char *argv)
 
   printf("%s\n",ent->d_name);
 
-  closedir(argv);
+  closedir(dir);
 
 
 

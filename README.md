@@ -16,11 +16,20 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+Created - When new process is created. example fork()
+Ready -  Process has been loaded into main memory and is awaiting execution on a CPU.
+Running - A process moves into the running state when it is chosen for execution.
+Blocked - When the process can't carry on without an external change in state or event occurring.
+Terminated - Happens to the "running" state by completing execution or explicitly being killed
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+Zombie process - process that has completed execution but still has an entry in the process table.
+Create a ZP -  Child-process should exit() and the parent-process should sleep() before exiting.
+Destroy a ZP - Kill the parent process and that should kill the zombie process.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+Compiled benefits - execution speed, efficiency, more control over hardware aspects like memory, cpu useage.
+Non-compiled benefits - Dynamic typing/scoping, not having the compile step in workflow, easier to implement.
 
 ## Task 2
 
@@ -78,7 +87,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

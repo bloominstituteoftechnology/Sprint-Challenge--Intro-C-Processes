@@ -2,27 +2,47 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
  * Main
  */
 int main(int argc, char **argv)
 {
+  DIR *directory;
+  char *target; 
+  struct dirent *directory_entry;
+
   // Parse command line
+
+  //check to see if user entered a directory name
+  if (argc < 2)
+  {
+    target = strdup("."); 
+    printf("Usage: %s <directory>\n", argv[0]);
+    printf("Listing current directory: \"%s\"\n", target);
+  }
+  else
+  {
+    target = strdup(argv[1]);
+    printf("Listing directory: \"%s\"\n", target);
+  }
 
   // Open directory
 
-  DIR *directory = opendir(".");
-  struct dirent   *directory_entry;
-  int i;
+  directory = opendir(target);
 
-  printf("Testing: %s\n", directory == NULL? "FAIL": "PASS");
+  if(directory == NULL)
+  {
+    fprintf(stderr, "Can't open directory: %s\n", target);
+    exit(128);
+  }
 
   // Repeatly read and print entries
   while ((directory_entry = readdir(directory)) != NULL)
   {
-    i++;
-    printf("\n%s", directory_entry->d_name);
+    printf("%s\n", directory_entry->d_name);
   }
 
   // Close directory

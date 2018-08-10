@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <errno.h>
 
@@ -18,7 +19,7 @@ int directoryList(const char *path)
   dir = opendir(path);
   if (dir == NULL)
   {
-    fprintf(stderr, "err opendir %s\n", path);
+    fprintf(stderr, "err opendir - double check path name %s\n", path);
     exit(2); //inability to compare - error thrown and exit process
   }
 
@@ -32,6 +33,7 @@ int directoryList(const char *path)
 
 int main(int argc, char **argv)
 {
+  struct stat file_stat;
 
   int counter = 1;
 
@@ -43,11 +45,16 @@ int main(int argc, char **argv)
   }
   //dir in command line 
   //tested with ../../Github
-  
+
   while(counter < argc){
-    printf("\nDirectory Listing %s\n", argv[counter]);
-    directoryList(argv[counter]);
-    counter++;
+    if (lstat(argv[counter], &file_stat) == -1){
+      fprintf(stderr, "%s\n", strerror(errno));
+    }
+    else {
+      fprintf(stdout, "\nDirectory Listing %s %lldbytes\n", argv[counter], file_stat.st_size);
+      directoryList(argv[counter]);
+      counter++;
+    }
   }
   return 0;
 }

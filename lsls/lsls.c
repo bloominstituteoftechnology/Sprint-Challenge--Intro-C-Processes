@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -41,8 +42,18 @@ int main(int argc, char **argv)
   while ((entry = readdir(directory)) != NULL) 
 
   {
-     printf("%s\n", entry->d_name); /* operator ( -> ) in C is used to access a member of a struct 
+    struct stat buf;
+    
+    char *fullpath = realpath(entry->d_name, NULL); /*resource used for realpath() ->
+    https://www.linuxquestions.org/questions/programming-9/how-to-get-the-full-path-of-a-file-in-c-841046/
+    post by member named Basel*/
+
+     if(stat(fullpath, &buf) < 0)  // Returns -1 on error.  
+        exit(1);
+
+     printf("file/dir name: %s  size: %lld\n", entry->d_name, buf.st_size); /* operator ( -> ) in C is used to access a member of a struct 
      which is referenced by the pointer in question */
+    //  printf("file size is %10lld\n", fileStat.st_size);
   }
   
   // Close directory

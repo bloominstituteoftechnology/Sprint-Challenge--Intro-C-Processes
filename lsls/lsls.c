@@ -4,7 +4,7 @@
 /**
  * Main
  */
-int main(int argc)//, char *argv)
+int main(int argc, char *argv)
 {
   //variables
   DIR *dir;
@@ -13,7 +13,7 @@ int main(int argc)//, char *argv)
   // Parse command line
   
   // Open directory
-  dir = opendir(".");
+  dir = opendir("%s", argv);
 
   ent = readdir(dir);
 

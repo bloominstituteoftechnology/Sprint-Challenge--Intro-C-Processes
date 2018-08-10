@@ -31,6 +31,7 @@ Add your answers inline, below, with your pull request.
 - SPEED! Compiled it so Formula 1 as Interpreted is to Bicycle.
 
 * By compiling all at once everything is already `Compiled` or `Translated` directly into Machine Language where Interpreted is compiled on the fly. We're saving the computer resources by converting it ahead of time into a more palatable form for the hardware to decipher.
+  ![](https://raw.githubusercontent.com/fireinjun/Sprint-Challenge--Intro-C-Processes/master/fast.jpg)
 
 ## Task 2
 

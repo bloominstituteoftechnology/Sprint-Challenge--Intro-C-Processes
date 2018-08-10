@@ -17,10 +17,29 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+~ Blocked: The process needs some sort of command to continue; generally from user input, such as a mouse click or keystroke.
+
+~ Created: This is the initial state of a process. It sits idle waiting to be brought into scheduling to eventually execute a function.
+
+~ Ready: The process has been sent to memory, and is waiting to be executed via the CPU.
+
+~ Running: The CPU is running the instructions for the given process.
+
+~ Terminated: The process has been commanded to exit.
+
+~ Wait: The process just waits until it is given another command.
+
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+Ooooooohhhhh, zombies!!!
+
+A zombie process is a normal process that was terminated by the CPU, yet it remains in the terminal to supposedly be executed again. Whoops! They are created when a parent process forks a child process, and the child ends up terminated before the parent can call wait(). This causes a resource leak because it is eating up memory in the queue even though it is not being used. The OS should have some sort of process or function built in to handle leaks by exiting the zombie process - gotta keep that memory free!
+
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+Complied languages are generally waaaay faster, which is great for performance. They also tend to work closer to the computer, which only assists with the higher level of performance. To further capitalize on the performance aspect, the compiled file can be run over and over again without having to be run through an interpreter and _then_ compiled to run. 
 
 ## Task 2
 

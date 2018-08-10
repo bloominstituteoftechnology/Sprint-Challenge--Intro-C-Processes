@@ -17,10 +17,23 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+Running, which means it is currently running on the CPU.
+Waiting, which means it is ready to run when selected.
+Blocked, which means it will not run until another process is finished i.e: wait().
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+Zombie is a process that has terminated but has not been wait()'ed on by its parent, takes up resource.
+
+A zombie is created when you fork() and exit() but not yet wait()'ed' in a while loop. Which creates a bunch of child processes that are not being used.
+
+To destroy a zombie process, one can destroy the parent process.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+Compiled languages are translated by running the source code through a compiler. This results in very efficient code that can be executed any number of times. The overhead for the translation is incurred just once, when the source is compiled; thereafter, it need only be loaded and executed.
+
+While non-compiled languages  must be parsed, interpreted, and executed each time the program is run, thereby greatly adding to the cost of running the program.
 
 ## Task 2
 
@@ -78,7 +91,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

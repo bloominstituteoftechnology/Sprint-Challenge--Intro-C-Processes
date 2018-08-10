@@ -56,6 +56,9 @@ int main(int argc, char **argv)
 
   while ((current_file = readdir(directory)) != NULL) {
     if (show_hidden || current_file->d_name[0] != '.') {
+      if (show_size) {
+        printf(" size_placeholder ");
+      }
       printf(" %s \n", current_file->d_name);
     }
   }

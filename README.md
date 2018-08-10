@@ -23,7 +23,7 @@ Add your answers inline, below, with your pull request.
    
       i. Interruptible -  the process is expecting and handling signals, but will only wake upon receiving the appropriate                             signals
       
-      ii. Uninterruptible - the process only does not handle signals right away and only wakes after a timeout occurs or a                               specific resource becomes available
+      ii. Uninterruptible - the process does not handle signals right away and only wakes after a timeout occurs or a                               specific resource becomes available
    c. Stopped - the process has completed or entered exit status because of another signal. It relinquishes all resources, but maintains a process table entry and sends a signal to its parent that it exited.  The parent then can 'reap' the child. Or if a signal stopped the process, another signal can restart it.
    
    d. Zombie - the process has exited, but has not been removed from the process table

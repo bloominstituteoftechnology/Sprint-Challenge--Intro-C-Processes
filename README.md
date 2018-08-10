@@ -15,12 +15,21 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 
 Add your answers inline, below, with your pull request.
 
-1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+**_1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means._**
 
-2. What is a zombie process? How does one get created? How does one get destroyed?
+**Running.** Process is running on CPU and executing instructions. 
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+**Ready.** Process is waiting to be executed by the CPU, but the OS has chosen not to execute it yet for some reason, such as other items might be ahead of it in a queue. 
 
+**Blocked.** Process is not ready to run until some other event takes place. For example, a process to print a document may be blocked because the printer is unavailable / offline. 
+
+**_2. What is a zombie process? How does one get created? How does one get destroyed?_**
+
+A zombie process is one that has been terminated, but has not been removed from the process table. This can happen with child processes, where the parent process is needed to read the child's exit status. 
+
+**_3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?_**
+
+Compiled languages tend to be more efficient since they are closer to the computer's hardware and optimized for it. Non-compiled languages need more steps to run a program. 
 
 ## Task 2
 

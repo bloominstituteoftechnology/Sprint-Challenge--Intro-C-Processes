@@ -44,7 +44,24 @@ int main(int argc, char **argv)
     
     snprintf(path, sizeof(path), "%s/%s", directory_name, ent->d_name);
     stat(path, &buf);
-    printf("%20lld %s\n", buf.st_size, path);
+
+    if (S_ISREG(buf.st_mode))
+    {
+      printf("%20lld %s\n", buf.st_size, path);
+    }
+    else
+    {
+      printf("%20s %s\n", "<DIR>", path);
+    }
+    
+    
+    // // trying to under stand the "If you bitwise-AND the value with S_IFDIR and get a non-zero result, the file is a directory."
+    // // this returns a a positive value on files
+    // printf("using S_ISREG %d\n",(S_ISREG(buf.st_mode)));
+
+    // // both of these always return a value
+    // printf("S_IFREG %d\n",(S_IFREG));
+    // printf("value of buf.st_mode %d\n",(buf.st_mode));
   }
 
   // Close directory

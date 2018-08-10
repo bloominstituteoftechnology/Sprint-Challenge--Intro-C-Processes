@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -25,7 +26,10 @@ int main(int argc, char **argv)
 
   // Open directory
   struct dirent *ent;
+  
+  
   DIR *directory = opendir(directory_name);
+  
   if (directory == NULL)
   {
     fprintf(stderr, "The directory open error");
@@ -35,7 +39,12 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while ((ent = readdir(directory)) != NULL)
   {
-    printf("%s\n", ent->d_name);
+    char path[200];
+    struct stat buf;
+    
+    snprintf(path, sizeof(path), "%s/%s", directory_name, ent->d_name);
+    stat(path, &buf);
+    printf("%20lld %s\n", buf.st_size, path);
   }
 
   // Close directory

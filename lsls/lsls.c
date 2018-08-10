@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <dirent.h>
-#include <stdlib.h>
-#include <sys/stat.h>
+#include <stdlib.h> // Holds exit() system call
+#include <sys/stat.h> // Holds the stat() system call
+#include <dirent.h> // Holds the declarations for DIR, struct dirent, and the system calls opendir(), readdir(), and closedir()
 
 /**
  * Main
@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-  // PARSE COMMAND LINE
+  // 1. PARSE COMMAND LINE
   char *directory_name;
 
   if (argc == 1)
@@ -28,51 +28,50 @@ int main(int argc, char **argv)
     exit(1);
   }
 
-  // OPEN DIRECTORY
+  // 2. OPEN DIRECTORY
+  // opendir() opens the folder named in path or specified by the user.
+  // DIR is a type
   DIR *directory = opendir(directory_name);
 
   // Check if directory is open
   if (directory == NULL)
   {
     fprintf(stderr, "Error in opening directory.");
-    exit(1);
+    exit(2);
   }
 
-  // REPEATEDLY READ AND PRINT ENTRIES
+  // 3. REPEATEDLY READ AND PRINT ENTRIES
+  // Pointers are just references
   struct dirent *entry;
 
+  // readdir() reads and prints the folder specified by the user
   while ((entry = readdir(directory)) != NULL)
   {
-    char path[20000];
+    // Allocate for arrap
+    char path[10000];    
+    // snprintf - formats and stores a series of characters and values in the array buffer
+    // Path - the full path or buffer/temporary storage of data
+    // Path, size of the path, and its format
+    snprintf(path, sizeof(path), "%s/%s", directory_name, entry->d_name);
+    // Stat the entry - store the entry/data about the file/folder in a structure
     struct stat stat_buf;
 
-    // We need the full path
-    snprintf(path, sizeof(path), "%s/%s", directory_name, entry->d_name);
-
-    if (stat(path, &stat_buf) == -1)
+    // Address of the stat_buf
+    if (stat(path, &stat_buf) < 0)
     {
       fprintf(stderr, "Failed to show the stats for %s.\n", path);
-      exit(2);
+      exit(3);
     }
 
-    if (stat_buf.st_mode & S_IFREG)
+    // S_ISREG - macro for interpreting the values in the stat_buf
+    if (S_ISREG(stat_buf.st_mode))
     {
       // Print the file name and its size in bytes
-      printf("%20lld %s\n", stat_buf.st_size, entry->d_name);
-    }
-
-    else if (stat_buf.st_mode & S_IFDIR)
-    {
-      // Directory name
-      printf("%20lld %s\n", "<DIR>", entry->d_name);
-    }
-    else
-    {
-      printf("%10s %s\n", " ", entry->d_name);
+      printf("%20lld  %s\n", stat_buf.st_size, entry->d_name);
     }
   }
 
-  // CLOSE DIRECTORY
+  // 4. CLOSE DIRECTORY
   closedir(directory);
 
   return 0;

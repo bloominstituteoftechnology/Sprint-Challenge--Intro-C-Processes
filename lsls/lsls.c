@@ -50,7 +50,7 @@ int main(int argc, char **argv)
       }
       else
       {
-        printf("%10llu %s\n", stat_buf.st_size, ent->d_name);
+        printf("%10llu %s\n", (long long unsigned int )stat_buf.st_size, ent->d_name);
       }
     }
 

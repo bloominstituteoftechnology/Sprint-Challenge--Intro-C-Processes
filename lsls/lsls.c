@@ -4,15 +4,38 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
+int listdir(const char *path)
 {
-  // Parse command line
+  struct dirent *entry;
+  DIR *dp;
 
-  // Open directory
+  dp = opendir(path);
+  if (dp == NULL)
+{
+    perror("opendir");
+    return -1;
+}
 
-  // Repeatly read and print entries
+    while((entry = readdir(dp)))
+    puts(entry->d_name);
 
-  // Close directory
+closedir(dp);
+return 0;
+}
 
-  return 0;
+int main(argc, char **argv)
+{
+  int counter = 1;
+
+if (argc == 1)
+listdir(".");
+
+while (++counter <= argc) {
+  printf("\nListing %s...\n", argv[counter-1]);
+  listdir(argv[counter-1]);
+}
+
+return 0;
+}
+
 }

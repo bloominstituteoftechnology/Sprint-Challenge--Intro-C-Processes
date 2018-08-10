@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -13,6 +14,8 @@ int main(int argc, char **argv)
   DIR *directory;
   char *target; 
   struct dirent *directory_entry;
+  struct stat buf;
+  char path[512];
 
   // Parse command line
 
@@ -42,8 +45,10 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while ((directory_entry = readdir(directory)) != NULL)
   {
-    printf("%s\n", directory_entry->d_name);
+    stat(strdup(directory_entry->d_name), &buf);
+    printf("%10ld %s\n", buf.st_size, directory_entry->d_name);
   }
+
 
   // Close directory
 

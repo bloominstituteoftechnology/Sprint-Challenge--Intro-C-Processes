@@ -28,6 +28,14 @@ int main(int argc, char **argv)
 
   // Open directory
 
+  DIR *directory;
+  if (my_path_index) {
+    directory = opendir(argv[my_path_index]);
+  }
+  else {
+    directory = opendir(".");
+  }
+
   // Repeatly read and print entries
 
   // Close directory

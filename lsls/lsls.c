@@ -34,7 +34,11 @@ int main(int argc, char **argv)
     char buffer[256];
     snprintf(buffer, sizeof buffer, "%s%s%s", path, "/", newdir->d_name);
     stat(buffer, &buf);
-    printf("%10ld  ", buf.st_size);
+    if (S_ISDIR(buf.st_mode)) {
+      printf("%10s  ", "<DIR>");
+    } else {
+      printf("%10ld  ", buf.st_size);
+    }
     printf("%s\n", newdir->d_name);
   }
   

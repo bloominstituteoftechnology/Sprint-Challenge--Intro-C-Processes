@@ -53,3 +53,21 @@ int main(int argc, char **argv)
 
   return 0;
 }
+
+/*
+*********  OUTPUT  *********
+TERMINAL
+
+START
+Arguments: 2
+Path: .
+
+        bytes   Dir/File
+        -----   --------
+        <DIR>   .
+        <DIR>   ..
+        8712    lsls
+        1038    lsls.c
+        40      Makefile
+END
+*/

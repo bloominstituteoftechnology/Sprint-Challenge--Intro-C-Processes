@@ -7,17 +7,46 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+    DIR *curr_dir;
+    struct dirent *file;
+    
+    // Parse command line
+    if (argc == 1)
+    {
+        curr_dir = opendir("./");
+        
+        printf("Contents of current directory:\n");
+        
+        while ((file = readdir(curr_dir)) != NULL)
+        {
+            printf(" %s\n", file->d_name);
+        }
 
-  // Open directory
+        closedir(curr_dir);
+    }
+    else
+    {
+        // Open directory
+        curr_dir = opendir(argv[1]);
 
-  // Repeatly read and print entries
+        if (curr_dir == NULL)
+        {
+            printf("Directory does not exist");
+        }
+        else
+        {
+            printf("Contents of directory:\n");
 
-  // Close directory
+            // Repeatly read and print entries
+            while ((file = readdir(curr_dir)) != NULL)
+            {
+                printf(" %s\n", file->d_name);
+            }
 
-  if (argc == 1) {
-      execv("/bin/ls", argv);
-  }
+            // Close directory
+            closedir(curr_dir);
+        }
+    }
 
-  return 0;
+    return 0;
 }

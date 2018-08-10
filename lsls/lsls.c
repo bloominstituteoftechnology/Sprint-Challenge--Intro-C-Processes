@@ -4,50 +4,35 @@
 #include <string.h>
 #include <errno.h>
 
-// Lookup
+// List
 
-  void lookup(const char *arg) {
+  void list(const char *arg) {
   // Open directory
   DIR *dir;
   struct dirent *dp;
 
-  if ((dir = opendir(".")) == NULL)
+  if ((dir = opendir(arg)) == NULL)
   {
     perror("Cannot open directory\n");
     exit(1);
+    return;
   }
   // Repeatly read and print entries
 
-  do
-  {
-    errno = 0;
-
-    if ((dp = readdir(dir)) != NULL)
-    {
-
-      if (strcmp(dp->d_name, arg) != 0)
-      {
-        continue;
-        printf("yay its printing\n");
-        printf("%s\n", arg);
-        closedir(dir);
-      }
-    }
-
-  } while (dp != NULL);
-
   
-  if (errno != 0) {
-    printf("Error reading dirs");
-  }
-  else {
-    printf("%s not found\n", arg);
+  while((dp = readdir(dir)) != NULL){
+    errno = 0;
+    if (errno != 0) {
+      perror("Error reading dirs");
+    }
+    printf("%s\n", dp->d_name);
   }
   
   closedir(dir);
+
+  
+  
   return;
-  
-  
 }
 
 
@@ -60,7 +45,7 @@ int main(int argc, char **argv)
   
   for(int i = 1; i < argc; i++)
   {
-    lookup(argv[i]);
+    list(argv[i]);
   }
 
   return 0;

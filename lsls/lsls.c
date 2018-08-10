@@ -47,12 +47,15 @@ int main(int argc, char **argv)
     } else{
     fprintf(stdout, "\nDirectory Listing %s %lld bytes\n", ".", file_stat.st_size);
     directoryList(".");
-    }
+    } 
   }
+  else if (argc > 2){
+    fprintf(stderr, "usage: lsls [path]\n");
+  } 
   //dir in command line 
   //tested with ../../Github
 
-  while(counter < argc && argc-- > 1){
+  while(counter < argc && argc == 2){
     if (lstat(argv[counter], &file_stat) == -1){
       fprintf(stderr, "%s\n", strerror(errno));
     }

@@ -1,4 +1,4 @@
-# Sprint-Challenge: Intro to C and Processes
+# Sprint-Challenge: Intro to C and Processes 
 
 Complete both tasks below.
 
@@ -17,9 +17,20 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+  1.  Running: process is running-CPU is computing the process currently, or waiting for CPU to run it.
+  2.  Waiting/Ready: process is ready to be run by CPU.
+  3.  Blocked: process is running and accessing a resource such as memory, which scheduler skips until process becomes un-blocked.
+  4.  Sleeping: process is in a state following ready
+  5.  Stopped: process has been stopped following a received signal.
+  6.  Zombie: process has stopped, but has not been removed from the list of processes.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+  - A zombie process is any time when a child process has finished execution but a cleanup `wait()` function from its parent has not run, meaning the process is suspended between having finished running and cleanup. 
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+  - Compiling code allows the code to be executed more reliably and more efficiently in many different environments. It also obscures the source-code, enabling a greater level of privacy and control over security and intellectual property. 
 
 
 ## Task 2

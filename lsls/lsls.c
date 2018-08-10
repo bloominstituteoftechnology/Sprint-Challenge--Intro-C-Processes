@@ -1,18 +1,30 @@
 #include <stdio.h>
 #include <dirent.h>
 
-/**
- * Main
- */
-int main(int argc, char **argv)
-{
-  // Parse command line
+int main(int argc, char **argv){
+  // create pointers
+  DIR *directory;
+  struct dirent *d_ent;
 
-  // Open directory
+  // open directory
+  if (argc > 1){
+    directory = opendir(argv[1]);
+  } else{
+  directory = opendir(".");
+  }
+ 
+  if (directory == NULL){
+    fprintf(stderr, "Directory not present.");
+    return 0;
+  }
 
-  // Repeatly read and print entries
+  // read and print entries
+  while ((d_ent = readdir(directory)) != NULL){
+    printf("%s", d_ent->d_name);
+  }
 
-  // Close directory
+  // close directory
+  closedir(directory);
 
   return 0;
 }

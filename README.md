@@ -19,6 +19,7 @@ Add your answers inline, below, with your pull request.
     1. Running - currently being run by the cpu
     2. Ready - ready to run, but waiting for signal
     3. Blocked - previously ran and now waiting for something else to happen
+    4. Terminated - finished or killed
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
     After you fork(), when a child completes their process/terminates and dies,

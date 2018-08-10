@@ -18,7 +18,7 @@ int main(int argc, char **argv)
   else if (argc == 2)
   {
     dir_name = argv[1];
-    // how to run command: ./lsls ../examples
+    // how to run command: ./lsls ../examples or ./lsls ../
   }
   else
   {
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
   }
   // Open directory
 
-  DIR *directory = opendir(dir_name);
+  DIR *directory = opendir(dir_name); // directory is the handle to the directroy stream opened by opendir
 
   if (directory == NULL) // If there is an error, opendir() returns NULL
   {
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
     /* checking to see if the file is a directory, 
     if yes then print<DIR> and name of dir, instead of size in bytes*/
     else if (buf.st_mode & S_IFDIR) { 
-      printf("<DIR> %s\n", entry->d_name); /* operator ( -> ) in C is used to access a member of a struct 
+      printf("%10s %s\n", "<DIR>", entry->d_name); /* operator ( -> ) in C is used to access a member of a struct 
     which is referenced by the pointer in question */
     }
 

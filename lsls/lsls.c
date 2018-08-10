@@ -7,7 +7,7 @@
  */
 int main(int argc, char **argv)
 {
-  // Define pointers
+  // Define variables
   DIR *pDir;
   struct dirent *ent;
   struct stat buf;
@@ -23,7 +23,11 @@ int main(int argc, char **argv)
   // Repeatedly read and print entries
   while ((ent = readdir(pDir)) != NULL) {
     stat(ent->d_name, &buf);
-    printf("%10llu --- %s\n", buf.st_size, ent->d_name);
+    if (buf.st_mode & S_IFDIR) {
+      printf("%10s --- %s\n", "<DIR>", ent->d_name);
+    } else {
+      printf("%10llu --- %s\n", buf.st_size, ent->d_name);
+    }
   }
 
   // Close directory

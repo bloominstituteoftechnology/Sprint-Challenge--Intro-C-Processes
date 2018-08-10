@@ -17,10 +17,20 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+New : The process being created
+Ready: The process has all resources it needs to run. But, CPU is not currently working on process's instructions.
+Running: CPU working on process's instructions.
+Waiting: Cannot run now, needs resources or event to occur before CPU will look at instructions.
+Terminated: Completed process.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+A zombie process has finished execution but, still reports to its parent process.
+A zombie process is created if parent process is not coded properly or unable to read status from child for some reason then it wont fork wait system call. This in turns keeps dead child in memory & process table.
+A zombie is destoryed by nothing! Its already dead! You can, inform its parent process that its child is dead and now you can initiate wait system call. This can be achieved by sending SIGCHLD signal to parent PID.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+Compiled languages are all translated by running the source code through a compiler. This results in very efficient code that can be executed any number of times. The overhead for the translation is incurred just once, when the source is compiled; thereafter, it need only be loaded and executed.
+Where non-compiled languages in contrast, must be parsed, interpreted, and executed each time the program is run, thereby greatly adding to the cost of running the program
 
 ## Task 2
 
@@ -78,7 +88,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

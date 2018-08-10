@@ -185,3 +185,4 @@ is a directory.
 (If you bitwise-AND the value with `S_IFREG` and get a non-zero result, the file
 is a regular file, as opposed to a device node, symbolic link, hard link,
 directory, named pipe, etc.)
+![](https://raw.githubusercontent.com/fireinjun/Sprint-Challenge--Intro-C-Processes/master/functional.png)

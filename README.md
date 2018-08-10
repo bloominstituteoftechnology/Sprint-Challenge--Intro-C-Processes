@@ -17,7 +17,15 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+**Running.** Process is running on CPU and executing instructions. 
+
+**Ready.** Process is waiting to be executed by the CPU, but the OS has chosen not to execute it yet for some reason, such as other items might be ahead of it in a queue. 
+
+**Blocked.** Process is not ready to run until some other event takes place. For example, a process to print a document may be blocked because the printer is unavailable / offline. 
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+A zombie process is one that has been terminated, but has not been removed from the process table. 
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 

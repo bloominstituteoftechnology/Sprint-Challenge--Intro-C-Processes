@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -14,19 +15,19 @@ int main(int argc, char **argv)
 
   char my_path_index = 0;
 
-  char show_size = 0;
+  char long_output = 0;
 
 
 
   for (int i = 1; i < argc; i++) {
     if (argv[i][0] == '-') {
       int j = 1;
-      while (argv[i][j] != NULL) {
+      while (argv[i][j] != '\0') {
         if (argv[i][j] == 'a') {
           show_hidden = 1;
         }
         else if (argv[i][j] == 'l') {
-          show_size = 1;
+          long_output = 1;
         }
         j++;
       }
@@ -43,12 +44,20 @@ int main(int argc, char **argv)
   // Open directory
 
   DIR *directory;
+
+  char my_path[sizeof(argv[my_path_index])];
+
   if (my_path_index) {
-    directory = opendir(argv[my_path_index]);
+    strcpy(my_path, argv[my_path_index]);
   }
   else {
-    directory = opendir(".");
+    strcpy(my_path, ".");
   }
+
+  directory = opendir(my_path);
+
+
+
 
   // Repeatly read and print entries
 
@@ -56,10 +65,24 @@ int main(int argc, char **argv)
 
   while ((current_file = readdir(directory)) != NULL) {
     if (show_hidden || current_file->d_name[0] != '.') {
-      if (show_size) {
-        printf(" size_placeholder ");
+      if (long_output) {
+        char my_full_path[1024];
+        strcpy(my_full_path, my_path);
+        if (my_full_path[strlen(my_full_path) - 1] != '/') {
+          strcat(my_full_path, "/");
+        }
+        strcat(my_full_path, current_file->d_name);
+
+        struct stat file_stats;
+        stat(my_full_path, &file_stats);
+        if (S_ISDIR(file_stats.st_mode)) {
+          printf("<DIR>\t");
+        }
+        else {
+          printf("%ld\t", file_stats.st_size);
+        }
       }
-      printf(" %s \n", current_file->d_name);
+      printf("%s\n", current_file->d_name);
     }
   }
 

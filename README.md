@@ -16,10 +16,18 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+Running: In the running state, a process is running on a processor.
+Ready: In the ready state, a process is ready to run but for some reason the OS has chosen not to run it at this given moment.
+Blocked: In the blocked state, a process has performed some kind of operation that makes it not ready to run until some other event takes place.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+A zombie process or defunct process is a process that has completed execution (via the exit system call) but still has an entry in the process table: it is a process in the "Terminated state". This occurs for child processes, where the entry is still needed to allow the parent process to read its child's exit status: once the exit status is read via the wait system call, the zombie's entry is removed from the process table and it is said to be "reaped".
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+Compiled language translate by running the source code through a compiler. This results in very efficient code that can be executed any number of times. The overhead for the translation is incurred just once, when the source is compiled; thereafter, it need only be loaded and executed.
+
+Interpreted languages, in contrast, must be parsed, interpreted, and executed each time the program is run, thereby greatly adding to the cost of running the program. For this reason, interpreted programs are usually less efficient than compiled programs.
+
 
 
 ## Task 2
@@ -176,3 +184,5 @@ is a directory.
 (If you bitwise-AND the value with `S_IFREG` and get a non-zero result, the file
 is a regular file, as opposed to a device node, symbolic link, hard link,
 directory, named pipe, etc.)
+
+# Initial commit

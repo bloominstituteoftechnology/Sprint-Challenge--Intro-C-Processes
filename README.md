@@ -26,6 +26,7 @@ Add your answers inline, below, with your pull request.
 > A `Zombie process` is when a process has been fully executed and is now in the `terminated state`. To destroy a `zombie process` the parent must call a function in the `wait` function family
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+> The benefits from working in a compiled language, in comparison to non-compiled or `interpreted` language, is that we are able to catch bugs before ever running our code and because our code has been compiled into a machine readable format we cut down on execution time which makes the actual code faster. In comparison, when working in interpeted languages when we run our code we must wait for that code to be interpreted into a format the machine can read before it is ever executed giving us a longer, or slower or more expensive, execution time.
 
 
 ## Task 2

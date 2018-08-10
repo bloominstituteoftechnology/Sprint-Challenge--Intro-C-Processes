@@ -24,7 +24,7 @@ int main(int argc, char **argv)
   // We have an error
   else
   {
-    fprintf(stderr, "Something bahhhd!: './lsls (dir_name)%s\n", dir_name);
+    fprintf(stderr, "Something bahhhd! Usage: './lsls (dir_name)\n");
     exit(1);
   }
   // Open directory

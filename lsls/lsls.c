@@ -19,6 +19,8 @@ int main(int argc, char *argv)
 
   printf("%s\n",ent->d_name);
 
+  closedir(argv)
+
 
 
   // Repeatly read and print entries

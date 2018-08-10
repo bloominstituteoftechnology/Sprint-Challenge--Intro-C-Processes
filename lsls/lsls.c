@@ -9,31 +9,32 @@
 /**
  * Main
  */
-
-int directoryList(const char *path)
-{
+  struct stat file_stat;
   struct dirent *entry;
-  DIR *dir;
 
-  //open directory stream
-  dir = opendir(path);
-  if (dir == NULL)
-  {
-    fprintf(stderr, "err opendir - double check path name %s\n", path);
-    exit(2); //inability to compare - error thrown and exit process
+  int directoryList(const char *path){
+    DIR *dir;
+
+    //open directory stream
+    dir = opendir(path);
+    if (dir == NULL)
+    {
+      fprintf(stderr, "err opendir - double check path name %s\n", path);
+      exit(2); //inability to compare - error thrown and exit process
+    }
+
+    while((entry = readdir(dir))){
+        fprintf(stdout, "%s\n", entry->d_name);
+      
+    }
+    //close stream
+    closedir(dir);
+    return 0;
   }
 
-  while((entry = readdir(dir))){
-    puts(entry->d_name);
-  }
-  //close stream
-  closedir(dir);
-  return 0;
-}
 
 int main(int argc, char **argv)
 {
-  struct stat file_stat;
 
   int counter = 1;
 
@@ -41,18 +42,23 @@ int main(int argc, char **argv)
 
   if (argc == 1)
   {
+    if (lstat(".", &file_stat) == -1){
+      fprintf(stderr, "%s\n", strerror(errno));
+    } else{
+    fprintf(stdout, "\nDirectory Listing %s %lld bytes\n", ".", file_stat.st_size);
     directoryList(".");
+    }
   }
   //dir in command line 
   //tested with ../../Github
 
-  while(counter < argc){
+  while(counter < argc && argc-- > 1){
     if (lstat(argv[counter], &file_stat) == -1){
       fprintf(stderr, "%s\n", strerror(errno));
     }
     else {
-      fprintf(stdout, "\nDirectory Listing %s %lldbytes\n", argv[counter], file_stat.st_size);
-      directoryList(argv[counter]);
+      fprintf(stdout, "\nDirectory Listing %s %lld bytes\n", argv[counter], file_stat.st_size);
+      directoryList(argv[counter]);      
       counter++;
     }
   }

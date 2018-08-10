@@ -16,10 +16,25 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  
+  Created - The created state is the first state that the process occupies. Until the the procecess is admitted to the ready state which is approved by the scheduler the process waits or is delayed.
+
+  Ready - A ready process is considered ready once its has been loaded into main memory and is awaiting excutuion by the scheduler. A ready queue is used in computer scheduling. The CPU is only capable of handling one process at a time.
+
+  Running - Once a process is excuted it is moved to the running state. The instructions are then handled by the CPU. At this point the the process is in either Kernal or User mode. These modes are two totally different enviorments. For an example, the kernal mode can access both kernal and user addresses. User mode can only access their own instructions and data but not the kernal instructions or data, or those processes.
+
+  Blocked - Blocked state occurs when then proceess is dependent on an event to occur on the state. This commonly occurs when user input is required.
+
+
+  Terminated - A process may be terminated, either from the "running" state by completing its execution or by explicitly being killed. In either of these cases, the process moves to the "terminated" state.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+  -The Zombie process is when the program is no longer executing, however, the proccess is stil in the process table or zombie process. The process will remain in zombie procress and all and will result into the consumpition of the PID and will cause a resource leak. A way to destroy the process is to have the parent process calls the wait system call to read the exit status. 
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+ 
+  -Benefits of working with compiled languaged rather than a non-complied language is that the code is exucuted lightining fast because the code is native code for the CPU on the target machine. For an example, some compilers compile not to CPU-specific machine instructions but to bytecode, a kind of artificial machine code for a ficticious machine. You get better runtime performance by writing in a compilied language.
 
 
 ## Task 2

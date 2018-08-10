@@ -2,9 +2,9 @@
 #include <dirent.h>
 #include <string.h>
 
-#define GREEN "\x1b[32m"
-#define BLUE "\x1b[34m"
-#define WHITE "\x1b[37m"
+#define RED "\x1b[1;31m"
+#define BLUE "\x1b[1;34m"
+#define GRAY "\x1b[1;30m"
 
 void Usage() {
     fprintf(stderr, "\nUsage: exec [OPTION]... [DIR]...\n");
@@ -21,10 +21,10 @@ void RecDir(char * path, int flag) {
     }
     struct dirent * ep;
     char newdir[512];
-    printf(BLUE "\n%s :\n" WHITE, path);
+    printf(BLUE "\n%s :\n" GRAY, path);
     while((ep = readdir(dp)))
         if(strncmp(ep->d_name, ".", 1))
-            printf(GREEN "\t%s\n" WHITE, ep->d_name);
+            printf(RED "\t%s\n" GRAY, ep->d_name);
     closedir(dp);
     dp = opendir(path);
     while((ep = readdir(dp))) if(strncmp(ep->d_name, ".", 1)) {

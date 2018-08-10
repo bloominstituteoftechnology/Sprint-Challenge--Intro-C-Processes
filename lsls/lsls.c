@@ -6,16 +6,17 @@
  */
 int main(int argc, char **argv)
 {
+  // ***print out dictory listing user specifies on command line.
+  // ***IF no directory specified then print contents of current directory
+
   // Parse command line
-  
+    //printf(suser pecify directory)
   // Open directory
-
+    //opendir()
   // Repeatly read and print entries
-
+    //readdir() return NULL when no more entries
   // Close directory
-
-  // print out dictory listing user specifies on command line.
-  // IF no directory specified then print contents of current directory
+    //closedir()
 
   DIR *directory = opendir(".");
   char *result = directory == NULL ? "Did not open" : "Succeded!"; // ternary operator

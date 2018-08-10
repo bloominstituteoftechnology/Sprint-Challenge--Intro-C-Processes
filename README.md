@@ -23,7 +23,7 @@ c. Blocked -- When a process has been executed and halted by the OS for some rea
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
-A "zombie process" is also known as a "final state" wherein the process has already been executed (or has already exited) but has not yet been cleaned up. It is created when the child process is created, that is, upon forking or when the fork() system call is invoked. It is destroyed with the exit() system call.
+A "zombie process" is also known as a "final state" wherein the process has already been executed (or has already exited) but has not yet been cleaned up or removed from the process table. It is created when the exit() function is called on the child process. It is destroyed when the parent process cleans or removes it.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 

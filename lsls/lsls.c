@@ -47,7 +47,7 @@ int main(int argc, char **argv)
   // readdir() reads and prints the folder specified by the user
   while ((entry = readdir(directory)) != NULL)
   {
-    // Allocate for arrap
+    // Allocate for array
     char path[10000];    
     // snprintf - formats and stores a series of characters and values in the array buffer
     // Path - the full path or buffer/temporary storage of data
@@ -57,6 +57,7 @@ int main(int argc, char **argv)
     struct stat stat_buf;
 
     // Address of the stat_buf
+    // stat() - used to determine information about a file based on its path
     if (stat(path, &stat_buf) < 0)
     {
       fprintf(stderr, "Failed to show the stats for %s.\n", path);

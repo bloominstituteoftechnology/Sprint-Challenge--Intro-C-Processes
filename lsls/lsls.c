@@ -2,6 +2,8 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
 /**
  * Main
@@ -29,7 +31,11 @@ int main(int argc, char **argv)
     while ((dent = readdir(dir)) != NULL)
     {
       // Repeatly read and print entries
-      printf("%s\n", dent->d_name);
+      if (dent->d_type == DT_DIR)
+      {
+        dent->d_type = "dir";
+      }
+      printf("%s\t\t %d\t\t %d\t\t \n", dent->d_name, dent->d_reclen, dent->d_type);
     }
   }
 

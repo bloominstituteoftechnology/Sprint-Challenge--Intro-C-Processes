@@ -35,12 +35,13 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   struct dirent *currdir = readdir(opened_dir);
   struct stat buf;
+
   // Possibly overwrought string manipulation for path arg of stat()
   char path_str[255];
   char path_str_tosize[255];
   strcpy(path_str, path_to);
   strncat(path_str, "/", 2);
-  printf("opened_dir: %s\n", (char*) path_str);
+  // printf("opened_dir: %s\n", (char*) path_str);
   
   while (currdir) {
     strcpy(path_str_tosize, path_str);

@@ -18,9 +18,13 @@ Add your answers inline, below, with your pull request.
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
 A process may be running--erm... pretty self explanatory but it means it's actively processing/doing things.
+
 A process may be waiting--waiting for another specified process to end, waiting in line, waiting for the CPU to go and fetch the stuff it needs from other parts of the computer... before it can get running again
+
 A process may be sleeping as described by task managers etc.--this is kinda like waiting but it's not sure what it wants to do next (lol--usually waiting for more input bc the state it's in now it has satisfied all the things it was asked so far)
+
 A process may be terminated--also pretty self explanatory... its over... did what it was supposed to and ended or died trying
+
 A process may be a zoommmbbbieee--this is when a process finished, its over, but it *wasn't* terminated... so it just hangs around like a ghost taking up resources (not sure if ghosts take up resources... but I guess zombies do... so that's why they call them zombies)
 
 2. What is a zombie process? How does one get created? How does one get destroyed?

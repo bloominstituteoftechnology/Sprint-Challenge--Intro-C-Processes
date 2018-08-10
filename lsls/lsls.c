@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <string.h>
 
 /**
  * Main
@@ -38,7 +39,17 @@ int main(int argc, char **argv)
 
   // Repeatly read and print entries
 
+  struct dirent *current_file;
+
+  while ((current_file = readdir(directory)) != NULL) {
+    if (show_hidden || current_file->d_name[0] != '.') {
+      printf(" %s \n", current_file->d_name);
+    }
+  }
+
   // Close directory
+
+  closedir (directory);
 
   return 0;
 }

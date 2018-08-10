@@ -30,7 +30,7 @@ A zombie process is a process that had completed its instruction set, but its in
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
-Compiled languages have a lesser execution costs than non-compiled languages, such as interpreter languages. A compiled language only translates source code into machine readable code once. Therefore, to run a program that was compiled the executable file solely needs be loaded and ran. On the other hand for interpreter languages each line of code needs to be parsed, interpreted, and ran. As a result, this can greatly increase executable time and computing costs for applications with heavy resource usage. 
+Compiled languages have a lesser execution costs than non-compiled languages, such as interpreter languages. A compiled language only translates source code into machine readable code once. Therefore, to run a program that was compiled the executable file solely needs be loaded and ran. On the other hand,for interpreter languages each line of code needs to be parsed, interpreted, and ran. As a result, this can greatly increase executable time and computing costs for applications with heavy resource usage. 
 
 ## Task 2
 

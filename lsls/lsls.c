@@ -35,7 +35,15 @@ int main(int argc, char **argv)
       struct stat st;
       // FILE *file = fopen(entry->d_name, "r+");
       stat(entry->d_name, &st);
-      printf("\t%lld\t%s\n", st.st_size, entry->d_name);
+
+      if (S_ISREG(st.st_mode))
+      {
+        printf("\t%lld\t%s\n", st.st_size, entry->d_name);
+      }
+      else
+      {
+        printf("\t<DIR>\t%s\n", entry->d_name);
+      }
     }
   } while (entry != NULL);
 

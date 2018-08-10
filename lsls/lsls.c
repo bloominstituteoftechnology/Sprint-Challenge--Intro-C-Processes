@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
-//#include <sys/types.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -23,6 +23,7 @@ int main(int argc, char **argv)
   else
   {
     fprintf(stderr, "Try again - usage: './lsls (dirname)\n");
+    exit(1);
   }
   // Open directory
   struct dirent *dir;
@@ -32,7 +33,21 @@ int main(int argc, char **argv)
   {
     while ((dir = readdir(d)) != NULL)
     {
-      printf("%s\n", dir->d_name);
+      struct stat st;
+
+      if (stat(dir->d_name, &st) < 0)
+      {
+        fprintf(stderr, "oops, can't stat file\n");
+        exit(2);
+      }
+      if (st.st_mode & S_IFREG) 
+      {
+        printf("%s %jd\n", dir->d_name,st.st_size);
+      }
+      else
+      {
+        printf("%s\n", dir->d_name);
+      }
     }
   // Close directory
     closedir(d);

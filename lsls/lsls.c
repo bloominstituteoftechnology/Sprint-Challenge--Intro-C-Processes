@@ -21,7 +21,7 @@ int main(int argc)//, char *argv)
     printf("Nothing in this directory ¯\(ツ)/¯");
   }
   else {
-    while(ent = readir(dir) != NULL){
+    while((ent = readir(dir)) != NULL){
 
       printf("%s\n",ent->d_name);
     }

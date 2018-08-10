@@ -18,16 +18,13 @@ int main(int argc)//, char *argv)
   ent = readdir(dir);
 
   if (!ent) {
-    printf("Nothing in this directory ¯\_(ツ)_/¯");
+    printf("Nothing in this directory ¯\(ツ)/¯");
   }
   else {
     while(ent){
       printf("%s\n",ent->d_name);
     }
   }
-  
-
-  
 
   closedir(dir);
 

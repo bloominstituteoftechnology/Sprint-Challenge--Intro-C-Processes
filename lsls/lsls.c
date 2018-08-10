@@ -36,6 +36,7 @@ int main(int argc, char **argv)
     return buf.st_size;
   }
 
+  // helper function to determine if file_path is a directory
   int isDir(const char* file_path){
     struct stat dir;
     stat(file_path, &dir);

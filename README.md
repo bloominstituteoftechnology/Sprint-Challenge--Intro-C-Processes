@@ -21,9 +21,11 @@ Blocked: a process has performed some kind of operation that makes it not ready 
 Ready: process is ready to run but for some reason, OS has chosen not to execute process.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+A process that has finished execution but still has an entry in the process table to report to its parent process.A child process always becomes a zombie before being removed from the process table. Zombie processes get destroyed by having parent wait on it and clear its entry in the  process table.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+Some benefits of compiled languages include faster performance by directly using the native code of the target machine, and the opportunity to apply quire powerful optimizations during the compile stage.
+Some benefits of interpreted languages include easier implementation overall, no need to run a compilation stage (giving you the ability to execute code on the fly), and more convenience for dynamic languages.
 
 ## Task 2
 

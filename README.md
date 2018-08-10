@@ -170,8 +170,8 @@ Example output:
 
 ```
 $ ./lsls
-     <DIR>  .
-     <DIR>  ..
+      <DIR>  .
+      <DIR>  ..
       1717  lsls.c
       8952  lsls
 ```

@@ -48,7 +48,7 @@ int main(int argc, char **argv)
   while ((entry = readdir(directory)) != NULL)
   {
     // Allocate for array
-    char path[10000];    
+    char path[8000];    
     // snprintf - formats and stores a series of characters and values in the array buffer
     // Path - the full path or buffer/temporary storage of data
     // Path, size of the path, and its format
@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     if (S_ISREG(stat_buf.st_mode))
     {
       // Print the file name and its size in bytes
-      printf("%20lld  %s\n", stat_buf.st_size, entry->d_name);
+      printf("%10lld  %s\n", stat_buf.st_size, entry->d_name);
     }
   }
 

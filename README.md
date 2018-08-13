@@ -16,10 +16,21 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+* Created: process just created, not ready to run yet
+* Ready to run: process is ready to run
+* Running: process is running/executing
+* Sleeping: a blocked state, where the process is waiting for an event to occur
+* Zombie: process no longer exists
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+* A zombie process is a process that has completed its execution, but still has an entry in the process table.
+* A zombie process occurs for child processes, where the entry in the process table is still needed to allow the parent process to read its child's exit status.
+* Once the exit status is read, the zombie's entry is removed from the process table and is destroyed.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+* Faster performance in execution: the extra step of compilation results in very efficient code, that is optimized for resource-intensive programs
+* Faster iteration for predefined requests: the above efficient/optimized code can be run any number of times (without the need of compiling)
+* Optimized for target hardware: because there is an explicit step of compilation, the compiled code can be further optimized for the target hardware
 
 
 ## Task 2
@@ -78,7 +89,7 @@ the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 * `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 

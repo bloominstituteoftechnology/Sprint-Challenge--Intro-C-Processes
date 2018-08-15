@@ -27,6 +27,6 @@ Operating systems generally have a method to contain such resource leaks, by hav
 
     Effiecency - Compiled languages are more efficient 
 
-    Resource Control - 
+    Resource Control 
 
 

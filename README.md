@@ -16,10 +16,16 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  fork: when a child is created from a parent process.
+  wait: The order whih processes execute isn't deterministic so using wait allows us to choose what process needs to wait for another process to finish executing first.
+  exec: let's us sort of create our own process from an existing process.
+  pipe: establishes communication is created between a parent and a child so that they are able to both read and write to and from each other.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+  If a parent process decides not to wait for the child to terminate then the exit status is not read.  This creates an entry that remains in the system.  To destry the zombie process the parent must be destroyed.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+  a compiled language once compiled creates instructions for the machine but it's not human readable.  So this is why compiled languages are executed quicker: the language converts directly to machine code.
 
 
 ## Task 2

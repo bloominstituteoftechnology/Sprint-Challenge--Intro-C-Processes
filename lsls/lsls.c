@@ -19,7 +19,7 @@ int main(int argc, char **argv)
   }
 
   // Open directory
-  DIR * directory = opendir(dir_name);  // assign handle/name of the directory we are opening
+  DIR *directory = opendir(dir_name);  // assign handle/name of the directory we are opening
 
   // error checking
   if (directory == NULL) {  // if there's an error opening the directory
@@ -27,10 +27,15 @@ int main(int argc, char **argv)
     exit(2);  // exit with code 2 to identify error is from opening directory
   }
 
-
   // Repeatly read and print entries
+  struct dirent *entry; // define a direct struct called entry
+
+  while ((entry = readdir(directory)) != NULL) {  // while loop that if not NULL, there are more entries to read; while loop runs until entry == NULL  
+    printf("%s\n", entry->d_name); // print entry
+  }
 
   // Close directory
+  closedir(directory);  // calling the closedir() function passing in the directory
 
   return 0;
 }

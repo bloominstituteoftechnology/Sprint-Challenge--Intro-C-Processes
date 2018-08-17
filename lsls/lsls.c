@@ -76,11 +76,26 @@ int main(int argc, char **argv)
       // but it less simply less chars than return 1;
       exit(3);
     }
-    // print out the name of each directory
-    // d_name comes from the dirent struct.
-    printf("%s\n", entry->d_name);
-    // print the file size
-    printf("^'s file size is %lld\n", stat_buf.st_size);
+    // st_mode comes from the stat struct.
+    // this is how we get the file size
+    if (S_ISREG(stat_buf.st_mode))
+    {
+      // print the filesize 
+      printf("%10lld is the filesize of %s\n", stat_buf.st_size, entry->d_name);
+    }
+    // if it's a directory, we dont care about the file size, so just let
+    // the user know it is a DIR for directory
+    else if(S_ISDIR(stat_buf.st_mode))
+    {
+      // print out the name of each directory
+      // d_name comes from the dirent struct.
+      printf("%10s %s\n", "<DIRECTORY>", entry->d_name);
+    }
+    else
+    {
+      // print the file size
+      printf("%10s %s\n", "", entry->d_name);
+    }
   }
   // Close directory
   closedir(d);

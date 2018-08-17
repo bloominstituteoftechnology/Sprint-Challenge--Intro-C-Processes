@@ -2,6 +2,9 @@
 #include <stdlib.h> // to call the exit function
 #include <dirent.h> // holds the declarations for DIR, struct dirent, opendir(), readdir(), and closedir()
 
+//Stretch Goals
+#include <sys/stat.h>   // calls the stat functions
+
 /**
  * Main
  */
@@ -31,7 +34,19 @@ int main(int argc, char **argv)
   struct dirent *entry; // define a direct struct called entry
 
   while ((entry = readdir(directory)) != NULL) {  // while loop that if not NULL, there are more entries to read; while loop runs until entry == NULL  
-    printf("%s\n", entry->d_name); // print entry
+    
+    // Stretch - Stat the entry
+    char fullpath[8186];    // initialize another buffer passing an arbitrary number
+    snprintf(fullpath, sizeof(fullpath), "%s/%s", dir_name, entry->d_name);  // format the fullpath and pass in the stat function; this is the format that stat requires
+    struct stat stat_buf;   // initialize stat buf 
+    
+    // error handling
+    if (stat(fullpath, &stat_buf) < 0) {   // this will stat the fullpath buffer/ given file and store it at the address of the stat_buf
+        fprintf(stderr, "Failed to stat the file %s\n", fullpath);  // error message
+        exit(3);    // exit with code 3
+    }
+    
+    printf("%lld %s\n", stat_buf.st_size, entry->d_name); // print entries with file size 
   }
 
   // Close directory

@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     exit(1);
   }
   // Repeatly read and print entries
-  struct dirent *entry;
+  struct dirent *entry; // uses sys stat for this and probably not needed to declare as a struct??
   while (entry = readdir(target))
   {
     stat(entry->d_name, &statbuf); // uses stat type gets name of file

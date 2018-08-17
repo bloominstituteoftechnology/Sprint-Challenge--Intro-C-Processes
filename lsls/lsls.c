@@ -1,6 +1,6 @@
 #include <stdio.h>  // install the necessary libraries
 #include <stdlib.h> // to call the exit function
-#include <dirent.h>
+#include <dirent.h> // holds the declarations for DIR, struct dirent, opendir(), readdir(), and closedir()
 
 /**
  * Main
@@ -19,6 +19,14 @@ int main(int argc, char **argv)
   }
 
   // Open directory
+  DIR * directory = opendir(dir_name);  // assign handle/name of the directory we are opening
+
+  // error checking
+  if (directory == NULL) {  // if there's an error opening the directory
+    fprintf(stderr, "Cannot open this directory %s\n", dir_name); // print error message 
+    exit(2);  // exit with code 2 to identify error is from opening directory
+  }
+
 
   // Repeatly read and print entries
 

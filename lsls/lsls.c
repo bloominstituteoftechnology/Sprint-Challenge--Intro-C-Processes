@@ -47,7 +47,7 @@ int main(int argc, char **argv)
     }
 
     if (S_ISREG(stat_buf.st_mode)) {  // if regular file  
-      printf("%10lld %s\n", stat_buf.st_size, entry->d_name); // print names of entries/files  and their file sizes; added 10 to format 10 spaces 
+      printf("%10lld %s\n", stat_buf.st_size, entry->d_name); // print entries and their file sizes: passing in lld (long long digits) and 10 to format 10 spaces, st_size to return the file sizes in bytes 
     } else if (S_ISDIR(stat_buf.st_mode)) { // if file is a directory (represented by "." or "..")
       printf("%10s %s\n", "<DIR>", entry->d_name);  // replace the "." or ".." with <DIR>; added 10 to format 10 spaces
     } else {  

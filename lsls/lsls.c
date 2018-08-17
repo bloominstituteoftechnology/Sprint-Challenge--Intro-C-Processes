@@ -1,6 +1,16 @@
 #include <stdio.h>
+
 #include <dirent.h>
+
 #include <stdlib.h>
+
+#include <sys/stat.h>
+
+#include <string.h>
+
+#include <errno.h>
+
+
 
 
 //https://linux.die.net/man/3/opendir
@@ -64,7 +74,9 @@ int main(int argc, char **argv)
      if (S_ISREG(stat_buf.st_mode)){
        
        printf("10%lld %s\n", stat_buf.st_size, entry->d_name);
+
       }else if (S_ISDIR(stat_buf.st_mode)){
+
         printf("%10s %s\n","DIR", entry->d_name);
       }else{
 

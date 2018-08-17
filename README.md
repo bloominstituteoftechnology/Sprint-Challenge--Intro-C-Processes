@@ -16,13 +16,17 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
-
+  - Created: When a process is first created.
+  - Waiting: The process waits to be executed.
+  - Running: The process is either running or it is ready to run.
+  - Blocked: The state cannot carry on without an external change in state or event occurring.
+  - Terminated: A process is terminated, either from the "running" state by completing its execution or by explicitly being killed.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
-
+  A process which has finished the execution but still has entry in the process table to report to its parent process is known as a zombie process. A child process always first becomes a zombie before being removed from the process table. The parent process reads the exit status of the child process which reaps off the child process entry from the process table. wait() or waitpid() cleans up child process.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+  For a compiled language needs to be compiled or translated to machine-readable format only once, it runs faster after compiled. However, a non-compiled language needs to be interpreted every time we run it. It makes the language less efficient, more execution time consuming.
 
 ## Task 2
 

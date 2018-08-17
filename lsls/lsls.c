@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -56,9 +57,30 @@ int main(int argc, char **argv)
   // Go through each diretory until there are none left
   while ((entry = readdir(d)) != NULL)
   {
+    // stat the entry:
+    // include sys/stat up top
+    // get the full path that will be passed in as an argument
+    // 8192 is an arbitrary number chosen because it is a power of 2
+    char fullpath[8192];
+    // format the full path
+    // write the directories name in "%s/%s" format, onto the full path
+    snprintf(fullpath, sizeof(fullpath), "%s/%s", dirname, entry->d_name);
+    // define the stat as stat buffer
+    struct stat stat_buf;
+    // it will grab stats off of the full path and put it onto the address of stat_buf
+    if (stat(fullpath, &stat_buf) < 0)
+    {
+      // descriptive error handling
+      fprintf(stderr, "lsls: failed to stat file %s\n", fullpath);
+      // exit with a '3' to point here, as explained above, this is kind of redundant, 
+      // but it less simply less chars than return 1;
+      exit(3);
+    }
     // print out the name of each directory
     // d_name comes from the dirent struct.
     printf("%s\n", entry->d_name);
+    // print the file size
+    printf("^'s file size is %lld\n", stat_buf.st_size);
   }
   // Close directory
   closedir(d);

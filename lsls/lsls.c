@@ -5,15 +5,22 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv) //taking parameters of argument count, and a pointer to an array of argument values
 {
   DIR *dir;          // initializing a pointer to variable dir of type DIR
   struct dirent *dp; // initializing a pointer to a struct dirent named dp
 
   // Parse command line
+  if (argc == 2) // if argument count is greater than 1
+  {
+    dir = opendir(argv[1]); // open directory path passed in as the second argument after ./lsls
+  }
+  else if (argc == 1)
+  {
+    dir = opendir("."); // Open directory path named in opendir() and return a pointer to dir
+  }
 
-  // Open directory path named in opendir() and return a pointer to dir
-  if ((dir = opendir(".")) == NULL) // if there is an error opendir() returns NULL. We will print a standard error message in these cases
+  if (dir == NULL) // if there is an error opendir() returns NULL. We will print a standard error message in these cases
   {
     fprintf(stderr, "Cannot open dir\n");
     exit(1);

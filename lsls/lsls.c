@@ -45,8 +45,14 @@ int main(int argc, char **argv)
         fprintf(stderr, "Failed to stat the file %s\n", fullpath);  // error message
         exit(3);    // exit with code 3
     }
-    
-    printf("%lld %s\n", stat_buf.st_size, entry->d_name); // print entries with file size 
+
+    if (S_ISREG(stat_buf.st_mode)) {  // if regular file  
+      printf("%10lld %s\n", stat_buf.st_size, entry->d_name); // print names of entries/files  and their file sizes; added 10 to format 10 spaces 
+    } else if (S_ISDIR(stat_buf.st_mode)) { // if file is a directory (represented by "." or "..")
+      printf("%10s %s\n", "<DIR>", entry->d_name);  // replace the "." or ".." with <DIR>; added 10 to format 10 spaces
+    } else {  
+      printf("%10s %s\n", "", entry->d_name); // for anything else, print an empty string; added 10 to format 10 spaces
+    }
   }
 
   // Close directory

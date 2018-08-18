@@ -16,10 +16,22 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+  Stack: The Stack process contains the temporary data such as method/function parameters,
+    return address and local variables.
+  Heap: This is dynamically allocated memory to a process during its runtime.
+  Text: This includes the current activity represented by the value of the program counter and the
+    contents of the processor's registers.
+  Data: This section contains the global and static variables.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+    When a process finishes execution, it will have an exit status to report to its parent process.
+    Because of this last little bit of information, the process will remain in the operating system ’s
+    process table as a zombie process. You can kill a process with kill pid or kill -signal pid.
 
-3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had      from taking the extra time to compile our code?
+    An interpreter produces a result from a program, while a compiler produces a program written in
+    assembly language. Compiled programs generally run faster than interpreted ones because
+    interpreted programs must be reduced to machine instructions at runtime.
 
 
 ## Task 2

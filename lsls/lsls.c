@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <dirent.h>
 
 /**
@@ -11,6 +12,9 @@ int main(int argc, char **argv)
   struct dirent *de;
   // Open directory
   if (argc == 1) {
+    dr = opendir(".");
+  }
+  else if (argc == 2) {
     dr = opendir(argv[1]);
   }
   else 
@@ -20,7 +24,8 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   if (dr == NULL) 
   {
-    fprintf(stderr, "Error readign entries\n");
+    // printing error results
+    fprintf(stderr, "Error reading entries\n");
   } 
   else 
   {

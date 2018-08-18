@@ -51,7 +51,7 @@ int main(int argc, char **argv)
   // The DIR data type represents a directory stream. It's declared in the header `dirent.h`
   if (d == NULL)
   {
-    fprint(stderr, "lsls: cannot open directory %s\n", dirname);
+    fprintf(stderr, "lsls: cannot open directory %s\n", dirname);
     
     exit(2);
   }
@@ -65,9 +65,9 @@ int main(int argc, char **argv)
   while ((entry = readdir(d)) != NULL)
   {
     //stat the entry
-    char fullpath[8192];      
-                                                // 8192 bytes is size that for a buffer to read and write. Fa
-    snprint(fullpath, sizeof(fullpath), "%s/%s", dirname, entry->d_name); //snprintf is essentially a function that redirects the output of printf to a buffer.
+    char fullpath[8192];     
+    // 8192 bytes is size that for a buffer to read and write. 
+    snprintf(fullpath, sizeof(fullpath), "%s/%s", dirname, entry->d_name); //snprintf is essentially a function that redirects the output of printf to a buffer.
    
     struct stat stat_buf;
 
@@ -79,34 +79,14 @@ int main(int argc, char **argv)
       exit(3);
     }
 
-    if (S_ISREG(stat_buf.st_mode))
-    {
-     
-      printf("10%lld %s\n", stat_buf.st_size, entry->d_name);
-    }
+      // stat_buf->st_size == (*stat_buf).st_size;
     
-    else if (S_ISDIR(stat_buf.st_mode))
-    {
-
-      printf("%10s %s\n", "DIR", entry->d_name);
-    }
-    else
-    {
-
-      printf("%10s %s\n", "", entry->d_name);
-    }
+     
+      printf("%lld %s\n", stat_buf.st_size, entry->d_name);
   }
-  //10 will give it ten spaces make it more prettier
-  // while (1) {
-  //   entry = readdir(d);
-  //   if(entry == NULL) {
-  //     break;
-  //   }
-  //   printf();
-  // }
-  //close directory
-  //asigned interger types off_t
-  closedir(d);
+
+   
+   closedir(d);
 
   return 0;
 }

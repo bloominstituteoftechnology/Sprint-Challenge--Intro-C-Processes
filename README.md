@@ -17,10 +17,21 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+- running - currently running
+- sleeping - not running but waiting
+- zombie - terminated but not killed by parent
+- stopped - stopped
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+
+- When a `child process` terminates before a `parent process` waits for it. To destroy it, a `parent process` must call `wait`.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+- SPEED! Compiled it so Formula 1 as Interpreted is to Bicycle.
+
+* By compiling all at once everything is already `Compiled` or `Translated` directly into Machine Language where Interpreted is compiled on the fly. We're saving the computer resources by converting it ahead of time into a more palatable form for the hardware to decipher.
+  ![](https://raw.githubusercontent.com/fireinjun/Sprint-Challenge--Intro-C-Processes/master/fast.jpg)
 
 ## Task 2
 
@@ -75,18 +86,17 @@ You will be using functionality included in `<dirent.h>`. This header file holds
 the declarations for `DIR`, `struct dirent`, `opendir()`, `readdir()`, and
 `closedir()`, below.
 
-* `DIR *opendir(char *path)`: This function opens the directory named in `path`
+- `DIR *opendir(char *path)`: This function opens the directory named in `path`
   (e.g. `.`) and returns a pointer to a variable of type `DIR` that will be used
   later. If there is an error, `opendir()` returns `NULL`.
-  
+
   _You should check for errors. If there is one, print an error message and exit
   (using the `exit()` function)._
 
-* `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
-  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct
-  dirent` (see below). Returns `NULL` if there are no more directory entires.
+- `struct dirent *readdir(DIR *d)`: Reads the next directory entry from the
+  `DIR` returned by `opendir()`. Returns the result as a pointer to a `struct dirent` (see below). Returns `NULL` if there are no more directory entires.
 
-* `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
+- `closedir(DIR *d)`: Close a directory (opened previously with `opendir()`)
   when you're done with it.
 
 The `struct dirent *` returned by `readdir()` has the following fields in it:
@@ -137,7 +147,7 @@ $ ./lsls
 
 You'll need to use the `stat()` call in `<sys/stat.h>`.
 
-* `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
+- `int stat(char *fullpath, struct stat *buf)`: For a given full path to a file
   (i.e. the path passed to `opendir()` following by a `/` followed by the name
   of the file in `d_name`), fill the fields of a `struct stat` that you've
   pointed to. Returns `-1` on error.
@@ -161,8 +171,8 @@ Example output:
 
 ```
 $ ./lsls
-     <DIR>  .
-     <DIR>  ..
+      <DIR>  .
+      <DIR>  ..
       1717  lsls.c
       8952  lsls
 ```
@@ -176,3 +186,4 @@ is a directory.
 (If you bitwise-AND the value with `S_IFREG` and get a non-zero result, the file
 is a regular file, as opposed to a device node, symbolic link, hard link,
 directory, named pipe, etc.)
+![](https://raw.githubusercontent.com/fireinjun/Sprint-Challenge--Intro-C-Processes/master/functional.png)

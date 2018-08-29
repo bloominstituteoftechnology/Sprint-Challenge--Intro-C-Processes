@@ -1,36 +1,36 @@
 #include <stdio.h>
 #include <dirent.h>
-#include <sys/stat.h>
+#include <stdlib.h>
 
 /**
  * Main
  */
 int main(int argc, char **argv)
 {
-  DIR *d;
+  char *dirname;
+
+  if (argc == 1) {
+    dirname = ".";
+  } else if (argc == 2)  {
+    dirname = argv[1];
+  } else {
+    fprintf(stderr, "provide a valid directory name.\n");
+    exit(1);
+  }
+  
+  DIR *directory;
   struct dirent *dir;
-  struct stat buf;
+  directory = opendir(".");
 
-  d = (argc > 1) ? opendir(argv[1]) : opendir(".");
-
-  if(d == NULL)
-  {
-    fprintf(stderr, "Error opening directory");
-    return 0;
+   if (directory == NULL) {
+    fprintf(stderr, "The directory %s cannot be opened.", dirname);
+    exit(1);
   }
 
-    while ((dir = readdir(d)) != NULL) { 
-    {
-      stat(dir->d_name, & buf);
-      if(buf.st_mode & __S_IFDIR)
-      {
-        printf("%10s --- %s\n", "<DIR>", dir->d_name);
-      }
-      else
-      {
-        printf("%10llu --- %s\n", buf.st_size, dir->d_name);
-      }
-    }
-  closedir(d);
-  return(0);
-}
+  while ((dir = readdir(directory)) != NULL) {
+    printf("Open directory: %s\n", dir->d_name);
+  }
+
+  closedir(directory);
+  return 0;	 
+} 

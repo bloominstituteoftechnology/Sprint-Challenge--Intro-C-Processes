@@ -20,7 +20,7 @@ int main(int argc, char **argv)
   
   DIR *directory;
   struct dirent *dir;
-  directory = opendir(".");
+  directory = opendir(dirname);
 
    if (directory == NULL) {
     fprintf(stderr, "The directory %s cannot be opened.", dirname);

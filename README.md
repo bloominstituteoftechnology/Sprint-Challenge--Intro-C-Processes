@@ -8,7 +8,7 @@ Linux, macos, Cygwin, WSL, BSD, etc._
 If you want to test if your environment is set up for it, compile and run the
 [testdir.c](examples/testdir.c) program in the `examples/` directory. (You can
 type `make` in the `examples/` directory.) It should print `Testing: PASS`.
-
+ 
 ## Task 1
 
 ### Short Answer Questions
@@ -16,10 +16,25 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+- Running: is running or ready to run but hasn't been yet
+- Waiting: waiting for a resource or to be continued
+- Stopped: stopped usually by a signal
+- Zombie: dead process that hasn't been removed from the process table
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+- see last point above
+- stopping a process w/o removing it from the process table
+- remove it from the process table
+
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+- pre-compilation has a bunch of benefits: 
+  - faster execution of the program for users due to use taking the time and compiling our source code into a lower level output
+  - unreadable source code
+  - very intuitive to run even for inexperienced users (simple executable)
+  - I'm sure there are more I forgot to mention
+
+
 
 
 ## Task 2

@@ -16,11 +16,18 @@ type `make` in the `examples/` directory.) It should print `Testing: PASS`.
 Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
+*Running - This state is when a process is actively being processed by the computer. 
+*Suspended - When a process is minimized and another process is being worked on.
+*Blocked - When a process is waiting for input from a user or another process before it can continue 
+*Dead - This is a process that has been closed/completed
+*Sleeping - This is a process that doesn't need to be processed right now.  
+*Stopped - This is a process that is no longer running.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+A zombie child process is one that has finished, but it still exists in the process table. A zombie process can be prevented by using a wait() or exit() call in the original function or it will be destroyed when the computer restarts.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
-
+Compiled languages can be compiled once and then run multiple times without having to recompile (unless there are changes to the code). This makes compiled languages much more efficient than non-compiled languages which interprets the code as it runs.  Compiled languages also check for errors before it runs, allowing it to be corrected before the code is executed.  
 
 ## Task 2
 

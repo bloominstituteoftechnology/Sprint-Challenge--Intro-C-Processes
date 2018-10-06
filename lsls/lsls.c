@@ -9,21 +9,19 @@ int main(int argc, char **argv)
   DIR *d;
   struct dirent *dir;
   printf("Enter a directory: \n");
-  scanf("%c", argv);
-  if(argv < 1) {
+  scanf("%s", argv);
+  d = opendir(argv);
+
+  if( d == NULL) {
     d = opendir(".");
   }
-  else {
-    d = opendir(argv);
-  }
-  if (d)
+
+  while ((dir = readdir(d)) != NULL)
   {
-    while ((dir = readdir(d)) != NULL)
-    {
-      printf("%s\n", dir->d_name);
-    }
-    closedir(d);
+    printf("%s\n", dir->d_name);
   }
+  closedir(d);
+
   return 0;
 
   }

@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
     /**
  * Main
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv)
 {
   DIR *d;
   struct dirent *dir;
@@ -20,7 +21,7 @@ int main(int argc, char **argv)
 
   if (d == NULL) {
     printf("There was an error opening this directory");
-    exit(1);
+    exit(0);
   }
 
   while ((dir = readdir(d)) != NULL)

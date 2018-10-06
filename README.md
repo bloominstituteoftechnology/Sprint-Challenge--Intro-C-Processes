@@ -1,5 +1,5 @@
 # Sprint-Challenge: Intro to C and Processes
-
+# Let's do this
 Complete both tasks below.
 
 _The code for the second task needs a Unix-like environment to work! That includes

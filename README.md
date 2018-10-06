@@ -19,8 +19,20 @@ Add your answers inline, below, with your pull request.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+   Sometimes the parent process is killed before its child process is killed. If this happens the `init`
+   process becomes the new parent process. In this case such processes are called orphan processes.
+
+   When a child process finishes before its parent process, the kernel still keeps some information about
+   that process in case the parent might still need it.To get this information the parent calls `wait()`.
+   In the time between the child process finishing and the parent process calling `wait()`, the child process
+   is said to be in a zombie state. A zombie process has finished executing but still finds an entry in the 
+   process table.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+  * Compiled code usually executes faster than interpreted code
+  * Code that has been compiled has the advantage of having already been error checked.
+  * Compiled code is optimized for the target hardware.
 
 ## Task 2
 

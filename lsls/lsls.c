@@ -29,7 +29,7 @@ int main(int argc, char **argv) // main takes in a argv pointer. Is argc number 
   if(directoryName == NULL) // check if there is a dir to open.
   {
     printf("Trouble opening directory\n");
-    // exit(1);
+    return 1;
 
   } else {
     

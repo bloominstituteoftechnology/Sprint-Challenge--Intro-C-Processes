@@ -8,12 +8,19 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-
-  // Open directory
   DIR *dir;
   struct dirent *dp;
-  if ((dir = opendir(".")) == NULL) {
-    perror("Error opening direcoty.");
+  char *dir_name;
+
+  if (argc >= 2) {
+    dir_name = argv[1];
+  } else {
+    dir_name = ".";
+  }
+
+  // Open directory
+  if ((dir = opendir(dir_name)) == NULL) {
+    perror("Error opening directory.");
     exit(1);
   }
 

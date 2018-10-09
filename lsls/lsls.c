@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <limits.h>
 
 /**
  * Main
@@ -24,9 +27,15 @@ int main(int argc, char **argv)
     exit(1);
   }
 
+  struct stat buf;
+  char fullpath[PATH_MAX + 1];
+
   // Repeatly read and print entries
   while ((dp = readdir(dir)) != NULL) {
-    printf("%s\n", dp->d_name);
+    realpath(dp->d_name, fullpath);
+    stat(fullpath, &buf);
+    printf("%10lld", buf.st_size);
+    printf("%20s\n", dp->d_name);
   }
 
   // Close directory

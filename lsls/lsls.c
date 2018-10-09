@@ -34,7 +34,11 @@ int main(int argc, char **argv)
   while ((dp = readdir(dir)) != NULL) {
     realpath(dp->d_name, fullpath);
     stat(fullpath, &buf);
-    printf("%10lld", buf.st_size);
+    if (S_ISDIR(buf.st_mode)) {
+      printf("%10s", "<DIR>");
+    } else {
+      printf("%10lld", buf.st_size);
+    }
     printf("%20s\n", dp->d_name);
   }
 

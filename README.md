@@ -17,9 +17,23 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+- New: Process is about to be created but not yet created. Process is in secondary memory.
+- Ready: Process is in main memory and awaiting for CPU.
+- Run: Process is being executed by CPU.
+- Blocked/Wait: Process is blocked for e.g. I/O to be completed and is in main memory. Once I/O operation is completed process goed back to Ready state.
+- Complete: Process has finished execution or been terminated by user.
+- Suspend ready: Process is swapped out of main memory and placed in secondary memory.
+- Suspend Blocked/Wait: Process which is performing I/O operation and swapped out of main memory by processor to secondary memory. Once I/O operation is finished, process moves to Suspend Ready state.
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
 
+- A process which has finished execution but still has entry in process table to report to its parent is called zombie process.
+
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+
+- Complied programs have better execution time.
+- Most of the major issues are identified by complier. Chances of unexpected behavior at run time are less.
+- Complied programs works better for particular hardware.
 
 
 ## Task 2

@@ -15,15 +15,15 @@ int main(int argc, char **argv) // main takes in a argv pointer. Is argc number 
 
   } else if(argc == 2) {
 
-    directoryName = opendir(argv[1]);
-    return 1;
+    directoryName = argv[1];
 
-  } else {
-
-    printf("No directory exists\n");
-    return 1;
   }
 
+  if(opendir(directoryName) == NULL)
+  {
+    printf("No such directory exists.\n");
+    return 1;
+  }
   // Now I need to iterate and find all directories. Do... While? Or NULL check? With while loop?
   DIR *dir = opendir(directoryName);
   if(directoryName == NULL) // check if there is a dir to open.

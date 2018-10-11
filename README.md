@@ -17,10 +17,27 @@ Add your answers inline, below, with your pull request.
 
 1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.
 
+  fork: child created from parent
+  
+  wait: decides which process needs to wait while another finishes executing. 
+
+  exec: create new process from previous process
+
+  pipe: creates a communication between parent and child to read and write
+
 2. What is a zombie process? How does one get created? How does one get destroyed?
+  
+  processes that stay in the process table after exucution has been completed. 
+
+  if parent doesn't read the exit call from child; so child will not be removed from table. 
+
+  kill -s SIGCHLD pid
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
+compiled can create instructions for machine. 
+
+quicker => directly converts language to machine
 
 ## Task 2
 

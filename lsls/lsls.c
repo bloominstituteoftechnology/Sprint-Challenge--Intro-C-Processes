@@ -10,7 +10,7 @@ int main(int argc, char **argv)
   struct dirent *dr;
   DIR *dir;
   // Parse command line
-  if (argc < 2) {
+  if (argc > 2) {
     dir = opendir(argv[1]);
   }
     else{

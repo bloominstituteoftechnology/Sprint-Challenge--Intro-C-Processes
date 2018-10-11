@@ -10,11 +10,12 @@ int main(int argc, char **argv)
   struct dirent *dr;
   DIR *dir;
   // Parse command line
-  if (argc < 1) {
-    //if parameter holds more than 1 argument open?
-  // Open directory
-  dir = opendir(".");
+  if (argc < 2) {
+    dir = opendir(argv[1]);
   }
+    else{
+    dir = opendir(".");
+    }
   // Repeatly read and print entries
   if (dir == NULL) {
     printf("error\n");

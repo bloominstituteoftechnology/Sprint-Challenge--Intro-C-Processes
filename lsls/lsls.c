@@ -25,13 +25,18 @@ int main(int argc, char **argv)
   // Open directory
   DIR *d = opendir(dirname);
   if (d == NULL) {
-    fprintf(stderr, "cannot open directory: %\n", dirname);
+    fprintf(stderr, "cannot open directory: %s\n", dirname);
     exit(2);
   }
 
+  struct dirent *ent;
   // Repeatly read and print entries
+  if ((ent = readdir(d)) != NULL) {
+    printf("%s\n", ent->d_name);
+  }
 
   // Close directory
+  closedir(d);
 
   return 0;
 }

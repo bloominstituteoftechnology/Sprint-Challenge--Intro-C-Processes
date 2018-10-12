@@ -31,9 +31,9 @@ int main(int argc, char **argv)
 
   struct dirent *ent;
   // Repeatly read and print entries
-  if ((ent = readdir(d)) != NULL) {
+  while ((ent = readdir(d)) != NULL) {
     printf("%s\n", ent->d_name);
-  }
+  } 
 
   // Close directory
   closedir(d);

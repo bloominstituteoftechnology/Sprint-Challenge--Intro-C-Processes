@@ -29,6 +29,8 @@ TERMINATED- The process has finished execution.
    c. You cant kill a zombie process it's already dead. But , you can kill the parent process that created it.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
+   a. Its cross platform.
+   b. Faster performance by directly using the native code of the target machine.
 
 ## Task 2
 

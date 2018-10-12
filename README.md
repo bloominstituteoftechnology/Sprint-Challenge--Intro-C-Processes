@@ -1,4 +1,4 @@
-# Sprint-Challenge: Intro to C and Processes
+# Sprint-Challenge: Intro to C and Processes 
 
 Complete both tasks below.
 

@@ -24,6 +24,9 @@ WAITING- The process is waiting for some event to occur.
 TERMINATED- The process has finished execution.
 
 2. What is a zombie process? How does one get created? How does one get destroyed?
+   a. They are leftover bits of dead processes that haven’t been cleaned up properly.
+   b. If a parent process isn’t programmed properly and never calls wait(), its zombie children will stick around in memory.
+   c. You cant kill a zombie process it's already dead. But , you can kill the parent process that created it.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 

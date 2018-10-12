@@ -36,7 +36,7 @@ int main(int argc, char **argv)
   struct dirent *entrypoint;
   while (entrypoint = readdir(dirpoint))
   {
-    puts (entrypoint->d_name);
+    puts(entrypoint->d_name);
   }
   // Close directory
   closedir(dirpoint);

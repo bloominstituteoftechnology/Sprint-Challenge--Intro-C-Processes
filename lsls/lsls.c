@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <stdlib.h>
 
 /**
  * Main
@@ -8,6 +10,7 @@ int main(int argc, char **argv)
 {
   // Parse command line
   DIR *dir;
+  struct dirent *sd;
 
   // Open directory
   dir = opendir(".");
@@ -19,6 +22,11 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
+
+  while ((sd = readdir(dir)) != NULL)
+  {
+    printf(">> %s\n", sd->d_name);
+  }
 
   // Close directory
   closedir(dir);

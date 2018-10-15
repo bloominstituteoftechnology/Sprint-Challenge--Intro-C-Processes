@@ -8,28 +8,71 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
-  DIR *dir;
-  struct dirent *sd;
 
-  // Open directory
-  dir = opendir(".");
+  char *dirname;
+  // Parse command
 
-  if (dir == NULL)
+  if (argc == 1)
   {
-    printf("Error! Cant open directory. \n");
+    dirname = ".";
+  }
+  else if (argc == 2)
+  {
+    dirname = argv[1];
+  }
+  else
+  {
+    fprintf(stderr, "usage: lsls [dir]\n");
     exit(1);
   }
 
-  // Repeatly read and print entries
+  // Open directory
+  DIR *d = opendir(dirname);
 
-  while ((sd = readdir(dir)) != NULL)
+  if (d == NULL)
   {
-    printf(">> %s\n", sd->d_name);
+    fprintf(stderr, "lsls: cannot open %s\n", dirname);
+    exit(2);
+  }
+
+  // Repeatly read and print entries
+  struct dirent *ent;
+
+  while ((ent = readdir(d)) != NULL)
+  {
+    printf("%s\n", ent->d_name);
   }
 
   // Close directory
-  closedir(dir);
+  closedir(d);
 
   return 0;
 }
+
+// int main(int argc, char **argv)
+// {
+//   Parse command line
+//   DIR *dir;
+//   struct dirent *sd;
+
+//   Open directory
+//   dir = opendir(".");
+
+//   if (dir == NULL)
+//   {
+//     printf("Error! Cant open directory. \n");
+//     exit(1);
+//   }
+
+//   Repeatly read and print entries
+
+//   while ((sd = readdir(dir)) != NULL)
+//   {
+//     printf(">> %s\n", sd->d_name);
+//   }
+
+//   Close directory
+//   closedir(dir);
+
+//   return 0;
+// }

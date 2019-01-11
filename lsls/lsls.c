@@ -51,12 +51,21 @@ int main(int argc, char **argv)
   struct stat buf;
   
   while(ent != NULL){
+  	// create path of item and update struct stat
 		name = ent->d_name;  	
 		strcpy(full_path,path);
 		strcat(full_path,"/");
 		strcat(full_path,name);
 		stat(full_path, &buf);
-		printf("%10lld ", buf.st_size);
+
+		//finds out if directory or not
+		int st_mode_dir = (buf.st_mode)&(S_IFDIR);
+		// print information
+		if (st_mode_dir > 0){
+			printf("%10s", "<DIR>");	
+		} else {
+			printf("%10lld", buf.st_size);
+		}
   	printf("    %s\n", ent->d_name);
   	ent = readdir(dir);
   }

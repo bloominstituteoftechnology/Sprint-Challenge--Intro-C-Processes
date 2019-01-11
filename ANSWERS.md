@@ -7,11 +7,12 @@
 
 
 **2. What is a zombie process?**
-
+It is a process that has completed execution (via the exit system call), but still has an entry in the process table: it is a process in the "Terminated state".
 
 
 **3. How does a zombie process get created? How does one get destroyed?**
-
+A zombie process is created if the parent isn't programmed properly and never calls wait().
+To destroy a zombie process, send the SIGCHILD signal to the parent process.
 
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**

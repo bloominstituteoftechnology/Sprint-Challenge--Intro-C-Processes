@@ -2,6 +2,17 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
+
+int GetFileSize(const char* filename){
+    struct stat st;
+    // printf("%s\n", filename);
+
+    if(stat(filename, &st) != 0){
+      return 0;
+    }
+      return st.st_size;
+  }
+
 /**
  * Main
  */
@@ -21,6 +32,7 @@ int main(int argc, char **argv)
   }
 
   // printf("%s\n", directory);
+  
 
   DIR *dp; // initialize the directory pointer
   struct dirent *dir; // create a dirent struct from the directory
@@ -28,7 +40,15 @@ int main(int argc, char **argv)
 
   if(dp){ // if a valid dir is found...
     while((dir = readdir(dp)) != NULL){
-      printf("%s\n", dir->d_name); // print its contents name on each new line
+      unsigned int size = GetFileSize(dir->d_name);
+      // if(size != -1){
+      //   printf("%i  %s\n", size, dir->d_name); // print its contents name on each new line
+      // } else {
+      //   printf("<DIR>  %s\n", dir->d_name);
+      // }
+      
+      printf("%i  %s\n", size, dir->d_name); // print its contents name on each new line
+
     }
 
     closedir(dp); // close the directory

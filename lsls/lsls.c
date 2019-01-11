@@ -14,7 +14,7 @@ int main(int argc, char **argv)
   // Open directory
   DIR *d;
   struct dirent *dir;
-  d = opendir(" . ");
+  d = opendir("../examples");
   // Repeatly read and print entries
   if (d) {
     while ((dir = readdir(d)) != NULL) {

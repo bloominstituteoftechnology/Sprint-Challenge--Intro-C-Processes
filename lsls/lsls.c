@@ -2,7 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <sys/stat.h> //for the stat() call
-
+//http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/lsl.html
 /**
  * Main
  */
@@ -29,7 +29,7 @@ int main(int argc, char **argv)//argv to process commend-line arguments
   // Repeatly read and print entries
 
   while ((pDirent = readdir(pDir)) != NULL) {
-    stat(pDirent->d_name, &sizebuf);
+    stat(pDirent->d_name, &sizebuf);//getting size
     if ((sizebuf.st_mode & S_IFDIR) != 0) {
       printf("\t<DIR>  %s\n", pDirent->d_name);
     } else {

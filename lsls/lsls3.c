@@ -20,9 +20,6 @@ int main(int argc, char **argv)
     printf("Usage: ./lsls \n");
     return 1;
   }
-    
-  
-  
   
   // Open directory
 

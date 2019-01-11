@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <string.h>
+#include <stdlib.h>
 
 
-int GetFileSize(const char* filename){
+size_t GetFileSize(const char *filepath){
     struct stat st;
-    // printf("%s\n", filename);
 
-    if(stat(filename, &st) != 0){
-      return 0;
+    if(stat(filepath, &st) != 0){
+      return -1;
     }
       return st.st_size;
   }
@@ -29,25 +30,25 @@ int main(int argc, char **argv)
     directory = argv[1];
   } else {
     fprintf(stderr, "Program only accepts one argument.\n");
+    exit(1);
   }
-
-  // printf("%s\n", directory);
-  
 
   DIR *dp; // initialize the directory pointer
   struct dirent *dir; // create a dirent struct from the directory
   dp = opendir(directory); // open the directory
 
-  if(dp){ // if a valid dir is found...
+  if(dp != NULL){ // if a valid dir is found...
     while((dir = readdir(dp)) != NULL){
-      unsigned int size = GetFileSize(dir->d_name);
-      // if(size != -1){
-      //   printf("%i  %s\n", size, dir->d_name); // print its contents name on each new line
-      // } else {
-      //   printf("<DIR>  %s\n", dir->d_name);
-      // }
-      
-      printf("%i  %s\n", size, dir->d_name); // print its contents name on each new line
+
+      // create a full path to pass to GetFileSize
+      char file_path[500] = "";
+      strcat(file_path, directory);
+      strcat(file_path, "/");
+      strcat(file_path, dir->d_name);
+
+      size_t size = GetFileSize(file_path); // get the file size
+
+      printf("%10zu  %-20s\n", size, dir->d_name); // print its contents name on each new line
 
     }
 

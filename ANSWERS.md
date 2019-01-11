@@ -7,8 +7,8 @@ A zombie process is one that has been terminated but remains active.
 
 
 **3. How does a zombie process get created? How does one get destroyed?**
-
+Child processes are the most common zombie processes. After a child has finished executing and sends an exit status to its parent, it remains in zombie state until the parent receives the exit.
 
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**
-
+Compiled code has already been checked for errors and usually executes faster than interpreted code. 

@@ -21,7 +21,20 @@ int main(int argc, char **argv)
       char * pathcpy = strdup(path);
       strcat(pathcpy, de->d_name);
       stat(pathcpy, &buf);
-      printf("%lld %s\n",  buf.st_size, de->d_name);
+      //printf("Stat Files Test\n");
+      switch(buf.st_mode & S_IFMT) {
+        case S_IFREG:
+            //printf("Regular File\n");
+            printf("%7lld   %s\n",  buf.st_size, de->d_name);
+            break;
+        case S_IFDIR:
+            //printf("Directory\n");
+            printf("%7s   %s\n", "<DIR>", de->d_name);
+            break;
+    }
+
+     // printf("%d\n", buf.st_mode);
+      //printf("%lld %s\n",  buf.st_size, de->d_name);
   }
 
   closedir(d);

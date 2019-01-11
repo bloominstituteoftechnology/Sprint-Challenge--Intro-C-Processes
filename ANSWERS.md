@@ -16,4 +16,6 @@ To destroy a zombie process, send the SIGCHILD signal to the parent process.
 
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**
-
+- Self-contained units that are ready for execution.
+- No secondary application that the user has to keep up-to-date.
+- Precompiled package can run faster than an interpreter compiling source code.

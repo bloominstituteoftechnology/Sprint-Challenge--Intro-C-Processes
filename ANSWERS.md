@@ -1,5 +1,9 @@
 **1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.**
-
+- New, the beginning of creation for the process.
+- Ready, the process is loaded in the main memory and "ready" to run.
+- Running, the process is executed.
+- Blocked or Waiting, process is standing by for input/event.
+- Terminated, the process is killed/completed.
 
 
 **2. What is a zombie process?**

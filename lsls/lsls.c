@@ -45,7 +45,7 @@ int main(int argc, char **argv)
       if ( dp != NULL) {
         struct stat statbuf;
         stat(dp->d_name, &statbuf);
-        printf("%ld %s\n", statbuf.st_size, dp->d_name);
+        printf("%10ld %s\n", statbuf.st_size, dp->d_name);
       }
       else{
         exit(0);

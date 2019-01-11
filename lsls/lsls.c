@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -36,9 +37,16 @@ int main(int argc, char **argv)
   }
 
 
-  // Repeatly read and print entries
+  // Repeatly read and print entries --> Use the struct dirent
+  struct dirent *dir_ent;
+  int stat(char *fullpath, struct stat *buf);  
+
+  while ( (dir_ent = readdir(dir_holder)) != NULL ) {    
+    printf("%s\n",dir_ent->d_name);
+  }
 
   // Close directory
+  closedir(dir_holder);
 
   return 0;
 }

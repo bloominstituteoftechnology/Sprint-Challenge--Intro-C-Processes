@@ -21,7 +21,7 @@ int main(int argc, char **argv)
   if (strcmp(currDir, "help") == 0)
   {
     printf("\n---------------   LSLS HELP   --------------- \n\n"
-           "To use this comandline program, type the following: \n\n  "
+           "Command line -- \n\n  "
            " ./lsls directory\n\n"
            "contents of two folders higher than your current one:\n"
            " ./lsls ../../ \n\n "
@@ -39,14 +39,7 @@ int main(int argc, char **argv)
       struct stat buf;
       char type[1024];
       stat(entry->d_name, &buf);
-      if (entry->d_type == DT_DIR)
-      {
-        sprintf(type, "%s", "<DIR>");
-      }
-      else
-      {
-        sprintf(type, "%ld", buf.st_size);
-      }
+      sprintf(type, "%ld", buf.st_size);
       printf("  %12s  %s\n", type, entry->d_name);
     }
     closedir(dir);

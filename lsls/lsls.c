@@ -26,6 +26,16 @@ int main(int argc, char **argv)//argv to process commend-line arguments
     printf("Cannot open directory '%s'\n", argv[1]);// The individual values of the parameters may be accessed with argv[1]
     exit(1); //using exit() function
   }
+  // Repeatly read and print entries
+
+  while ((pDirent = readdir(pDir)) != NULL) {
+    stat(pDirent->d_name, &sizebuf);
+    if ((sizebuf.st_mode & S_IFDIR) != 0) {
+      printf("\t<DIR>  %s\n", pDirent->d_name);
+    } else {
+      printf("file size is %10ld  %s\n", sizebuf.st_size, pDirent->d_name);//use %10ld to print the size in a field of width 10
+    }
+  }
 
   return 0;
 }

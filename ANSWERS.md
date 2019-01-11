@@ -3,7 +3,7 @@
  Running - The process is ready to run or is running already.
  Waiting - The process is waiting for an event to occur or for a resource
  Zombie - The process is dead, but has not been removed from the process table.
-
+Uninterrupted sleep - Processes in a "D" or uninterruptible sleep state are usually waiting on I/O. The ps command shows a "D" on processes in an uninterruptible sleep state.
 **2. What is a zombie process?**
 A zombie process is a process in its terminated state. This usually happens in a program that has parent-child functions. After a child function has finished execution, it sends an exit status to its parent function. Until the parent function receives and acknowledges the message, the child function remains in a “zombie” state, meaning it has executed but not exited.
 

@@ -5,20 +5,36 @@
  * Main
  */
 int main(int argc, char **argv){
-  DIR *w_dir;
+  char *dir_name;
+  struct dirent *p_dirent;
+  DIR *p_dir;
+  
   // Parse command line
-  int count;
-    for (count=0; count<argc; count++)
-        puts (argv[count]);
-
+   if(argc == 1){
+      dir_name = "."; 
+    printf("Directory: %s", dir_name);
+  }else if(argc ==2){
+    dir_name = argv[1];
+  }else{
+    printf("Directory could not be opened");
+    return 1;
+  }
+  
   // Open directory
-  w_dir = opendir(argv[1]);
-
+ p_dir = opendir(dir_name);
+ if(p_dir == NULL){
+   printf("Cannot open directory %s\n", argv[1]);
+   return 1;
+ 
+}else{
+  
   // Repeatly read and print entries
-
+while((p_dirent = readdir(p_dir)) != NULL){
+    printf("%s\n", p_dirent->d_name);
+  }
+ }
 
   // Close directory
-  closedir(w_dir);
-
+  closedir(p_dir);
   return 0;
 }

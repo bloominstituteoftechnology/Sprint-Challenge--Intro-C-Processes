@@ -23,7 +23,7 @@ int main(int argc, char **argv){
   // Open directory
  p_dir = opendir(dir_name);
  if(p_dir == NULL){
-   printf("Cannot open directory %s\n", argv[1]);
+   printf("Cannot open directory %s\n", dir_name);
    return 1;
  
 }else{

@@ -11,7 +11,12 @@ size_t GetFileSize(const char *filepath){
     if(stat(filepath, &st) != 0){
       return -1;
     }
+
+    if(S_ISDIR(st.st_mode)){
+      return 0;
+    } else {
       return st.st_size;
+    }
   }
 
 /**
@@ -48,7 +53,13 @@ int main(int argc, char **argv)
 
       size_t size = GetFileSize(file_path); // get the file size
 
-      printf("%10zu  %-20s\n", size, dir->d_name); // print its contents name on each new line
+      if(size == 0){
+        char *size_str = "<DIR>";
+        printf("%10s  %-20s\n", size_str, dir->d_name);
+      } else {
+        printf("%10zu  %-20s\n", size, dir->d_name); // print its contents name on each new line
+      }
+
 
     }
 

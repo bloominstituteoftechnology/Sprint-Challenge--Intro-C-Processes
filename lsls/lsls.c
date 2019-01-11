@@ -11,15 +11,15 @@ int main(int argc, char **argv)
 {
   
   struct dirent *ent;
-  DIR *strm;
+  DIR *dir;
   // Parse command line
   if (argc==2) { // if 2 arguments passed in
     // Open directory
-    if ((strm=opendir(argv[1]))!=NULL) { // if the user specified a directory name that opens a dir
-      while ((ent=readdir(strm))!=NULL){
+    if ((dir=opendir(argv[1]))!=NULL) { // if the user specified a directory name that opens a dir
+      while ((ent=readdir(dir))!=NULL){
         struct stat buf;
         char subdir[1028] = "";
-        strcat(subdir, argv[1]); // here we need to construct a file path from the argument passed in by use
+        strcat(subdir, argv[1]); // here we need to construct a file path from the argument passed in by user
         if (argv[1][strlen(argv[1])-1]!='/') { // add a slash at the end if not there already
           strcat(subdir,"/");
         }
@@ -34,15 +34,15 @@ int main(int argc, char **argv)
         }
     }
     // Close directory
-    closedir(strm);
+    closedir(dir);
     } else {
       printf("Program has error.");
       exit(-1);
   }
   // if one argument is given open current directory:
   } else if (argc==1) {
-    if ((strm=opendir("./"))!=NULL) { // is current directory not null?
-      while ((ent=readdir(strm))!=NULL){
+    if ((dir=opendir("./"))!=NULL) { // is current directory not null?
+      while ((ent=readdir(dir))!=NULL){
         struct stat buf;
         char subdir[1028] = "";
         strcat(subdir, "./");
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
           printf("%lld %s\n", buf.st_size,ent->d_name);
         }
     }
-    closedir(strm);
+    closedir(dir);
     } else {
       printf("Program has error.");
       exit(-1);

@@ -37,5 +37,8 @@ int main(int argc, char **argv)//argv to process commend-line arguments
     }
   }
 
+   // Close directory 
+  closedir(pDir);//Close a directory (opened previously with opendir()) when done
   return 0;
-}
+
+ }

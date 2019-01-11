@@ -42,10 +42,16 @@ int main(int argc, char **argv)
   struct dirent *dir_ent;   
 
   while ( (dir_ent = readdir(dir_holder)) != NULL ) {  
-    struct stat st;
-    stat(dir_name, &st);
-    // int st_size = st.st_size;
-    printf("%10lld: %s\n", st.st_size, dir_ent->d_name);
+    struct stat st;    
+
+    char full_file_path[500] = ""; // --> Use an array to concatenate path passed in + / + dir_ent->d_name    
+    strcat(full_file_path, dir_name); // --> concatenate 1
+    strcat(full_file_path, "/"); // --> concatenate 2
+    strcat(full_file_path, dir_ent->d_name); // --> concatenate 3    
+
+    stat(full_file_path, &st); // --> Now we can use stat(our full path name, address/pointer to the st struct)
+    
+    printf("%lld %s\n", st.st_size,dir_ent->d_name);
   }
 
   // Close directory

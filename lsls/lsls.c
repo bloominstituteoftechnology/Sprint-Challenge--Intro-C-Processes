@@ -3,9 +3,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
-/**
- * Main
- */
 int main(int argc, char **argv)
 {
   struct stat buf;
@@ -20,7 +17,6 @@ int main(int argc, char **argv)
 
   char path[] = "./";
 
-  /* print the i-node and name for each file: */
   while((de = readdir(d)) != NULL) {
       char * pathcpy = strdup(path);
       strcat(pathcpy, de->d_name);
@@ -32,10 +28,3 @@ int main(int argc, char **argv)
 
   return 0;
 }
-  // Parse command line
-
-  // Open directory
-
-  // Repeatly read and print entries
-
-  // Close directory

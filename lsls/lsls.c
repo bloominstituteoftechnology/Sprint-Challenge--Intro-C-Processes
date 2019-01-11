@@ -7,18 +7,18 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   struct dirent *entry;
-  char currentDir[1024];
+  char currDir[1024];
 
   if (argc > 1)
   {
-    sprintf(currentDir, "%s", argv[1]);
+    sprintf(currDir, "%s", argv[1]);
   }
   else
   {
-    sprintf(currentDir, "%s", ".");
+    sprintf(currDir, "%s", ".");
   }
 
-  if (strcmp(currentDir, "help") == 0)
+  if (strcmp(currDir, "help") == 0)
   {
     printf("\n---------------   LSLS HELP   --------------- \n\n"
            "To use this comandline program, type the following: \n\n  "
@@ -28,11 +28,11 @@ int main(int argc, char **argv)
            "If no directory is specified,  lsls will assume its current location as the target directory\n"
            " \n---------------   END  HELP   ---------------\n\n");
   }
-  else if ((dir = opendir(currentDir)) == NULL)
+  else if ((dir = opendir(currDir)) == NULL)
   {
     perror("opendir error");
   }
-  else if (strcmp(currentDir, "help") != 0)
+  else if (strcmp(currDir, "help") != 0)
   {
     while ((entry = readdir(dir)) != NULL)
     {

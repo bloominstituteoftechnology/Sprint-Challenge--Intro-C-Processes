@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <dirent.h>
 
 /**
@@ -17,10 +18,19 @@ int main(int argc, char **argv)
   char *dirname = argv[1];
 
   // Open directory
+  DIR *dir;
+  if((dir = opendir(dirname)) == NULL)
+  {
+    char error_msg[] = "Cannot open directory ";
+    strcat(error_msg, dirname);
+    perror(error_msg);
+    exit(1);
+  }
 
   // Repeatly read and print entries
 
   // Close directory
+  closedir(dir);
 
   return 0;
 }

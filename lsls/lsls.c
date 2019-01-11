@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -32,15 +33,21 @@ int main(int argc, char **argv)
   }
  
   if (dir == NULL){
-  	printf("Error: Directory not found");
+  	printf("Error: Directory not found/n");
   	exit(1);
   }
 
   // Repeatly read and print entries
   struct dirent *ent = readdir(dir);
+  char *name;
+  struct stat buf;
 
   while(ent != NULL){
-  	printf("%s\n", ent->d_name);
+		name = ent->d_name;  	
+  	stat(name, &buf);
+
+		printf("%10lld", buf.st_size);
+  	printf("    %s\n", ent->d_name);
   	ent = readdir(dir);
   }
   // Close directory

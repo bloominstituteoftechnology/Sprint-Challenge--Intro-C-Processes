@@ -52,14 +52,16 @@ void print_sub_dir(char *filepath)
  */
 int main(int argc, char **argv)
 {
+  char *dirname;
   // Parse command line
   if (argc < 2)
   {
-    fprintf(stderr, "usage: lsls <dirname>\n");
-    exit(1);
+    dirname = ".";
   }
-
-  char *dirname = argv[1];
+  else
+  {
+    dirname = argv[1];
+  }
 
   // Open directory
   DIR *dir;

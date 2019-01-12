@@ -8,10 +8,11 @@
  */
 int main(int argc, char **argv)
 {
-  // DIR *dir;
+  DIR *dir;
   char *dir_name;
   // struct dirent *dp;
   // struct stat buf;
+  
   // Parse command line
   if (argc == 1) {
     dir_name = ".";
@@ -29,11 +30,18 @@ int main(int argc, char **argv)
   // }
 
   // Open directory
+  dir = opendir(dir_name);
+  if (dir == NULL) {
+    printf("Cannot open '%s'\n", dir_name);
+    return 1;
+  }
+
   // dir = opendir(argv[1]);
   // if (dir == NULL) {
   //   printf("Cannot open '%s'\n", argv[1]);
-  //   return 2;
+  //   return 1;
   // }
+
   // if ((dir = opendir (argv[1])) == NULL) {
   //   perror("Cannot open '%s'\n", argv[1]);
   //   exit(1);

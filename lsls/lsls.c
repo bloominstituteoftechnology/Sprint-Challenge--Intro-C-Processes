@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
   DIR *dir;
   char *dir_name;
-  // struct dirent *dp;
+  struct dirent *dp;
   // struct stat buf;
   
   // Parse command line
@@ -48,6 +48,10 @@ int main(int argc, char **argv)
   // }
 
   // Repeatly read and print entries
+  while ((dp = readdir(dir)) != NULL) {
+    printf("%s\n", dp->d_name);
+  }
+
   // if ((dp = readdir(dir)) != NULL) {
   //   stat(dp->d_name, &buf);
   //   if (strcmp(dp->d_name, argv[1]) != 0) {
@@ -59,7 +63,7 @@ int main(int argc, char **argv)
   // }
 
   // Close directory
-  // closedir(dir);
+  closedir(dir);
 
   return 0;
 }

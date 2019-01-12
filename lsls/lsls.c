@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -7,6 +9,7 @@
 int main(int argc, char **argv) // main takes in a argv pointer. Is argc number or args given?
 {
   struct dirent *pointDir; // struct that finds serial # and Directory name
+  struct stat buf;
   char *directoryName; // Store directory name in a pointer
 
   if(argc == 1) // need to check that arg[1] is set to something
@@ -36,7 +39,9 @@ int main(int argc, char **argv) // main takes in a argv pointer. Is argc number 
     
     while((pointDir = readdir(dir)) != NULL) // reads from the directory given in opendir to read via dir Struct
     {
-      printf ("%s\n", pointDir->d_name); // prints out a list of all directories
+    //   printf ("%s\n", pointDir->d_name); // prints out a list of all directories
+      stat(pointDir->d_name, &buf);
+      printf("%10lld %s\n", buf.st_size, pointDir->d_name);
     }
 
   }

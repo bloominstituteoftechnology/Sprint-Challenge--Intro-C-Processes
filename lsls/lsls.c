@@ -35,10 +35,17 @@ int main(int argc, char **argv)
     exit(2);
   }
   // Repeatly read and print entries
+  struct stat file_stats;
   struct dirent *dir;
   if (d) {
     while ((dir = readdir(d)) != NULL) {
       printf("%s\n", dir->d_name);
+      if (!stat(dir->d_name, &file_stats)) {
+        printf("%u bytes\n", (unsigned int)file_stats.st_size);
+      }
+      else {
+        printf("(stat() failed for this file)\n");
+      }
     }
   }
   // Close directory

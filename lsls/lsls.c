@@ -42,6 +42,19 @@ int main(int argc, char **argv)
   struct stat buf;
   while(dp!=NULL){
     stat(dp->d_name, &buf);
+    // int ifmt = buf.st_mode & S_IFMT;
+    if((buf.st_mode & S_IFMT) == S_IFDIR)
+    {
+      printf("IFDIR result: %d\n", buf.st_mode&S_IFDIR);
+    }
+    else if((buf.st_mode & S_IFMT) == S_IFREG)
+    {
+      printf("IFREG result: %d\n", buf.st_mode&S_IFREG);
+    }
+    else
+    {
+      printf("Ya done messed up boy.\n");
+    }
     printf("%10lld %s\n", buf.st_size, dp->d_name);
     dp = readdir(dir);
   }

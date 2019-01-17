@@ -8,28 +8,25 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
-  char *dirname;
-  if (argc == 1) {
-    dirname = '.';
-  } else if (argc == 2) {
-    dirname = argv[1];
+  // initialize dir with a pointer
+  DIR *dir = opendir(argv[1]);
+  // establishing struct
+  struct dirent *pDir;
+  // less than 2 arguments = path not specified, so show current directory
+  if (argc < 2) {
+    dir = opendir(".");
   } else {
-    printf(stderr, "usage: lsls [dir]");
-    exit(1);
+    // error handling
+    if (dir == NULL) {
+      printf("Directory %s could not be opened.\n", argv[1]);
+      return 0;
+    }
   }
-  // Open directory
-  DIR *dirpt = opendir(dirname);
-  if (dirpt == NULL) {
-    printf(stderr, "Error, directory [ %s ] could not be opened", dirname);
-    exit(2);
+  // as long as the dir does not = null, print it out
+  while((pDir = readdir(dir)) != NULL) {
+    printf("%s\n", pDir->d_name);
   }
-  // Repeatly read and print entries
-  struct dirent *entrypt;
-  while ((entrypt = readdir(dirpt)) != NULL) {
-    printf("%s\n", entrypt->d_name);
-  }
-  // Close directory
-  closedir(dirpt);
+// Close directory
+  closedir(dir);
   return 0;
 }

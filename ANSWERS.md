@@ -8,10 +8,10 @@
 
 
 **3. How does a zombie process get created? How does one get destroyed?**
-    These are created whent he parent doesnt read the exit call from the child. but, the Parent process can end them.
+    These are created when the parent doesn't read the exit call from the child. But, the Parent process can end them.
 
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**
      You can create instructions that are easy for the machine to read.
-     More perfromant.
+     More performant.
      Programmer has more control over the CPU and memory.

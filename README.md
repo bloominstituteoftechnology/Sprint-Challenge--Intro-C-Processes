@@ -1,3 +1,5 @@
+(•_•) ( •_•)>⌐■-■ (⌐■_■)
+
 # Sprint-Challenge: INTRO TO C - FILE DIRECTORIES
 
 This challenge allows you to practice the concepts and techniques learned over the past week and apply them in a concrete project. This Sprint explored introductory C programming concepts. During this Sprint, you studied C syntax, a computer's memory model, structs, and system calls. In your challenge this week, you will demonstrate proficiency of these concepts by creating an application that prints out a directory listing for the directory the user specifies on the command line.

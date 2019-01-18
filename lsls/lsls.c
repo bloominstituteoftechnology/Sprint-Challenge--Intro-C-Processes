@@ -10,14 +10,9 @@ int main(int argc, char **argv)
 {
   // initialize dir with a pointer
   DIR *dir = opendir(argv[1]);
-
-  int *nbytes = malloc(500 * sizeof(int));
-  for(int i =0; i < 500; i++) {
-    *(nbytes + i) = argv;
-  }
-  
-  // establishing struct
+  // establishing structs
   struct dirent *pir;
+  struct stat sb;
   // less than 2 arguments = path not specified, so show current directory
   if (argc < 2) {
     dir = opendir(".");
@@ -30,7 +25,7 @@ int main(int argc, char **argv)
   }
   // as long as the dir does not = null, print it out
   while((pir = readdir(dir)) != NULL) {
-    printf("%s bytes: %d\n", pir->d_name, nbytes);
+    printf("Directory: %s   File size: %lld bytes\n", pir->d_name, (long long) sb.st_size);
   }
 // Close directory
   closedir(dir);

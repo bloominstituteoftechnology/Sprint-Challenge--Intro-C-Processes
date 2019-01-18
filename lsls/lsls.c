@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <dirent.h>	#include <dirent.h>
+#include <string.h>
 #include <stdlib.h>
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <dirent.h>	
 
 
 /**
@@ -16,35 +17,37 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  int i;
+  printf("There are %d command line arguments:\n", argc);
+  for (i = 0; i < argc; i++) {
+    printf("  %s\n", argv[i]);
+  }
   char *dirname;
   if (argc == 1) {
     dirname = ".";
   }
-  else if (argc == 2) {
+  else  {
     dirname = argv[1];
   }
-  else {
-    printf(stderr, "usage: lsls [dir]\n");
-    exit(1);
-  }
+  printf("Directory is : %s\n", dirname);
   // Open directory
   DIR *d;
   d = opendir(dirname);
   if (d == NULL) {
-    printf(stderr, "lsls: cannot open %s\n", dirname);
-    exit(2);
+    printf("directory not found");
+    exit(0);
   }
   // Repeatly read and print entries
-  struct stat file_stats;
-  struct dirent *dir;
-  if (d) {
-    while ((dir = readdir(d)) != NULL) {
-      printf("%s\n", dir->d_name);
-      if (!stat(dir->d_name, &file_stats)) {
-        printf("%u bytes\n", (unsigned int)file_stats.st_size);
+  else{
+    struct dirent *dir;
+    while( (dir  = readdir(d))  != NULL){
+      if ( dir != NULL) {
+        struct stat statbuf;
+        stat(dir->d_name, &statbuf);
+        printf("%10ld %s\n", statbuf.st_size, dir->d_name);
       }
-      else {
-        printf("(stat() failed for this file)\n");
+      else{
+        exit(0);
       }
     }
   }
@@ -52,3 +55,4 @@ int main(int argc, char **argv)
   closedir(d);
   return 0;
 }
+

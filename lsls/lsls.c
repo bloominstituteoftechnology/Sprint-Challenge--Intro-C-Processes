@@ -43,11 +43,14 @@ int main(int argc, char **argv)
     // printf("%s\n", rdir->d_name);
     stat(rdir->d_name, &buf);
     // printf("%d", buf.st_mode);
-    if (buf.st_mode & S_IFDIR)
+    if (buf.st_mode & S_IFDIR && S_ISDIR(buf.st_mode))
     {
       printf("%10s %s\n", "<DIR>", rdir->d_name);
     }
-    printf("%10ld %s\n", buf.st_size, rdir->d_name);
+    else
+    {
+      printf("%10ld %s\n", buf.st_size, rdir->d_name);
+    }
   }
 
   // Close directory

@@ -51,7 +51,16 @@ int main(int argc, char **argv)
     stat(filePath, &fileStats);
     long long fileSize = fileStats.st_size;
     
-    printf("%10lld  %s\n", fileSize, fileName);
+    // Stretch: Print <DIR> for directory
+    switch (fileStats.st_mode & S_IFMT){
+      case S_IFDIR:
+        printf("     <DIR>  %s\n", fileName);
+        break;
+      default:
+        printf("%10lld  %s\n", fileSize, fileName);
+    }
+    
+//    printf("%10lld  %s\n", fileSize, fileName);
     
     free(filePath);
   }

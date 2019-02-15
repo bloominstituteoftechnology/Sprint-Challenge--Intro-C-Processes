@@ -14,7 +14,6 @@ int main(int argc, char **argv)
   // Parse command line
   if (argc > 1)
   {
-    printf("more than one command!\n");
     directory = argv[1];
   }
 
@@ -29,20 +28,19 @@ int main(int argc, char **argv)
     d = opendir(directory);
   }
 
-  // Repeatly read and print entries
-
+  // Check for error opening directory
   if (d == NULL)
   {
     fprintf(stderr, "open directory error\n");
     exit(1);
   }
 
-  //printf("%s\n", ent->d_name);
   printf("Size:     Name:\n");
   while ((ent = readdir(d)) != NULL)
   {
-    char *src[50];
     char *file_path[100];
+
+    //file path concatenates directory and file name
     strcpy(file_path, directory);
     strcat(file_path, "/");
     strcat(file_path, ent->d_name);
@@ -50,7 +48,6 @@ int main(int argc, char **argv)
     struct stat buf;
     stat(file_path, &buf);
 
-    //char *file_path = strcat(directory, "/" ,ent->d_name);
     printf("%lld     %s\n", buf.st_size, ent->d_name);
   }
   //Close directory

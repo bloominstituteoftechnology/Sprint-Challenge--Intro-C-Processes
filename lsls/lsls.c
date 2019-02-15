@@ -16,7 +16,7 @@ int main(int argc, char **argv)
   struct dirent *entry;
   while ((entry = readdir(d)) != NULL)
   {
-    printf("-> %s\n", entry->d_name);
+    printf("%lu %s\n", entry->d_ino, entry->d_name);
   }
 
   // Close directory

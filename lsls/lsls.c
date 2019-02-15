@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -10,6 +12,11 @@ int main(int argc, char **argv)
   // Parse command line
   // By default the current directory is represented by "."
   char *directoryToEnumerate = ".";
+  
+  // If the user specifies their own path, use it
+  if (argc > 1) {
+    directoryToEnumerate = argv[1];
+  }
 
   // Open directory
   DIR *directoryEnumerator = opendir(directoryToEnumerate);
@@ -18,6 +25,11 @@ int main(int argc, char **argv)
     perror("Error opening directory");
     exit(1);
   }
+  
+  // Get length of the directory
+  // Better to do it here once than inside the while loop, even though we're using it in there
+  // Because strlen() is O(n), and looping through O(n) is not good
+  int directoryNameLength = strlen(directoryToEnumerate);
 
   // Repeatly read and print entries
   struct dirent *directoryEntry;
@@ -26,7 +38,22 @@ int main(int argc, char **argv)
     // Get the name of the directory entry
     char *fileName = directoryEntry->d_name;  // Use -> b/c directoryEntry is a pointer
     
-    printf("  %s\n", fileName);
+    // Build up the path to get the file size
+    // Get length of file name
+    int fileNameLength = directoryEntry->d_namlen;
+    
+    // // directoryNameLength + "/" + fileNameLength + "\0"
+    char *filePath = malloc((directoryNameLength + 1 + fileNameLength + 1)*sizeof(char));
+    sprintf(filePath, "%s/%s", directoryToEnumerate, fileName);
+    
+    // Get file statistics
+    struct stat fileStats;
+    stat(filePath, &fileStats);
+    long long fileSize = fileStats.st_size;
+    
+    printf("%10lld  %s\n", fileSize, fileName);
+    
+    free(filePath);
   }
 
   // Close directory

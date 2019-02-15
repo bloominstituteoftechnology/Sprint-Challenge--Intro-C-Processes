@@ -8,6 +8,15 @@
  */
 //PR Text
 
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+    // in real code you would check for errors in malloc here
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
+
 int main(int argc, char **argv)
 {
   // Parse command line
@@ -16,18 +25,22 @@ int main(int argc, char **argv)
  
   
   struct dirent *sd;
+  struct stat buf;
 
-  dir = (argc < 2) ? opendir(".") : opendir(*(argv+1));
+  dir = (argc < 2) ? opendir("./") : opendir(*(argv+1));
 
   if(dir == NULL){
     printf("Nice try OMEGALUL");
   }
-
-  while( (sd=readdir(dir)) != NULL){
-    struct stat buf;
+  
+  while( (sd=readdir(dir)) != NULL){    
     
-    stat((argv[1],sd->d_name), &buf);
-    printf("%ld", buf.st_size);
+    int error = stat((concat(argv[1] ? argv[1] : "./",sd->d_name)), &buf);
+    if(error == -1){
+      printf("error");
+      printf("\n%s",concat(argv[1],sd->d_name));
+    }
+    printf("\n%ld", buf.st_size);
     printf("              ");
     printf("%s\n", sd->d_name);
   }

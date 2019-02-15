@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <string.h>
 
 /**
  * Main
@@ -34,7 +35,10 @@ int main(int argc, char **argv)
   while ((entry = readdir(dir)) != NULL)
   {
     struct stat buf;
-    char *fullpath = ("%s/%s", dirname, entry->d_name);
+    char fullpath[1024] = "";
+    strcat(fullpath, dirname);
+    strcat(fullpath, "/");
+    strcat(fullpath, entry->d_name);
     stat(fullpath, &buf);
     if (buf.st_mode & S_IFDIR)
     {

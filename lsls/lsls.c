@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -9,6 +10,7 @@ int main(int argc, char **argv)
   char *dir_name;
   DIR *dp;
   struct dirent *ent;
+  struct stat buf;
 
   // Parse command line
   if (argc < 2)
@@ -32,7 +34,8 @@ int main(int argc, char **argv)
   // Repeatedly read and print entries
   while ((ent = readdir(dp)) != NULL)
   {
-    printf("%s\n", ent->d_name);
+    stat(ent->d_name, &buf);
+    printf("%10lld %s\n", buf.st_size, ent->d_name);
   }
 
   // Close directory

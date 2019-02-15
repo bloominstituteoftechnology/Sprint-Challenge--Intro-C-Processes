@@ -26,7 +26,7 @@ int main(int argc, char **argv)
   // Error handling
   if ((dir = opendir(dirname)) == NULL)
   {
-    fprintf(stderr, "Cannot open %s", dirname);
+    fprintf(stderr, "Cannot open %s\n", dirname);
     exit(1);
   }
 
@@ -36,7 +36,14 @@ int main(int argc, char **argv)
     struct stat buf;
     char *fullpath = ("%s/%s", dirname, entry->d_name);
     stat(fullpath, &buf);
-    printf("%10lld %s\n", buf.st_size, entry->d_name);
+    if (buf.st_mode & S_IFDIR)
+    {
+      printf("     <DIR> %s\n", entry->d_name);
+    }
+    else if (buf.st_mode & S_IFREG)
+    {
+      printf("%10lld %s\n", buf.st_size, entry->d_name);
+    }
   }
   // Close directory
   closedir(dir);

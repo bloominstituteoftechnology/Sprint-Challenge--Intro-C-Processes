@@ -35,14 +35,21 @@ int filestructure(char *path, int depth) {
     if (stat(filepath, &buffer) != -1) {
       // If item is a folder:
       if(buffer.st_mode == 16895) {
-        printf("     <DIR> %s\n", name -> d_name);
+
 
           if (depth > 1) {
+            printf("\n     <DIR> %s\n", name -> d_name);
             filestructure(filepath, depth - 1);
+          } else {
+            printf("          <DIR> %s\n", name -> d_name);
           }
 
       } else {
-        printf("%10ld %s\n", buffer.st_size, name -> d_name);
+        if (depth == 1) {
+          printf("%15ld %s\n", buffer.st_size, name -> d_name);
+        } else {
+          printf("%10ld %s\n", buffer.st_size, name -> d_name);
+        }
       }     
     }
     

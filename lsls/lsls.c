@@ -21,7 +21,7 @@ int main(int argc, char **argv)
   while ((entry = readdir(d)) != NULL)
   {
     char *name = entry->d_name;
-    char *path = malloc(strlen(directory) + strlen(name) + 2);
+    char path[strlen(directory) + strlen(name) + 1];
 
     strcpy(path, directory);
     strcat(path, "/");

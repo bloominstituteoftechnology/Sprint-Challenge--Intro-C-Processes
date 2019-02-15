@@ -21,16 +21,19 @@ int main(int argc, char **argv)
   while ((entry = readdir(d)) != NULL)
   {
     char *name = entry->d_name;
-    char *path = malloc(strlen(directory) + strlen(name) + 1);
+    char *path = malloc(strlen(directory) + strlen(name) + 2);
 
     strcpy(path, directory);
     strcat(path, "/");
     strcat(path, name);
 
+    // I don't know how this black magic works.
+    // sprintf(path, "%s/%s", directory, name);
+
     struct stat buf;
     stat(path, &buf);
 
-    printf("%s:\n", path);
+    // printf("%s:\n", path);
     printf("%10ld %s\n", buf.st_size, name);
   }
 

@@ -11,3 +11,4 @@ A zombie process is a child process that has finished executing but has yet to b
 It gets created when a process ends via an `exit` call. It gets destroyed when the parent executes the `wait` system call.
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**
+An obvious advantage is performance. Compiled code doesn't need to be translated at run time. Developing in a compiled language also allows for finer control of resource and memory management during execution. Compiled code can be better tailored to the specific system they will run on.

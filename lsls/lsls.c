@@ -3,10 +3,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-/**
- * Main
- */
-
 void list_dir(char *dir)
 {
     DIR *o_dir = opendir(dir);
@@ -17,11 +13,11 @@ void list_dir(char *dir)
     {
         while ((c_dir = readdir(o_dir)) != NULL)
         {
-            if (c_dir->d_type == 4) 
+            if (c_dir->d_type == 4)
             {
                 printf("(DIR) - %s\n", c_dir->d_name);
-            } 
-            else if (c_dir->d_type == 8) 
+            }
+            else if (c_dir->d_type == 8)
             {
                 chdir(dir);
                 stat(c_dir->d_name, &buf);
@@ -43,6 +39,6 @@ int main(int argc, char **argv)
     {
         list_dir(".");
     }
-    
+
     return 0;
 }

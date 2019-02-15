@@ -6,7 +6,9 @@
  */
 int main(int argc, char **argv)
 {
+  DIR *d;
   char *directory;
+  struct dirent *ent;
   ;
   // Parse command line
   if (argc > 1)
@@ -16,7 +18,6 @@ int main(int argc, char **argv)
   }
 
   // Open directory
-  DIR *d;
   if (directory)
   {
     d = opendir(directory);
@@ -27,12 +28,20 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
-  //dirent = readdir(d);
-  while (ent != NULL)
-    // {
-    //   printf("%s", ent->d_name);
-    // }
-    // Close directory
 
-    return 0;
+  if (d == NULL)
+  {
+    fprintf(stderr, "open directory error\n");
+    exit(1);
+  }
+
+  //printf("%s\n", ent->d_name);
+  while ((ent = readdir(d)) != NULL)
+  {
+    printf("%s\n", ent->d_name);
+  }
+  //Close directory
+  closedir(d);
+
+  return 0;
 }

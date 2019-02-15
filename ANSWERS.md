@@ -1,4 +1,8 @@
 **1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.**
+Running: currently running or ready to run (has resources and is being served by cpu or will be served as soon as cpu is free)
+Sleeping: awaiting resources. this can be interruptible (waiting for a specific event or condition) or uninterruptible (waiting on a timeout to expire)
+Stopped: having entered exit status, process gives up all its resources but still has an entry on the process table
+Zombie: has sent exit signal to parent but has yet to be released from the process table
 
 **2. What is a zombie process?**
 A zombie process is a child process that has finished executing but has yet to be reaped by its parent.

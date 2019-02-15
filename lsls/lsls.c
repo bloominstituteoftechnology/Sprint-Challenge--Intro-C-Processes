@@ -1,18 +1,37 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <dirent.h>
+
 
 /**
  * Main
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+    char commandline;
+    DIR *directory;
 
-  // Open directory
+    // Parse command line
 
-  // Repeatly read and print entries
+    // Open directory
 
-  // Close directory
+    // Repeatly read and print entries
 
-  return 0;
+    // Close directory
+    while (strcmp(&commandline, "exit")!= 0)
+    {
+        // Receive input from stdin
+        // shell should print a prompt for the user
+        printf("lambda-shell(Enter exit to exit)$");
+        scanf("%s", &commandline);
+
+        if (strcmp(&commandline, "exit") == 0)
+        {
+            printf("exiting\n"); 
+            exit(0); 
+        }
+
+
+    }
+    return 0;
 }

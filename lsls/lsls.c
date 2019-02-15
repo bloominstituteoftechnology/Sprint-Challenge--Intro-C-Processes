@@ -20,10 +20,10 @@ int main(int argc, char **argv)
     return 1;
   }
   // Open directory
-  
+  d = opendir(dirName);
   // Repeatly read and print entries
 
   // Close directory
-
+  closedir(d);
   return 0;
 }

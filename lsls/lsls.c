@@ -52,7 +52,11 @@ int main(int argc, char **argv)
 // stat() takes 2 args, the path that we would like to inquire, and the struct that hold the info about the path
     stat(full_file_path, &st);
 
-    printf("%ld %s\n", st.st_size,dir_ent->d_name);
+    if(S_ISDIR(st.st_mode)){
+      printf("%s %s\n", "<DIR>",dir_ent->d_name);
+    } else if (S_ISREG(st.st_mode)) {
+      printf("%ld %s\n", st.st_size,dir_ent->d_name);
+    }
   }
 
   // Close directory

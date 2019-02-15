@@ -21,17 +21,18 @@ int main(int argc, char **argv)
     struct dirent *entry;
     struct stat buf;
     
+    // Register current directory
     currentDir = argv[0];
     
+    // If we have more than one argument then save that as the input directory to be searched
     if (argc >= 1) {
-        // If number of arguments is higher then one, then take the first argument
         inputDir = argv[1];
     }
     
   // Open directory
     DIR *dir;
     
-    //
+    // If user has provided an argument then open the directory of that argument, else open current directory
     if (inputDir != NULL) {
         // Check specific directory
         dir = opendir(inputDir);
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
         dir = opendir(".");
     }
     
+    // If we couldn't parse dir then we return an error message
     if (dir == NULL) {
         printf("Could not open directory %s\n", inputDir);
         return 0;

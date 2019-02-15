@@ -10,30 +10,44 @@ int main(int argc, char **argv)
   DIR *dir;
   struct dirent *ent;
   struct stat buf; 
- 
+  char *directory;
 
-  // Parse command line --- pass any parameters to opendir() --- more info here: [commandline.c](examples/commandline.c).
+  // Parse command line
+   if (argc < 2 ) {
+    directory = ".";
+    printf("Directory: %s\n", directory);
 
-  // Open directory 
-  dir = opendir(argv[1]);
-  if (dir == NULL) {
-    printf("Cannot open '%s'\n", argv[1]);
-    return 1;
+  } else if(argc == 2) {
+    directory = argv[1];
+    printf("Directory: %s\n", directory);
+
+  } else {
+    printf("Cannot open directory\n");
+    exit();
   }
-
+  
+  // Open directory 
+  dir = opendir(directory);
+  if (dir == NULL){
+    printf("Cannot open '%s'\n", directory);
+    exit();
+  }
+    
   // Repeatedly read and print entries 
-  if ((ent = readdir(dir)) != NULL) {
+  while ((ent = readdir(dir)) != NULL) {
+
     stat(ent->d_name, &buf); // d_name = file name, a string
-    if (strcmp(ent->d_name, argv[1]) != 0) { // used string compare (strcmp) to test for correct file
-      printf("%s\n", ent->d_name);
-      printf("file size is %lld\n", buf.st_size); //print file size req 
-      return -1;
-    }
+    
+    //print file name and file size req 
+    printf("%s\n", ent->d_name);
+    printf("file size is %10lld", buf.st_size); 
+      
+    return -1;
+  }
     /* FILE SIZE REQ:
     // WHY SPECIFY FIELD WIDTH? Use `%10lld` to print the size in a field of width 10
     */
-  }
-
+  
   // Close directory 
   closedir(dir);
 

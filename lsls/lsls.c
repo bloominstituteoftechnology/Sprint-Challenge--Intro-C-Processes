@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -20,6 +21,7 @@ int main(int argc, char **argv)
     starting_dir = ".";
   }
   // Open directory
+  struct stat buf;
   DIR *dir;
   struct dirent *ent;
   ent = readdir(dir);
@@ -28,6 +30,8 @@ int main(int argc, char **argv)
       // Repeatly read and print entries
       printf("\nRead Directory Name : %s\n", ent->d_name);
       printf("Read Directory Size : %hu bytes\n", ent->d_reclen);
+      stat(ent->d_name, &buf);
+      printf ("%10lld  ", buf.st_size);
     }
   }else{
     printf("\nWARNING: Directory returned NULL please try again\n");

@@ -10,7 +10,7 @@ int main(int argc, char **argv)
   // Parse command line
 
   // Open directory
-  DIR *d = opendir(argv[0] ? "argv[1]" : ".");
+  DIR *d = opendir(argv[1] ? "argv[1]" : ".");
 
   // Repeatly read and print entries
   struct dirent *entry;

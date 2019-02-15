@@ -7,20 +7,11 @@
 /**
  * Main
  */
-int main(int argc, char **argv)
-{
+int filestructure(char *path, int depth) {
   struct dirent *name;
   struct stat buffer;
-  char *path;
   char *filepath;
   DIR *directory;
-
-  // Parse command line and Check for empty command line:
-  if (argc > 1) {
-    path = argv[1];
-  } else {
-    path = ".";
-  } 
 
   // Open directory and Check if directory could not be opened:
   if ((directory = opendir(path)) == NULL) {
@@ -42,6 +33,7 @@ int main(int argc, char **argv)
 
     // Get stats of file and Check if unable to get stats:
     if (stat(filepath, &buffer) != -1) {
+      // If item is a folder:
       if(buffer.st_mode == 16895) {
         printf("     <DIR> %s\n", name -> d_name);
       } else {
@@ -52,7 +44,23 @@ int main(int argc, char **argv)
     free(filepath);
   }
 
-  // Close directory
+// Close directory
+closedir(directory);
+return 0;
+}
+
+int main(int argc, char **argv)
+{
+  char *path;
+
+  // Parse command line and Check for empty command line:
+  if (argc > 1) {
+    path = argv[1];
+  } else {
+    path = ".";
+  }
+
+  filestructure(path, 2);
 
   return 0;
 }

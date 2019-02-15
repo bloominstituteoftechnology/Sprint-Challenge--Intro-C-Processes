@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     // printf("%s\n", rdir->d_name);
     stat(rdir->d_name, &buf);
     // printf("%d", buf.st_mode);
-    if (S_ISDIR(buf.st_mode) > 0 && buf.st_mode > 10000 && buf.st_mode < 20000)
+    if (buf.st_mode & S_IFDIR)
     {
       printf("%10s %s\n", "<DIR>", rdir->d_name);
     }

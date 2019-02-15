@@ -1,57 +1,71 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <dirent.h>
 #include <sys/stat.h> // To get the size of entries, you'll need to use the `stat()` call in `<sys/stat.h>`.
 /**
  * Main
  * 
  *TO_DO = figure out if code isn't working or test ----------
- */
+*/
 int main(int argc, char **argv)
 {
   //declarations
-  DIR *dir;
-  struct dirent *ent;
-  struct stat buf; 
+  
+  struct dirent *dir;
+ // struct stat buf; 
   char *directory;
+  
 
-  // Parse command line
-   if (argc < 2 ) {
+  // Parse command line/
+  
+  if (argc == 1) {
+     //if 1, use current directory
     directory = ".";
     printf("Directory: %s\n", directory);
 
   } else if(argc == 2) {
+    //if two, use the second(index 1) as the name of the directory 
     directory = argv[1];
     printf("Directory: %s\n", directory);
 
   } else {
     printf("Cannot open directory\n");
-    exit();
+    return 1;
   }
   
+  
   // Open directory 
-  dir = opendir(directory);
-  if (dir == NULL){
-    printf("Cannot open '%s'\n", directory);
-    exit();
+  DIR *d = opendir(directory);
+  if (d == NULL)
+  {
+    fprintf(stderr, "Cannot find directory\n");
+    exit(2);
   }
-    
-  // Repeatedly read and print entries 
-  while ((ent = readdir(dir)) != NULL) {
 
-    stat(ent->d_name, &buf); // d_name = file name, a string
+  // Repeatedly read and print entries 
+  while ((dir = readdir(d)) != NULL) {
+    char fullpath[4096];
+    struct stat stat_buf;
+
+    snprintf(fullpath,sizeof(fullpath), "%s/%s", directory,dir->d_name);// d_name = file name, a string
+
+    if(stat(fullpath, &stat_buf)< 0){
+      fprintf(stderr, "failed to stat file %s\n", fullpath);
+      exit(3);
+    }; 
     
-    //print file name and file size req 
-    printf("%s\n", ent->d_name);
-    printf("file size is %10lld", buf.st_size); 
+      //print file name and file size req 
+    printf("%s\n", dir->d_name);
+    printf("file size is %lld %s\n ", stat_buf.st_size,dir->d_name); 
       
     return -1;
-  }
+    }
     /* FILE SIZE REQ:
     // WHY SPECIFY FIELD WIDTH? Use `%10lld` to print the size in a field of width 10
     */
   
   // Close directory 
-  closedir(dir);
-
+    closedir(d);
+  
   return 0;
 }

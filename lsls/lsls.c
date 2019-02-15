@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
 #include <fcntl.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -19,6 +19,7 @@ int main(int argc, char **argv)
     char *currentDir;
     char *inputDir;
     struct dirent *entry;
+    struct stat buf;
     
     currentDir = argv[0];
     
@@ -48,10 +49,11 @@ int main(int argc, char **argv)
     
     // Repeatly read and print entries
     while (entry != NULL) {
+        stat(entry->d_name, &buf);
+        printf("%lld ", buf.st_size);
         printf("%s\n", entry->d_name);
         entry = readdir(dir);
-    }
-    
+    }    
     
   // Close directory
     

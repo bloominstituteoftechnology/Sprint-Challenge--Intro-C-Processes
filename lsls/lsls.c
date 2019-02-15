@@ -26,7 +26,8 @@ int main(int argc, char **argv)
   if((dir = opendir(starting_dir)) != NULL){// Following code runs if current dir does not return Null
     while((ent = readdir(dir)) != NULL){
       // Repeatly read and print entries
-      printf("Read Directory : %s\n", ent->d_name);
+      printf("\nRead Directory Name : %s\n", ent->d_name);
+      printf("Read Directory Size : %hu bytes\n", ent->d_reclen);
     }
   }else{
     printf("\nWARNING: Directory returned NULL please try again\n");

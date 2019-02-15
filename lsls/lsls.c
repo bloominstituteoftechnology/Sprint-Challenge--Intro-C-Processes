@@ -32,7 +32,7 @@ int main(int argc, char **argv)
   // Repeatedly read and print entries:
   while((dirName = readdir(dir)) != NULL) {
 
-    filePathInfo = malloc(strlen(path) + strlen(name -> d_name) + 2);
+    filePathInfo = malloc(strlen(dirPath) + strlen(dirName -> d_name) + 2);
 
     if (strcmp(dirName -> d_name, ".") != 0 && strcmp(dirName -> d_name, "..") != 0) {
       sprintf(filePathInfo, "%s/%s", dirPath, dirName -> d_name);
@@ -43,9 +43,9 @@ int main(int argc, char **argv)
     // Print properties of the file as well if accessible
     if (stat(filePathInfo, &buffer) != -1) {
       if(buffer.st_mode == 16895) {
-        printf("<DIR> %s\n", name -> d_name);
+        printf("<DIR> %s\n", dirName -> d_name);
       } else {
-        printf("%10ld %s\n", buffer.st_size, name -> d_name);
+        printf("%10ld %s\n", buffer.st_size, dirName -> d_name);
       }     
     }
     ////

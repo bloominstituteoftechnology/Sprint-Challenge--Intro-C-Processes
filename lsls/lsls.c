@@ -18,12 +18,12 @@ int main(int argc, char **argv)
 
   if (argc > 2)
     {
-      printf("Openning...\n");
+      printf("Opening...\n");
       dir = opendir(argv[1]);
     }
   else if (argc < 2)
   {
-    printf("There was no specified directory, printing content from '.' directory.\n");
+    printf("A directory was not specified, printing content from '.' directory.\n");
     dir = opendir(".");
   }
   else

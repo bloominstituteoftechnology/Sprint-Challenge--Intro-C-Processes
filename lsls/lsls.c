@@ -31,29 +31,31 @@ int main(int argc, char **argv)
   // Open directory
     DIR *dir;
     
-    printf("Current dir: %s\n", currentDir);
-    printf("Argc : %d\n", argc);
-
-    
-    if (argc > 1) {
-        printf("Opened dir\n");
+    //
+    if (inputDir != NULL) {
         // Check specific directory
-        
+        dir = opendir(inputDir);
     } else {
-        printf("Opened current dir\n");
-        dir = opendir(".");
         // Check current directory
-        entry = readdir(dir);
-        
+        dir = opendir(".");
     }
+    
+    if (dir == NULL) {
+        printf("Could not open directory %s\n", inputDir);
+        return 0;
+    }
+    
+    entry = readdir(dir);
     
     // Repeatly read and print entries
     while (entry != NULL) {
+        // Get file size
         stat(entry->d_name, &buf);
+        // Print size and name
         printf("%lld ", buf.st_size);
         printf("%s\n", entry->d_name);
         entry = readdir(dir);
-    }    
+    }
     
   // Close directory
     

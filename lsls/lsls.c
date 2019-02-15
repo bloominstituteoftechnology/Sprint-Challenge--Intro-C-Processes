@@ -37,7 +37,9 @@ int main(int argc, char **argv)
     ent = readdir(d);
 
     while(ent != NULL) {
-      stat(ent->d_name, &buf);
+      strcpy(filename, "./");
+      strcat(filename, ent->d_name);
+      stat(filename, &buf);
       if(&buf == -1) {
         fprintf(stderr, "Error when retrieving byte information");
         exit(3);

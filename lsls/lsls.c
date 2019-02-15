@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -13,16 +14,23 @@ int main(int argc, char **argv)
   // Parse command line
   if(argc < 2) {
     dirName = ".";
-  } else if (argc == 2) {
+    d = opendir(dirName);
+  } else if (argc > 2) {
     dirName = argv[1];
+    // Open directory
+    d = opendir(dirName);
   } else {
-    printf("Could not open directory '%s'", argv[1]);
-    return 1;
+    if(d == NULL) {
+      printf("Could not open directory '%s'\n", argv[1]);
+      exit(1);
+    }
   }
-  // Open directory
-  d = opendir(dirName);
+  
   // Repeatly read and print entries
-
+  while((ent = readdir(d)) != NULL) {
+    stat(ent -> d_name, &buf);
+    printf("File size: %lld  Directory: %s\n", buf.st_size, ent -> d_name);
+  }
   // Close directory
   closedir(d);
   return 0;

@@ -30,7 +30,8 @@ int main(int argc, char **argv)
 
   // Repeatly read and print entries:
   while((name = readdir(directory)) != NULL) {
-    filepath = malloc(strlen(path) + strlen(name -> d_name) + 1);
+    // +2 for the Null Pointer and a "/" 
+    filepath = malloc(strlen(path) + strlen(name -> d_name) + 2);
 
     // Build filepath for stat() and Check if the item name is "." or "..":
     if (strcmp(name -> d_name, ".") != 0 && strcmp(name -> d_name, "..") != 0) {
@@ -41,9 +42,12 @@ int main(int argc, char **argv)
 
     // Get stats of file and Check if unable to get stats:
     if (stat(filepath, &buffer) != -1) {
-      printf("%10ld %s\n", buffer.st_size, name -> d_name);
+      if(buffer.st_mode == 16895) {
+        printf("     <DIR> %s\n", name -> d_name);
+      } else {
+        printf("%10ld %s\n", buffer.st_size, name -> d_name);
+      }     
     }
-
     
     free(filepath);
   }

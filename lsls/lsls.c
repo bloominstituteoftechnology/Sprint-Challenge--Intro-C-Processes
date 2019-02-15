@@ -3,6 +3,8 @@
 #include <sys/stat.h> // To get the size of entries, you'll need to use the `stat()` call in `<sys/stat.h>`.
 /**
  * Main
+ * 
+ *TO_DO = figure out if code isn't working or test ----------
  */
 int main(int argc, char **argv)
 {

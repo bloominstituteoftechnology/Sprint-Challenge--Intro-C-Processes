@@ -32,20 +32,19 @@ int main(int argc, char **argv)
 
     struct dirent *ent;
     struct stat buf;
-    char filename[200];
+    char filename[4900];
 
     ent = readdir(d);
 
     while(ent != NULL) {
-      strcpy(filename, "./");
+      strcpy(filename, path);
+      strcat(filename, "/");
       strcat(filename, ent->d_name);
-      stat(filename, &buf);
-      if(&buf == -1) {
+      if(stat(filename, &buf) < 0) {
         fprintf(stderr, "Error when retrieving byte information");
         exit(3);
       }
-      printf("%10lld   ", buf.st_size);
-      printf("%s\n", ent->d_name);
+      printf("%10lld   %s\n", buf.st_size, ent->d_name);
       ent = readdir(d);
     }
     

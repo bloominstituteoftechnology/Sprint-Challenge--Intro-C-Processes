@@ -27,7 +27,14 @@ int main(int argc, char **argv)
     printf("Error");
   }
   // Repeatly read and print entries
+  struct dirent *entry;
+  while ((entry = readdir(d)) != NULL)
+  {
+    printf("%s\n", entry->d_name);
+  }
+
   // Close directory
+  closedir(d);
 
   return 0;
 }

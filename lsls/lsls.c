@@ -29,8 +29,8 @@ int main(int argc, char **argv)
     printf("Directory: %s\n", directory);
 
   } else {
-    printf("Cannot open directory\n");
-    return 1;
+    fprintf(stderr, "usage: lsls [dirname]\n");
+    exit(1);
   }
   
   
@@ -48,22 +48,20 @@ int main(int argc, char **argv)
     struct stat stat_buf;
 
     snprintf(fullpath,sizeof(fullpath), "%s/%s", directory,dir->d_name);// d_name = file name, a string
+    printf("%s\n",dir->d_name);
 
-    if(stat(fullpath, &stat_buf)< 0){
-      fprintf(stderr, "failed to stat file %s\n", fullpath);
-      exit(3);
-    }; 
+   if(stat(fullpath, &stat_buf)< 0){
+     fprintf(stderr, "failed to stat file %s\n", fullpath);
+     exit(3);
+   }; 
+   
     
-      //print file name and file size req 
+    //print file name and file size req 
     printf("%s\n", dir->d_name);
     printf("file size is %lld %s\n ", stat_buf.st_size,dir->d_name); 
-      
-    return -1;
+
     }
-    /* FILE SIZE REQ:
-    // WHY SPECIFY FIELD WIDTH? Use `%10lld` to print the size in a field of width 10
-    */
-  
+
   // Close directory 
     closedir(d);
   

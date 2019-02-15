@@ -47,7 +47,7 @@ int main(int argc, char **argv)
         // Repeatly read and print entries
         while((read_directory = readdir(directory)) != NULL)
         {
-            printf(">> %s  %ld\n", read_directory->d_name, read_directory->d_ino);
+            printf(">> %s  %d\n", read_directory->d_name, read_directory->d_reclen);
         }
       
         // Close directory

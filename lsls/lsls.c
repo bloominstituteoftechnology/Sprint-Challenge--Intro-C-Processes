@@ -16,3 +16,8 @@ int main(int argc, char **argv)
 
   return 0;
 }
+
+// 1. Call `opendir()`.
+// 2. Then repeatedly call `readdir()`--printing the filenames as you go--until it
+//    lets you know there are no more directory entries by returning `NULL`.
+// 3. Then call `closedir()`.

@@ -14,14 +14,24 @@ int main(int argc, char **argv)
   struct stat buf;
   char *path;
   char full_path[100];
-  char src[100];
   strcpy(full_path, "./");
-  // strcat(full_path, src);
 
+  if (argc > 2)
+  {
+    printf("Enter a path\n");
+    exit(2);
+  }
   // Parse command line
   if (argv[1] != NULL)
   {
     path = argv[1];
+
+    if (path[strlen(path) - 1] != '/')
+    {
+      char dash[10];
+      strcpy(dash, "/");
+      strcat(path, dash);
+    }
     strcat(full_path, path);
   }
   else
@@ -41,18 +51,17 @@ int main(int argc, char **argv)
 
   // printf("Testing path: %s\n", path);
 
-  // printf("beginning: %s\n", full_path);
+  printf("beginning: %s\n", full_path);
   // Repeatly read and print entries
   while ((de = readdir(d)) != NULL)
   {
 
-    // ./ + path + de->d_name
-
+    // construct full path to pass into stat()
     for (int i = strlen(full_path); i > 0; i--)
     {
       if (full_path[i] == '/')
       {
-        for (int j = 0; j < strlen(de->d_name); j++)
+        for (int j = 0; j < (int)strlen(de->d_name); j++)
         {
           full_path[i + j + 1] = de->d_name[j];
         }
@@ -61,8 +70,6 @@ int main(int argc, char **argv)
       }
     }
 
-    // strcat(full_path, de->d_name);
-    // printf("%s\n", full_path);
     if (stat(full_path, &buf) != -1)
     {
       printf("%10lld %s\n", buf.st_size, de->d_name);

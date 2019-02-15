@@ -19,14 +19,15 @@ int main(int argc, char **argv)
   }
   else if (argc > 2)
   {
-    printf("usage: ./lsls pathname");
+    printf("usage: ./lsls pathname\n");
+    exit(1);
   }
   else
   {
     path = strtok(argv[1], " \t\n\r");
   }
 
-  printf("%s\n", path);
+  // printf("%s\n", path);
 
   // Open directory
   odir = opendir(path);

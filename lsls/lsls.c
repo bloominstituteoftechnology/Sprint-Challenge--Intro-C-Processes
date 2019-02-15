@@ -3,10 +3,6 @@
 #include <string.h>
 # include <sys/stat.h>
 # include <stdlib.h>
-/**
- * Main
- */
-//PR Text
 
 char* concat(const char *s1, const char *s2)
 {
@@ -18,9 +14,7 @@ char* concat(const char *s1, const char *s2)
 
 int main(int argc, char **argv)
 {
-  DIR *dir;
- 
-  
+  DIR *dir;  
   struct dirent *sd;
   struct stat buf;
 

@@ -21,7 +21,6 @@ Add your answers inline, below, with your pull request.
 
 3. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?
 
-
 ## Task 2
 
 Write a program in C, `lsls.c`, that prints out a directory listing for the
@@ -120,9 +119,9 @@ command line arguments can be found in [commandline.c](examples/commandline.c).
 Modify that example to look at the command line parameters, if any, and pass
 those to `opendir()`.
 
-### Stretch Goal: Print file size in bytes
+### Print file size in bytes
 
-Modify the program to print out the file size in bytes as well as the name.
+Have your program print out the file size in bytes along with the name.
 
 Example output (suggestion: use `%10lld` to print the size in a field of width
 10):
@@ -152,10 +151,11 @@ You'll need to use the `stat()` call in `<sys/stat.h>`.
   printf("file size is %lld\n", buf.st_size);
   ```
 
+ > Note: The specification for the `stat` system call does not specify exactly how directories should be treated. This means you might see weird behavior when your `lsls` prints out the sizes of directories, such all their sizes being 0 or all their sizes being 512, or some other such strange behaviors. This is not a mistake on your part, it was simply just not specified how this should work as part of the spec.
+
 ### Stretch Goal: Mark Directories
 
-Instead of a size in bytes for a directory (which is marginally useful), replace
-the number with the string `<DIR>`.
+To get around this undefined behavior of how `stat` treats the sizes of directories, instead of printing those size values out, replace the number with the string `<DIR>`. This will make things more readable for users of your `lsls` program.
 
 Example output:
 

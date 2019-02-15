@@ -13,8 +13,9 @@ a process that has been terminated but still has an entry in the process table.
 
 
 **3. How does a zombie process get created? How does one get destroyed?**
-
+a zombie process is creted when its parents fail to call the wait system call to read its exit status. It gets destroyed when its parent process does call wait to read its exit status and removes its entry from the process table.
 
 
 **4. What are some of the benefits of working in a compiled language versus a non-compiled language? More specifically, what benefits are there to be had from taking the extra time to compile our code?**
 
+compiled langauge programs get compiled into machine code directly from execution. This allows for efficient code and memory management.  Interpreted languages need to be parsed, interpreted, and executed every time they run aa program. Compiled languages is only translated into machine language one time when the program is compiled. After that, it only needs to be loaded and executed.

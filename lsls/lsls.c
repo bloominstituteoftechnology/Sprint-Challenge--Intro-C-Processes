@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     
     if (argc != 2)
     {
-        fprintf(stderr, "usage: enter a directory to be listed\n(spaces are not permitted in directory name or path)\n");
+        fprintf(stderr, "usage: enter a path to a directory\n(spaces are not permitted)\n");
         exit(1);
     }
 
@@ -31,7 +31,17 @@ int main(int argc, char **argv)
 
     // Repeatly read and print entries
 
+    struct dirent *direntbuff = readdir(dir);
+
+    while (direntbuff != NULL)
+    {
+        printf("%s\n", direntbuff->d_name);
+        direntbuff = readdir(dir);
+    }
+
     // Close directory
+
+    closedir(dir);
 
   return 0;
 }

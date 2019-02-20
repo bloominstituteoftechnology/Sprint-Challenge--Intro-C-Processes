@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #define MAX_COMMAND_CHARS 107
 
@@ -36,7 +37,12 @@ int main(int argc, char **argv)
 
     while (direntbuff != NULL)
     {
-        printf("%s\n", direntbuff->d_name);
+        char path[100];
+        sprintf(path, "%s/%s", argv[1], direntbuff->d_name);
+        struct stat statbuff;
+        int success = stat(path, &statbuff);
+        success != -1 ? printf("\t%lld", statbuff.st_size) : printf("\t");
+        printf("\t%s\n", direntbuff->d_name);
         direntbuff = readdir(dir);
     }
 

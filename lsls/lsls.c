@@ -37,6 +37,7 @@ int main(int argc, char **argv)
     else
     {
       char *file_path = malloc(strlen(argv[1] + strlen(Dirent->d_name) + 2));
+      // printf("%d\n", buf.st_mode);
       sprintf(file_path, "%s/%s", argv[1], Dirent->d_name);
       stat(file_path, &buf);
       printf ("%10ld %s\n", buf.st_size, Dirent->d_name);

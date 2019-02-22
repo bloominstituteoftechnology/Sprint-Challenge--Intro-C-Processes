@@ -6,19 +6,28 @@
  */
 int main(int argc, char **argv)
 {
-  int i;
 
   // printf("There are %d command line argument(s):\n", argc);
 
+  // for (i = 0; i < argc; i++)
+  // {
+  //   // printf("   %s\n", argv[i]);
+  //   // printf("Directory to visit: %s\n", argv[1]);
+  // }
+
+  // printf("Directory to visit: %s\n", argv[1]);
+  // printf("Number of Command line args: %d\n", argc);
+  int i;
+
+  printf("There are %d command line argument(s):\n", argc);
+
   for (i = 0; i < argc; i++)
   {
-    // printf("   %s\n", argv[i]);
-    printf("Directory to visit: %s\n", argv[1]);
+    printf("   %s\n", argv[i]);
   }
-
   DIR *d;
   struct dirent *dir;
-  d = opendir(".");
+  d = (argc > 1) ? opendir(argv[1]) : opendir(".");
   if (d)
   {
     while ((dir = readdir(d)) != NULL)

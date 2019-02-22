@@ -57,6 +57,6 @@ int main(int argc, char **argv)
   }
 
   // Close directory
-
+  closedir(directory);
   return 0;
 }

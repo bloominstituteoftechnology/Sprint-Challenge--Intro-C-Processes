@@ -12,11 +12,11 @@ int main(int argc, char **argv)
 
   // Open directory
   DIR *d;
-  // if (argc < 2) {
-  //   d = opendir(".");
-  // } else {
-    d = opendir(argv[1]);
-  // }
+  if (argc < 2) {
+    argv[1] = ".";
+  }
+  d = opendir(argv[1]);
+  
   
   if (d == NULL) {
     printf("opendir() failed");

@@ -25,7 +25,16 @@ int main(int argc, char **argv)
   while((pDirent = readdir(pDir)) != NULL) {
     stat(pDirent->d_name, &buf);
 
-    printf("%s\t%10ld\n", pDirent->d_name, buf.st_size);
+    // If the entry is a directory, ignore the size and label it <dir>
+    if(S_ISDIR(buf.st_mode)) {
+
+      printf("%s\t<DIR>\n", pDirent->d_name);
+
+    } else {
+      // Otherwise, print the name of the file and the file size
+      printf("%s\t%10ld\n", pDirent->d_name, buf.st_size);
+
+    }
   }
   // Close directory
   closedir(pDir);

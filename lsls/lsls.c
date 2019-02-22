@@ -9,15 +9,12 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-
-  // Open directory
-  DIR *d;
   if (argc < 2) {
     argv[1] = ".";
   }
+  // Open directory
+  DIR *d;
   d = opendir(argv[1]);
-  
-  
   if (d == NULL) {
     printf("opendir() failed");
     exit(1);

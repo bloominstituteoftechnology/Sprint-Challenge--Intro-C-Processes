@@ -1,5 +1,5 @@
 **1. List all of the main states a process may be in at any point in time on a standard Unix system. Briefly explain what each of these states means.**
-
+Start is the intial state when the process is created. Ready is when the process is waiting to be assigned to a processor. Running is when the processor is executing its instructions.  Waiting is the state when a process must wait for user input or availability of a file.  Terminating is the conclusion of of its execution. 
 
 
 **2. What is a zombie process?**

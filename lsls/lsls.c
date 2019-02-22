@@ -13,9 +13,11 @@ int main(int argc, char **argv)
 {
   // Parse command line
   //If the user does not specify a directory, print out the contents of the current directory, which is called .
-  int i;
+  
   char *path;
   DIR *dir;
+  struct dirent *ent;
+  struct stat buffer;
 
   if (argc > 1) 
   {
@@ -39,7 +41,12 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
-
+  while (ent = readdir(dir) != NULL)
+  {
+    strcpy();
+    strcat();
+  }
+  printf("%s\n", ent->d_name);
 
 
   // Close directory

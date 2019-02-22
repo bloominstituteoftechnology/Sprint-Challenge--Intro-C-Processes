@@ -50,7 +50,7 @@ int main(int argc, char **argv)
     // Get stats of file and Check if unable to get stats:
     if (stat(filepath, &buffer) != -1)
     {
-      printf("%10ld %s\n", buffer.st_size, name->d_name);
+      printf("%lld %s\n", buffer.st_size, name->d_name);
     }
 
     free(filepath);

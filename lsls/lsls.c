@@ -1,51 +1,35 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <dirent.h>
-
-void ls_dir(const char *dir_name)
-{
-  DIR *directory;
-  struct dirent *entry;
-  struct stat *buf;
-
-  directory = opendir(dir_name);
-  if (directory != NULL)
-  {
-    while ((entry = readdir(directory)) != NULL)
-    {
-      // stat(entry->d_name, &buf);
-      printf("%s\n", entry->d_name);
-    }
-    closedir(directory);
-  }
-  else
-  {
-    printf("Directory doesnt exist. %s\n", dir_name);
-
-    exit(1);
-  }
-}
+#include <sys/stat.h>
 
 /**
  * Main
  */
-
 int main(int argc, char **argv)
 {
-  // Parse command line
-  int x;
+  // Define pointers
+  DIR *directory;
+  struct dirent *entry;
+  struct stat buf;
 
-  x = 1;
-  while (x < argc)
+  // Parse command line and Open directory
+  directory = (argc > 1) ? opendir(argv[1]) : opendir(".");
+
+  if (directory == NULL)
   {
-    ls_dir(argv[x]);
-    x++;
+    fprintf(stderr, "Error opening directory");
+    return 0;
   }
 
-  if (argc == 1)
+  // Repeatedly read and print entries
+  while ((entry = readdir(directory)) != NULL)
   {
-    ls_dir(".");
+    stat(entry->d_name, &buf);
+    printf("%10llu --- %s\n", buf.st_size, entry->d_name);
   }
+
+  // Close directory
+  closedir(directory);
 
   return 0;
 }

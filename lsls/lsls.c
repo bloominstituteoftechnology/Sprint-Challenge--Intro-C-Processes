@@ -49,7 +49,7 @@ int main(int argc, char **argv)
       // }
       // i++;
     } else {
-      printf("%o%ld %s \n",buf.st_mode, buf.st_size, entry->d_name);
+      printf("%ld %s \n",buf.st_size, entry->d_name);
     }
   }
   // Close directory

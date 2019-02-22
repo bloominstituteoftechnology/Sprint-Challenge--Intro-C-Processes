@@ -42,9 +42,10 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while (ent = readdir(dir) != NULL)
   {
-    char *filepath[];
+    char *filepath[50];
 
     strcpy(filepath, dir);
+    //strcat(filepath, "/");
     strcat(filepath, ent->d_name);
 
     struct stat buf;

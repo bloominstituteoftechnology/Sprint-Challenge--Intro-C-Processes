@@ -9,9 +9,13 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  struct dirent *name;
+  struct stat buffer;
   char *path;
-  // Check for empty command line
+  char *filepath;
+  DIR *directory;
+
+  // Parse command line and Check for empty command line:
   if (argc > 1)
   {
     path = argv[1];
@@ -21,37 +25,35 @@ int main(int argc, char **argv)
     path = ".";
   }
 
-  // Open directory
-  DIR *directory = opendir(path);
-  // Check if directory could not be opened.
-  if (directory == NULL)
+  // Open directory and Check if directory could not be opened:
+  if ((directory = opendir(path)) == NULL)
   {
     printf("Directory could not be opened: %s\n", path);
     exit(1);
   }
 
-  // Repeatly read and print entries
-  struct dirent *ent;
-  struct stat buf;
-  char *fp;
-
-  while ((ent = readdir(directory)) != NULL)
+  // Repeatly read and print entries:
+  while ((name = readdir(directory)) != NULL)
   {
-    fp = malloc(strlen(path) + strlen(ent->d_name) + 1);
+    filepath = malloc(strlen(path) + strlen(name->d_name) + 1);
 
-    if (strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0)
+    // Build filepath for stat() and Check if the item name is "." or "..":
+    if (strcmp(name->d_name, ".") != 0 && strcmp(name->d_name, "..") != 0)
     {
-      sprintf(fp, "%s/%s", path, ent->d_name);
+      sprintf(filepath, "%s/%s", path, name->d_name);
     }
     else
     {
-      sprintf(fp, "%s", ent->d_name);
+      sprintf(filepath, "%s", name->d_name);
     }
 
-    stat(fp, &buf);
+    // Get stats of file and Check if unable to get stats:
+    if (stat(filepath, &buffer) != -1)
+    {
+      printf("%10ld %s\n", buffer.st_size, name->d_name);
+    }
 
-    printf("%10ld %s\n", buf.st_size, ent->d_name);
-    free(fp);
+    free(filepath);
   }
 
   // Close directory

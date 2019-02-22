@@ -9,22 +9,32 @@
 int main(int argc, char **argv)
 {
   // Parse command line
+  // Print current dir entries
+  struct dirent *Dirent;
+  DIR *dir;
   if (argc < 2)
-	{
-		// Print current dir entries
-    void *dir = opendir(".");
-
-    if (dir == NULL)
-    {
-      printf("%d\n", errno);
-      exit(1);
-    }
-	}
+  {
+    dir = opendir(".");
+  }
   else
   {
-    // Print argv[1] entries
-
+    dir = opendir(argv[1]);
   }
+
+  if (dir == NULL)
+  {
+    printf("%d\n", errno);
+    exit(1);
+  }
+  while ((Dirent = readdir(dir)) != NULL) 
+  {
+    printf ("%s\n", Dirent->d_name);
+  }
+  closedir(dir);
+	
+    // Print argv[1] entries
+    
+  
   
   // Open directory
 

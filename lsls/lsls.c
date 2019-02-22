@@ -13,9 +13,23 @@
 int main(int argc, char **argv)
 // figure out  what to do with argc and argv
 {
+  char *dirname;
+
   // Parse command line
-  (void)argc;
-  (void)argv;
+  if (argv == 1)
+  {
+    dirname = ".";
+  }
+  else if (argv == 2)
+  {
+    dirname = argv[1];
+  }
+  else
+  {
+    fprintf(stderr, "usage: lsls [dirname]\n");
+    exit(1);
+  }
+
   // Open directory
   DIR *d = opendir(".");
 

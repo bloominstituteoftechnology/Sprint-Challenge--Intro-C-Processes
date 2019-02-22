@@ -6,13 +6,16 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+  int i;
 
-  // Open directory
+  // printf("There are %d command line argument(s):\n", argc);
 
-  // Repeatly read and print entries
+  for (i = 0; i < argc; i++)
+  {
+    // printf("   %s\n", argv[i]);
+    printf("Directory to visit: %s\n", argv[1]);
+  }
 
-  // Close directory
   DIR *d;
   struct dirent *dir;
   d = opendir(".");

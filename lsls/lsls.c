@@ -11,8 +11,6 @@ int main(int argc, char **argv)
   // Parse command line
   struct dirent *dirent;
   DIR *dir;
-  /* int argc = 1; */
-  /* char *name; */
   struct stat buf;
 
   if (argv[1] != NULL)
@@ -28,7 +26,6 @@ int main(int argc, char **argv)
 
   while ((dirent = readdir(dir)) != NULL)
   {
-    /* printf("[%s]\n", dirent -> d_name); */
     char *pathcpy = strdup(filepath);
     strcat(pathcpy, dirent->d_name);
     stat(pathcpy, &buf);

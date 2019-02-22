@@ -30,12 +30,20 @@ int main(int argc, char **argv)
 
   if (path)
   {
-    dir = opendir(path)
+    dir = opendir(path);
+  }
+  if (dir == NULL) 
+  {
+    fprintf(stderr, "error opening directory\n");
+    exit(1);
   }
 
   // Repeatly read and print entries
 
+
+
   // Close directory
+  closedir(dir);
 
   return 0;
 }

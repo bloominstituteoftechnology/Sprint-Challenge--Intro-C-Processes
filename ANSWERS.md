@@ -4,7 +4,7 @@
 
 **2. What is a zombie process?**
 
-
+    A: A zombie process is is when the OS thinks that a process that has finished executing is still running.
 
 **3. How does a zombie process get created? How does one get destroyed?**
 

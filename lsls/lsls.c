@@ -7,7 +7,7 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-
+  /* initial commit */
   // Open directory
 
   // Repeatly read and print entries

@@ -24,6 +24,9 @@ int main(int argc, char **argv)
   // Repeatedly read and print entries
   while ((entry = readdir(directory)) != NULL)
   {
+    char *fileName = entry->d_name;
+    int fileNameLength = entry->d_namlen;
+    char *filePath = malloc((strlen(entry) + 1 + fileNameLength + 1) * sizeof(char));
     stat(entry->d_name, &buf);
     printf("%10llu --- %s\n", buf.st_size, entry->d_name);
   }

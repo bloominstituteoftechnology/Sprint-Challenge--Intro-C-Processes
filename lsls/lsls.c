@@ -2,15 +2,16 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <sys/stat.h>
+#include <string.h>
 
 /**
  * Main
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
-  // Print current dir entries
   struct dirent *Dirent;
+  struct stat buf;
   DIR *dir;
   if (argc < 2)
   {
@@ -28,19 +29,20 @@ int main(int argc, char **argv)
   }
   while ((Dirent = readdir(dir)) != NULL) 
   {
-    printf ("%s\n", Dirent->d_name);
+    if (argc < 2)
+    {
+      stat(Dirent->d_name, &buf);
+      printf ("%10ld %s\n", buf.st_size, Dirent->d_name);
+    }
+    else
+    {
+      char *file_path = malloc(strlen(argv[1] + strlen(Dirent->d_name) + 2));
+      sprintf(file_path, "%s/%s", argv[1], Dirent->d_name);
+      stat(file_path, &buf);
+      printf ("%10ld %s\n", buf.st_size, Dirent->d_name);
+      free(file_path);
+    }
   }
   closedir(dir);
-	
-    // Print argv[1] entries
-    
-  
-  
-  // Open directory
-
-  // Repeatly read and print entries
-
-  // Close directory
-
   return 0;
 }

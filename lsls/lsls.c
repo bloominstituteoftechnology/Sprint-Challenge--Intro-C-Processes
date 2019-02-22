@@ -20,6 +20,13 @@ int main(int argc, char **argv)
   }
 
   // Open directory
+  DIR *directory = opendir(path);
+  // Check if directory could not be opened.
+  if (directory == NULL)
+  {
+    printf("Directory could not be opened: %s\n", path);
+    exit(1);
+  }
 
   // Repeatly read and print entries
 

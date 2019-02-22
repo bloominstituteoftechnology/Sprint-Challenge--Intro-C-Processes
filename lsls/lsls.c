@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <dirent.h>
 #include <sys/stat.h>
 
@@ -16,11 +17,11 @@ int main(int argc, char **argv)
   char *dirname;
 
   // Parse command line
-  if (argv == 1)
+  if (argc == 1)
   {
     dirname = ".";
   }
-  else if (argv == 2)
+  else if (argc == 2)
   {
     dirname = argv[1];
   }
@@ -31,17 +32,25 @@ int main(int argc, char **argv)
   }
 
   // Open directory
-  DIR *d = opendir(".");
+  DIR *d = opendir(dirname);
 
   // Repeatly read and print entries
   struct dirent *de;
 
-  // print directory results
   while ((de = readdir(d)) != NULL)
   {
     char *name = de->d_name;
 
+    char fullpath[8192];
+
+    sprintf(fullpath, "%s/%s", dirname, name);
+
     struct stat buf;
+
+    if (stat(fullpath, &buf) == -1)
+    {
+      perror("stat");
+    }
 
     stat(name, &buf);
 

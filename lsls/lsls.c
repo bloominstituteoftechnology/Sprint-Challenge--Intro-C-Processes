@@ -13,6 +13,16 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
 
   // Close directory
-
-  return 0;
+  DIR *d;
+  struct dirent *dir;
+  d = opendir(".");
+  if (d)
+  {
+    while ((dir = readdir(d)) != NULL)
+    {
+      printf("%s\n", dir->d_name);
+    }
+    closedir(d);
+  }
+  return (0);
 }

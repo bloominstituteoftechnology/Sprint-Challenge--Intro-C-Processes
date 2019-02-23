@@ -41,11 +41,11 @@ int main(int argc, char **argv)
   }
 
   // Repeatly read and print entries
-  while (ent = readdir(dir) != NULL)
+  while ((ent = readdir(dir)) != NULL)
   {
     char filepath[1000];
     struct stat buf;
-    snprintf(filepath, sizeof(filepath), "%s/%s", dir, ent->d_name);
+    snprintf(filepath, sizeof(filepath), "%s/%s", path, ent->d_name);
     printf("%s\n", ent->d_name);
     
     // strcpy(filepath, dir);

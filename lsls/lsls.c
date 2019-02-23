@@ -24,7 +24,8 @@ int main(int argc, char **argv)
     }
 
     while ((ptr_dirent = readdir(ptr_dir)) != NULL) {
-      printf("[%s]\n", ptr_dirent->d_name);
+      char *f_name = ptr_dirent->d_name;
+      printf("[%s]\n", f_name);
     }
 
     closedir(ptr_dir);

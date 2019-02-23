@@ -2,6 +2,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -25,7 +26,12 @@ int main(int argc, char **argv)
 
     while ((ptr_dirent = readdir(ptr_dir)) != NULL) {
       char *f_name = ptr_dirent->d_name;
-      printf("[%s]\n", f_name);
+      struct stat sizes;
+
+      if (stat(f_name, &sizes) != -1) {
+        printf("%-10s...\t[%ld]\n", f_name, sizes.st_size);
+      }
+      // printf("[%s]\n", f_name);
     }
 
     closedir(ptr_dir);
@@ -45,6 +51,12 @@ int main(int argc, char **argv)
       get_info(cwd);
 
     }
+  } else if (argc == 2) {
+    char *path_request = argv[1];
+    get_info(path_request);
+    // printf("%s\n", path_request);
+  } else {
+    printf("Formatting incorrect './lsls <path>'\n");
   }
   // char commands[1024];
   // char *args[100];

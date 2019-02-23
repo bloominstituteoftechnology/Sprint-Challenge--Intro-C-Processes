@@ -9,19 +9,17 @@
  */
 int main(int argc, char **argv)
 {
-  // printf("there were %d arguments", argc);
-
   char **get_info(char *str) {
     struct dirent *ptr_dirent;
 
     printf("the directory is: %s\n", str);
+    printf("argument count: %d\n", argc);
     
     DIR *ptr_dir;
     ptr_dir = opendir(str);
 
     if(ptr_dir == NULL) {
       printf("Cannot open directory %s\n", str);
-      // exit(1);
     }
 
     while ((ptr_dirent = readdir(ptr_dir)) != NULL) {
@@ -31,11 +29,9 @@ int main(int argc, char **argv)
       if (stat(f_name, &sizes) != -1) {
         printf("%-10s...\t[%ld]\n", f_name, sizes.st_size);
       }
-      // printf("[%s]\n", f_name);
     }
 
     closedir(ptr_dir);
-    // return 0;
   }
 
   if (argc < 1) {
@@ -46,17 +42,18 @@ int main(int argc, char **argv)
 
     // get current working directory
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
-      // printf("Current working directory: %s\n", cwd);
-      // print out current working directory
       get_info(cwd);
 
     }
   } else if (argc == 2) {
     char *path_request = argv[1];
+
     get_info(path_request);
-    // printf("%s\n", path_request);
+    printf("This is the path requested: %s\n", path_request);
+
   } else {
     printf("Formatting incorrect './lsls <path>'\n");
+
   }
   // char commands[1024];
   // char *args[100];

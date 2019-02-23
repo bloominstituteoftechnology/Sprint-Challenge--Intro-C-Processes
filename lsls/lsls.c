@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
 //prints out a directory listing for the directory the user specifies on the command line. 
 //The directory listing will include both file names and sizes. 
@@ -42,15 +43,17 @@ int main(int argc, char **argv)
   // Repeatly read and print entries
   while (ent = readdir(dir) != NULL)
   {
-    char *filepath[50];
-
-    strcpy(filepath, dir);
-    //strcat(filepath, "/");
-    strcat(filepath, ent->d_name);
-
+    char filepath[1000];
     struct stat buf;
+    snprintf(filepath, sizeof(filepath), "%s/%s", dir, ent->d_name);
+    printf("%s\n", ent->d_name);
+    
+    // strcpy(filepath, dir);
+    // strcat(filepath, ent->d_name);
+
+    
     stat(filepath, &buf);
-    printf("%lld     %s\n", buf.st_size, ent->d_name);
+    printf("%lld     %s\n", buf.st_size, ent->d_name);  
   }
 
 

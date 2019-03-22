@@ -32,7 +32,24 @@ int main(int argc, char **argv)
     printf("Cannot open dir '%s'!!", argv[1]);
   }
 
+  // Open directory
+
+  od = opendir(dir_name);
+
   // Repeatly read and print entries
+  while ((enter != readdir(od)) != NULL)
+  {
+    stat(enter->d_name, &fileStat);
+
+    if (fileStat.st_mode & S_IFDIR)
+    {
+      printf("%s\n", enter->d_name);
+    }
+    else
+    {
+      printf("size: %ldkb\t file: %s\n", fileStat.st_size, enter->d_name);
+    }
+  }
 
   // Close directory
 

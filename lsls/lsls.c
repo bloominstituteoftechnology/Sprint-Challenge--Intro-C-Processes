@@ -9,9 +9,9 @@ int main(int argc, char **argv)
 {
   // Parse command line
   char *dir_name;
-  DIR *dp;
-  dirent *enter;
-  stat fileStat;
+  DIR *od;
+  struct dirent *enter;
+  struct stat fileStat;
 
   // Open directory
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
   od = opendir(dir_name);
 
   // Repeatly read and print entries
-  while ((enter != readdir(od)) != NULL)
+  while ((enter = readdir(od)) != NULL)
   {
     stat(enter->d_name, &fileStat);
 
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
   }
 
   // Close directory
-  closedir(dp);
+  closedir(od);
 
   return 0;
 }

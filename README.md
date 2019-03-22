@@ -14,13 +14,9 @@ You have three hours to complete this challenge. Plan your time accordingly.
 
 ## Commits
 
-<<<<<<< HEAD
-## Task 2
-=======
 Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons and your project manager.
 
 ## Description
->>>>>>> 9e88cfe9edc3a966ed2fbb5fe389f81973f28665
 
 In this challenge, you will write a program in C, `lsls.c`, that prints out a directory listing for the
 directory the user specifies on the command line. The directory listing will include both file names and sizes. If the user does not specify a

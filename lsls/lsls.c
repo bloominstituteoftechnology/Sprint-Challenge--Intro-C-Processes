@@ -23,10 +23,23 @@ int main(int argc, char **argv)
   struct dirent *dir;
 
   // Open directory
+  d = (argc > 1) ? opendir(argv[1]) : opendir(".");
+  if (d)
+  {
 
-  // Repeatly read and print entries
+    // Repeatly read and print entries
+    while ((dir = readdir(d)) != NULL)
+    {
+      printf("%s\n", dir->d_name);
+    }
 
   // Close directory
+   if (closedir(d) == -1)
+    {
+      perror("closedir");
+      return 0;
+    }
+  }
 
   return 0;
 }

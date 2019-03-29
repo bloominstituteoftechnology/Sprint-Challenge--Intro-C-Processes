@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
 /**
@@ -8,36 +9,42 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-  int i;
-  for (i = 0; i < argc; i++)
+  char *path;
+  if (argc > 1)
   {
-    printf("   %s\n", argv[i]);
+    path = argv[1];
+  }
+  else
+  {
+    path = "./";
   }
 
-  //File size of the directory opened
-  struct stat buf;
-  (argv > 1) ? stat(argv[1], &buf) : stat(".", &buf);
-  printf("file size is %lld\n", buf.st_size);
+  // Open directory
+  DIR *dir;
+  dir = opendir(path);
 
-  //Open the directory
-  d = (argc > 1) ? opendir(argv[1]) : opendir(".");
-  if (d)
+  // Check to see if the directory could not be opened.
+  if (dir == NULL)
   {
+    printf("Error: Could not open directory. \n");
+    exit(1);
+  }
 
-    // Repeatly read and print entries
-    while ((dir = readdir(d)) != NULL)
-    {
-      printf("%s\n", dir->d_name);
-    }
+  // Repeatly read and print entries
+  struct dirent *current_dir = readdir(dir);
+  while (current_dir)
+  {
+    struct stat buf;
+
+    printf("%s/%s", path, current_dir->d_name);
+    stat(path, &buf);
+
+    printf("%10lld %s\n", buf.st_size, current_dir->d_name);
+    current_dir = readdir(dir);
+  }
 
   // Close directory
-   if (closedir(d) == -1)
-    {
-      perror("closedir");
-      return 0;
-    }
-  }
+  closedir(dir);
 
   return 0;
-
 }

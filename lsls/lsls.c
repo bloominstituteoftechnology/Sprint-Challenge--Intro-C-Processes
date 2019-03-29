@@ -6,6 +6,9 @@
  */
 int main(int argc, char **argv)
 {
+  struct dirent *pDirent;
+  DIR *pDir;
+  struct stat sizebuf;
   // Parse command line
 
   // Open directory

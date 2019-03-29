@@ -10,18 +10,11 @@ int main(int argc, char **argv)
 {
   // Parse command line
   char *path;
-  if (argc > 1)
-  {
-    path = argv[1];
-  }
-  else
-  {
-    path = "./";
-  }
-
-  // Open directory
-  DIR *dir;
-  dir = opendir(path);
+  //conditional for is location greater than first index, if so set path = to first index. If not
+  //set path to base
+  int i;
+  for (i = 1; i < argc; i++) {
+    DIR *dir = opendir(argv[i]);
 
   // Check to see if the directory could not be opened.
   if (dir == NULL)
@@ -46,5 +39,9 @@ int main(int argc, char **argv)
   // Close directory
   closedir(dir);
 
+        
+  }
   return 0;
+
+
 }

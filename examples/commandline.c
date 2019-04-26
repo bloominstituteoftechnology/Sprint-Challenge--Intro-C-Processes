@@ -2,8 +2,20 @@
  * Try running with various command line args:
  *
  * ./commandline hello world
+./commandline
+There are 3 command line argument(s):
+   hello
+   world
  * ./commandline this is a test
+ There are 5 command line argument(s):
+    ./commandline
+   this
+   is
+   a
+   test
  * ./commandline
+ There are 1 command line argument(s):
+ ./commandline
  */
 
 #include <stdio.h>

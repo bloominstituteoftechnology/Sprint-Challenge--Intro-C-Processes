@@ -9,14 +9,17 @@
 #include <stdio.h>
 
 int main(int argc, char **argv)
+// int main(int argc, char *argv[])
 {
-    int i;
+  int i;
 
-    printf("There are %d command line argument(s):\n", argc);
+  printf("There are %d command line argument(s):\n", argc);
 
-    for (i = 0; i < argc; i++) {
-        printf("   %s\n", argv[i]);
-    }
+  for (i = 0; i < argc; i++)
+  {
+    printf("   %s\n", argv[i]);
+    // printf("   %s\n", *(argv[i]+i));
+  }
 
-    return 0;
+  return 0;
 }

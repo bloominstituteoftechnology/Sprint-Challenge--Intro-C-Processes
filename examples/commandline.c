@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 
+//Example code to print all command line arguments 
 int main(int argc, char **argv)
 {
     int i;

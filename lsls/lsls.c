@@ -6,10 +6,39 @@
 // #include <stdio.h>
 // #include <limits.h>
 
-#define SOME_SIZE 2046
+// #define SOME_SIZE 2046
 /**
  * Main
  */
+
+int print_second_directory(char *pDirent)
+{
+  DIR *pDir2;
+  struct dirent *pDirent2;
+  struct stat buf3;
+  pDir2 = opendir(pDirent);
+  if (pDir2 == NULL)
+  {
+    printf("Cannot open directory '%s'\n", pDirent);
+    return 1;
+  }
+  while ((pDirent2 = readdir(pDir2)) != NULL)
+  {
+    stat(pDirent2->d_name, &buf3);
+    if (S_ISDIR(buf3.st_mode) == 1)
+    {
+      printf("    <DIR> %s\n", pDirent2->d_name);
+    }
+    else if (S_ISREG(buf3.st_mode) == 1)
+    {
+      printf("    %ld %s\n", buf3.st_size, pDirent2->d_name);
+    }
+  }
+  closedir(pDir2);
+
+  return 0;
+}
+
 int main(int argc, char **argv)
 {
   // to see argv
@@ -18,7 +47,7 @@ int main(int argc, char **argv)
   // {
   //   printf("   %s\n", argv[i]);
   // }
-  
+
   DIR *pDir;
   struct dirent *pDirent;
   struct stat buf;
@@ -55,7 +84,19 @@ int main(int argc, char **argv)
     // strcat(buf2, b);
     // stat(buf2, &buf);
     stat(pDirent->d_name, &buf);
-    printf("%ld %s\n", buf.st_size, pDirent->d_name);
+    // printf("dir: %d\n",S_ISDIR(buf.st_mode));
+    // printf("file: %d\n",S_ISREG(buf.st_mode));
+    if (S_ISDIR(buf.st_mode) == 1)
+    {
+      printf("<DIR> %s\n", pDirent->d_name);
+      print_second_directory(pDirent->d_name);
+    }
+    else if (S_ISREG(buf.st_mode) == 1)
+    {
+      printf("%ld %s\n", buf.st_size, pDirent->d_name);
+    }
+
+    // printf("%ld %s\n", buf.st_size, pDirent->d_name);
     // printf("%s\n",pDirent->d_name);
   }
 

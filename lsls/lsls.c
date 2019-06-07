@@ -2,7 +2,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 /**
  * Main
@@ -13,20 +13,31 @@ int main(int argc, char **argv)
   char *path;
   if (argc > 1) {
     path = argv[1];
+    fprintf(stderr, "Extra args.\n");
+    exit(0);
   } else {
     path = ".";
   }
+  
   // Open directory
-  struct directory *d;
   DIR *directory = opendir(path);
   if (directory == NULL) {
-    printf("%s is not a valid directory\n", path);
-    exit(0);
-  }
-  
+    fprintf(stderr, "Cannot open directory.\n");
+    exit(1);
+  } 
+
   // Repeatly read and print entries
+  struct dirent *entries;
+  struct stat buf;
+
+  while ((entries = readdir(directory)) != NULL) {
+    char *file_name = entries->d_name;
+    stat(file_name, &buf);
+    printf("%10lld  %s\n", buf.st_size, file_name);
+  }
 
   // Close directory
+  closedir(directory);
 
   return 0;
 }

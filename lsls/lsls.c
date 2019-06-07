@@ -46,7 +46,8 @@ int main(int argc, char **argv)
       files++;
       struct stat buf;
       strncpy(fileName, entry->d_name, 254);
-      stat(strcat(dirName, fileName), &buf);     
+      stat(entry->d_name, &buf); 
+
       printf("File Name: %s, File size: %lld\n", entry->d_name, buf.st_size);
     }
   

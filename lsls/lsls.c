@@ -70,7 +70,7 @@ int main(int argc, char **argv)
     {
       struct stat buf;
       stat(entry->d_name, &buf);
+       // file size of directory and name
       printf("File Name: %s, File size: %lld\n", entry->d_name, buf.st_size);
     }
-   // file size of directory
 }

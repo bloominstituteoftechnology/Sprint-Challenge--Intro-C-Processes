@@ -10,7 +10,7 @@
  */
 int main(int argc, char **argv)
 {
-  // Parse command line
+	// Parse command line
 	struct dirent *ent;
 	struct stat buf;
 	DIR *dir;
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         printf("%s\n", argv[i]);
     }
 
-  // Open directory
+ 	// Open directory
 
     if (argv[1] == NULL) {
     	dir = opendir(".");

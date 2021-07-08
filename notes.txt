@@ -1,0 +1,11 @@
+prompt and accept a command from the user
+
+usdr command specifies a directory
+
+lsls.c prints a directory listing for the user-specified directory
+
+directory listing includes file name and file size
+
+If the user does not specify a directory, 
+print out the contents of the current directory, which is called `.`
+
